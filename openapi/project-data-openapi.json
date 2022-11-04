@@ -1,0 +1,825 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Projects",
+    "version": "1.0",
+    "summary": "Download all annotations of a project",
+    "description": "Download all annotations of a project"
+  },
+  "servers": [{ "url": "https://app.layerx.ai" }],
+  "paths": {
+    "/api/projects/{projectId}/getAnnotationData": {
+      "parameters": [
+        {
+          "schema": { "type": "string" },
+          "name": "projectId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the project required, you can view this project ID from 'download' section within the relevant project"
+        }
+      ],
+      "get": {
+        "summary": "Download Annotations",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "content-type": {
+                "schema": { "type": "string" },
+                "description": "JSON"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "metaData": {
+                        "project_name": "Road Traffic",
+                        "frame_rate": 4,
+                        "content_type": "video",
+                        "created_at": "2022-02-03T05:26:18.474Z",
+                        "labels": [
+                          {
+                            "name": "Vehicle",
+                            "label_key": "vehicle",
+                            "attributes": [
+                              {
+                                "name": "Type",
+                                "attribute_key": "type",
+                                "value_array": [
+                                  { "value": "Car", "description": "car" },
+                                  { "value": "Van", "description": "Van" },
+                                  { "value": "Truck", "description": "truck" }
+                                ]
+                              },
+                              {
+                                "name": "Color",
+                                "attribute_key": "color",
+                                "value_array": [
+                                  { "value": "Red", "description": "Red" },
+                                  { "value": "Black", "description": "black" }
+                                ]
+                              },
+                              {
+                                "name": "Wheel Count",
+                                "attribute_key": "wheel_count",
+                                "value_array": [
+                                  { "value": "2", "description": "2" },
+                                  { "value": "3", "description": "3" },
+                                  { "value": "4", "description": "4" },
+                                  { "value": "6", "description": "6" },
+                                  { "value": "10", "description": "10" },
+                                  {
+                                    "value": "10+",
+                                    "description": "more than 10"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Road Sign",
+                            "label_key": "road_sight",
+                            "description": "Road Sign",
+                            "attributes": []
+                          }
+                        ]
+                      },
+                      "data": [
+                        {
+                          "task_id": "613614135591081d13df95a9",
+                          "video_url": "aws_s3_url",
+                          "frames": [
+                            {
+                              "frameId": 1,
+                              "items": [
+                                {
+                                  "id": 2,
+                                  "annotationType": "box",
+                                  "label": "Vehicle",
+                                  "boundaries": {
+                                    "x": 2026.7931688804554,
+                                    "y": 493.7239254474409,
+                                    "w": 182.601894888561,
+                                    "h": 149.6650688599595
+                                  },
+                                  "attributeValues": {
+                                    "wheel_count": "1",
+                                    "type": "Car",
+                                    "color": "Red"
+                                  }
+                                },
+                                {
+                                  "id": 3,
+                                  "annotationType": "box",
+                                  "label": "Vehicle",
+                                  "boundaries": {
+                                    "x": 1916.0265654648956,
+                                    "y": 801.2903225806451,
+                                    "w": 291.69180188204336,
+                                    "h": 194.84437129690593
+                                  },
+                                  "attributeValues": {
+                                    "type": "Van",
+                                    "wheel_count": "4",
+                                    "color": "Black"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "frameId": 3,
+                              "items": [
+                                {
+                                  "id": 13,
+                                  "annotationType": "box",
+                                  "label": "Road Sign",
+                                  "boundaries": {
+                                    "x": 1022.8009553098216,
+                                    "y": 621,
+                                    "w": 236.29360194116975,
+                                    "h": 194.4307400379506
+                                  },
+                                  "attributeValues": {}
+                                },
+                                {
+                                  "id": 14,
+                                  "annotationType": "box",
+                                  "label": "Vehicle",
+                                  "boundaries": {
+                                    "x": 1339.369337979094,
+                                    "y": 546.7628083491461,
+                                    "w": 256.14109845354346,
+                                    "h": 113.18492684249156
+                                  },
+                                  "attributeValues": {
+                                    "type": "Truck",
+                                    "wheel_count": "10",
+                                    "color": "Black"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "frameId": 4,
+                              "items": [
+                                {
+                                  "id": 6,
+                                  "label": "Vehicle",
+                                  "annotationType": "box",
+                                  "boundaries": {
+                                    "x": 874.349146110057,
+                                    "y": 597.198606271777,
+                                    "w": 252.17077798861476,
+                                    "h": 189.95129885156268
+                                  },
+                                  "attributeValues": {
+                                    "type": "Car",
+                                    "wheel_count": "4",
+                                    "color": "Black"
+                                  }
+                                },
+                                {
+                                  "id": 7,
+                                  "label": "Road Sign",
+                                  "annotationType":"box",
+                                  "boundaries": {
+                                    "x": 1190.1518026565466,
+                                    "y": 497.27134724857683,
+                                    "w": 252.17077798861465,
+                                    "h": 108.58231128800855
+                                  },
+                                  "attributeValues": {}
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "properties": {
+                    "metaData": {
+                      "type": "object",
+                      "required": [
+                        "project_name",
+                        "frame_rate",
+                        "content_type",
+                        "labels"
+                      ],
+                      "properties": {
+                        "project_name": { "type": "string", "minLength": 1 },
+                        "frame_rate": { "type": "number" },
+                        "content_type": { "type": "string", "minLength": 1 },
+                        "created_at": { "type": "string", "minLength": 1 },
+                        "labels": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": { "type": "string", "minLength": 1 },
+                              "label_key": { "type": "string", "minLength": 1 },
+                              "description": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "attributes": {
+                                "type": "array",
+                                "items": { "type": "object" }
+                              }
+                            },
+                            "required": ["name", "label_key"]
+                          }
+                        }
+                      }
+                    },
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "task_id": { "type": "string", "minLength": 1 },
+                          "video_url": { "type": "string", "minLength": 1 },
+                          "frames": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "frameId": { "type": "number" },
+                                "items": {
+                                  "type": "array",
+                                  "uniqueItems": true,
+                                  "minItems": 1,
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": { "type": "number" },
+                                      "label": {
+                                        "type": "string",
+                                        "minLength": 1
+                                      },
+                                      "annotationType": {
+                                        "type": "string",
+                                        "minLength":1
+                                      },
+                                      "boundaries": {
+                                        "type": "object",
+                                        "properties": {
+                                          "x": { "type": "number" },
+                                          "y": { "type": "number" },
+                                          "w": { "type": "number" },
+                                          "h": { "type": "number" }
+                                        }
+                                      },
+                                      "attributeValues": {
+                                        "type": "object",
+                                        "properties": {
+                                          "wheel_count": {
+                                            "type": "string",
+                                            "minLength": 1
+                                          },
+                                          "type": {
+                                            "type": "string",
+                                            "minLength": 1
+                                          },
+                                          "color": {
+                                            "type": "string",
+                                            "minLength": 1
+                                          }
+                                        },
+                                        "required": [
+                                          "wheel_count",
+                                          "type",
+                                          "color"
+                                        ]
+                                      }
+                                    },
+                                    "required": ["id"]
+                                  }
+                                }
+                              },
+                              "required": ["frameId"]
+                            }
+                          }
+                        },
+                        "required": ["task_id"]
+                      }
+                    }
+                  },
+                  "required": ["data"]
+                },
+                "examples": { "example-1": {} }
+              },
+              "application/xml": {
+                "schema": { "type": "object", "properties": {} }
+              },
+              "multipart/form-data": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-projects-projectId-downloadData",
+        "description": "Used for downloading meta data and annotation data belong to all frames within the given project.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string" }
+            },
+            "in": "query",
+            "name": "taskList",
+            "description": "Ids of the tasks required - optional. If not specified, all tasks are considered."
+          },
+          {
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string" }
+            },
+            "in": "query",
+            "name": "labels",
+            "description": "Labels to filter the boxes from - optional -> if not specified, all labels are considered"
+          },
+          {
+            "schema": { "type": "number" },
+            "in": "query",
+            "name": "pageSize",
+            "description": "No of annotation tasks to be present per page. Default is 5 and maximum is 50"
+          },
+          {
+            "schema": { "type": "number", "format": "double" },
+            "in": "query",
+            "name": "pageIndex",
+            "description": "Index of the page (default = 0)"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "key",
+            "description": "Put the given API key here",
+            "required": true
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "secret",
+            "description": "Put the given API secret here",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/projects/list": {
+      "get": {
+        "summary": "List all projects",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "object",
+                    "required": ["contentType", "name", "id", "totalTaskCount"],
+                    "properties": {
+                      "contentType": { "type": "number" },
+                      "name": { "type": "string", "minLength": 1 },
+                      "id": { "type": "string", "minLength": 1 },
+                      "totalTaskCount": { "type": "number" }
+                    }
+                  },
+                  "x-examples": {
+                    "example-1": [
+                      {
+                        "contentType": 1,
+                        "name": "LayerX.ai Demo",
+                        "id": "619b4cfb388292640dd3312a",
+                        "totalTaskCount": 4
+                      },
+                      {
+                        "contentType": 1,
+                        "name": "Micro Driver",
+                        "id": "61f2c45c67642d1eafb7073a",
+                        "totalTaskCount": 3
+                      },
+                      {
+                        "contentType": 1,
+                        "name": "Nuro Robotics",
+                        "id": "6203d8f83f71aa05e5c239e9",
+                        "totalTaskCount": 4
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-projects-list",
+        "parameters": [],
+        "description": "Returns a list of all the projects that belong to your team."
+      }
+    },
+    "/api/projects/create": {
+        "post": {
+          "summary": "Create Project",
+          "operationId": "post-api-projects-create",
+          "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties":{
+                            "projectId": { "type": "string", "description": "Id of the created project"}
+                        }
+                        }
+                    }
+                }
+                
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "projectName": {
+                      "type": "string", "minLength":1, "description": "Name of the project"
+                    },
+                    "contentType": {
+                        "type": "number", "description": "Specify whether the type of content is image or video. For video this is 1 and for image it is 2"
+                      },
+                    "labels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["labelName"],
+                        "properties": {
+                          "labelName": { "type": "string",  "minLength": 1 },
+                          "labelDescription": { "type": "string"}
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "projectName", "labels", "contentType"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "projectName": "Micro Driver",
+                      "labels": [
+                          {
+                              "labelName": "Vehicle",
+                              "labelDescription": "Vehicle moving on the street"
+                          },
+                          {
+                            "labelName": "Traffic Light",
+                            "labelDescription": "Color lights"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Name of the project"
+          },
+          "description": "Creates a new project on LayerX system."
+        }
+      },
+      "/api/projects/{projectId}/initUpload": {
+        "parameters": [
+            {
+              "schema": { "type": "string" },
+              "name": "projectId",
+              "in": "path",
+              "required": true,
+              "description": "ID of the project that you wish to upload the contents to. This is the Id that returned by project create endpoint"
+            }
+          ],
+        "post": {
+          "summary": "Initialize Upload",
+          "operationId": "post-api-projects-init-upload",
+          "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties":{
+                            "uploadId": { 
+                              "type": "string", 
+                              "description": "Id generated by the system for the upload going to start"
+                            },
+                            "lastSequenceId": {
+                              "type": "number",
+                              "description": "Frame sequence number last stopped in case user re-call this endpoint in order to track where to resume the upload"
+                            }
+                        }
+                        }
+                    }
+                }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "collectionName": {
+                      "type": "string", "minLength":1, "description": "Name to identify the collection of files uploading - this name will be listed under the uploads done for the project in LayerX frontend"
+                    },
+                    "totalFileCount": {
+                        "type": "number", "description": "No of files going to be uploaded - required for the server to track the progress and completion of upload"
+                    }
+                  },
+                  "required": [
+                    "collectionName", "totalFileCount"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "collectionName": "Road Traffic Uploads - 12/05/2022",
+                      "totalFileCount": 500
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "Setup a new file upload to a project in LayerX system."
+        }
+      },
+      "/api/label-data/{uploadId}/upload":{
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "Id returned by initialize Upload endpoint"
+          }
+        ],
+        "post": {
+          "summary": "Upload Files with Labelling",
+          "operationId": "post-api-upload-labelling",
+          "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties":{
+                            "success": { "type": "boolean", "description": "True if upload file is successful"}
+                        }
+                        }
+                    }
+                }
+                
+            }
+          },
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "files": {
+                          "type": "array",
+                          "description": "Files to upload - Here you have to upload single file per frame, therefore only 1 element present in the array",
+                            "items": {
+                                "format": "binary",
+                                "type": "string"
+                            }
+                          },
+                          "sequenceNo":{
+                            "type": "number",
+                            "description": "Index or sequence number of the frame",
+                            "required": false
+                          },
+                          "labels": {
+                            "type": "array",
+                            "description": "Label data for the frame as array of objects. Each object will have a x,y coordinates and parameters such as width, height",
+                            "items":{
+                              "type": "object",
+                              "required": ["points"],
+                              "properties": {
+                                "label": { "type": "string", "description": "Label name of marked object"},
+                                "boundaries": { 
+                                  "type": "object", 
+                                  "description": "Coordinates / width / height for drawing this annotated label, the properties depends on type of label",
+                      
+                                    "properties":{
+                                      "x": { "type": "number"},
+                                      "y": { "type": "number"},
+                                      "w": { "type": "number"},
+                                      "h": { "type": "number"}
+                                  },
+                                   "minLength": 1 
+                                  },
+                                "annotationType": { "type": "string", "description":"Type of the object. The available types are: box, polygon, line"}
+                              }
+                            }
+                          }
+                        },
+                        "required": [ "files", "labels"],
+                        "x-examples": {
+                          "example-1":{
+                            "files": [
+                              "file1.jpeg"
+                            ],
+                            "labels": [
+                              {
+                                "annotationType": "box",
+                                "label": "Vehicle",
+                                "boundaries": 
+                                  {
+                                    "x": 34, "y": 45, "w": 500, "h": 200
+                                  }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                   
+            }
+          }
+        }
+      },
+    "/api/tasks/list": {
+      "parameters": [],
+      "get": {
+        "summary": "Get Task List",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "taskCount": { "type": "number" },
+                    "taskList": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "id",
+                          "frameCount",
+                          "status",
+                          "completedFrames",
+                          "createdAt",
+                          "updatedAt",
+                          "projectName",
+                          "progress",
+                          "contentType",
+                          "videoResolutionWidth",
+                          "videoResolutionHeight",
+                          "videoName",
+                          "taskName",
+                          "isDownloadEnable",
+                          "downLoadUrl"
+                        ],
+                        "properties": {
+                          "id": { "type": "string", "minLength": 1 },
+                          "frameCount": { "type": "number" },
+                          "status": { "type": "number" },
+                          "completedFrames": { "type": "number" },
+                          "createdAt": { "type": "string", "minLength": 1 },
+                          "updatedAt": { "type": "string", "minLength": 1 },
+                          "completedAt": {},
+                          "projectName": { "type": "string", "minLength": 1 },
+                          "progress": { "type": "number" },
+                          "contentType": { "type": "number" },
+                          "videoResolutionWidth": { "type": "number" },
+                          "videoResolutionHeight": { "type": "number" },
+                          "videoName": { "type": "string", "minLength": 1 },
+                          "taskName": { "type": "string", "minLength": 1 },
+                          "isDownloadEnable": { "type": "boolean" },
+                          "downLoadUrl": { "type": "string", "minLength": 1 }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["taskCount", "taskList"],
+                  "x-examples": {
+                    "example-1": {
+                      "taskCount": 3,
+                      "taskList": [
+                        {
+                          "id": "61f2c4a2d625d232680cb1dc",
+                          "frameCount": 35,
+                          "status": 1,
+                          "completedFrames": 0,
+                          "createdAt": "2022-01-27T16:13:05.206Z",
+                          "updatedAt": "2022-02-18T15:03:20.185Z",
+                          "completedAt": null,
+                          "projectName": "Micro Driver",
+                          "progress": 0,
+                          "contentType": 1,
+                          "videoResolutionWidth": 1920,
+                          "videoResolutionHeight": 1080,
+                          "videoName": "Driving clip1",
+                          "taskName": "task-0-Driving clip1",
+                          "isDownloadEnable": false,
+                          "downLoadUrl": "https://app.layerx.ai/api/61f2c4a2d625d232680cb1dc/jsonData"
+                        },
+                        {
+                          "id": "61f2c4a3d625d232680cb200",
+                          "frameCount": 120,
+                          "status": 0,
+                          "completedFrames": 0,
+                          "createdAt": "2022-01-27T16:13:01.378Z",
+                          "projectName": "Micro Driver",
+                          "contentType": 1,
+                          "videoResolutionWidth": 1920,
+                          "videoResolutionHeight": 1080,
+                          "videoName": "Driving clip 2",
+                          "taskName": "task-0-Driving clip 2",
+                          "isDownloadEnable": false,
+                          "downLoadUrl": "https://app.layerx.ai/api/61f2c4a3d625d232680cb200/jsonData"
+                        },
+                        {
+                          "id": "61f2c4a9d625d232680cb279",
+                          "frameCount": 45,
+                          "status": 0,
+                          "completedFrames": 0,
+                          "createdAt": "2022-01-27T16:13:01.378Z",
+                          "projectName": "Micro Driver",
+                          "contentType": 1,
+                          "videoResolutionWidth": 1920,
+                          "videoResolutionHeight": 1080,
+                          "videoName": "Driving clip 2",
+                          "taskName": "task-1-Driving clip 2",
+                          "isDownloadEnable": false,
+                          "downLoadUrl": "https://app.layerx.ai/api/61f2c4a9d625d232680cb279/jsonData"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-projects-projectId",
+        "description": "Get list of tasks belong to the project",
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "in": "query",
+            "name": "projectId",
+            "description": "ID of the project",
+            "required": true
+          },
+          {
+            "schema": { "type": "number", "format": "double" },
+            "in": "query",
+            "name": "pageIndex",
+            "description": "Page number of the task list (default = 0)",
+            "required": false
+          },
+          {
+            "schema": { "type": "number" },
+            "in": "query",
+            "name": "pageSize",
+            "description": "No of annotation tasks to be present per page. Default is 100 and maximum is 1000"
+          }
+        ]
+      }
+    }
+  },
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true,
+    "samples-enabled": true
+  }
+}

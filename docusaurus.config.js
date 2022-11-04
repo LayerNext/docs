@@ -6,9 +6,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: "LayerNext",
-    tagline: "Dinosaurs are cool",
-    url: "https://your-docusaurus-test-site.com",
+    title: "LayerNext Documentation",
+    tagline: "Best in class Data Tools for Computer Vision",
+    url: "https://docs.layernext.ai",
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
@@ -16,8 +16,8 @@ const config = {
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
-    organizationName: "layernext", // Usually your GitHub org/user name.
-    projectName: "layernext", // Usually your repo name.
+    // organizationName: "LayerX-AI", // Usually your GitHub org/user name.
+    // projectName: "layernext", // Usually your repo name.
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
@@ -47,24 +47,50 @@ const config = {
                 },
             }),
         ],
+        [
+            "redocusaurus",
+            {
+                // Plugin Options for loading OpenAPI files
+                specs: [
+                    {
+                        id: "dataset-openapi",
+                        spec: "openapi/dataset-openapi.json",
+                        route: "/dataset/",
+                    },
+                    {
+                        id: "project-openapi",
+                        spec: "openapi/project-data-openapi.json",
+                        route: "/project/",
+                    },
+                ],
+                // // Theme Options for modifying how redoc renders them
+                theme: {
+                    // Change with your site colors
+                    primaryColor: "#7166f9",
+                },
+            },
+        ],
     ],
 
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            colorMode: {
+                defaultMode: "dark",
+            },
             navbar: {
                 title: "LayerNext Docs",
                 logo: {
-                    alt: "My Site Logo",
+                    alt: "LayerNext Docs",
                     src: "img/logo.svg",
                 },
                 items: [
-                    {
-                        type: "doc",
-                        docId: "intro",
-                        position: "left",
-                        label: "Tutorial",
-                    },
+                    // {
+                    //     type: "doc",
+                    //     docId: "intro",
+                    //     position: "left",
+                    //     label: "Tutorial",
+                    // },
                     // {
                     //     href: "https://github.com/facebook/docusaurus",
                     //     label: "GitHub",
@@ -73,7 +99,7 @@ const config = {
                 ],
             },
             footer: {
-                style: "dark",
+                // style: "dark",
                 // links: [
                 //     {
                 //         title: "Docs",

@@ -1,0 +1,495 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "dataset-openapi",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/api/datasets/list": {
+      "get": {
+        "summary": "Dataset List",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "name",
+                      "createdAt",
+                      "versionList"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "name": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "versionList": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "minItems": 1,
+                        "items": {
+                          "required": [
+                            "versionId",
+                            "createdAt",
+                            "createdBy",
+                            "versionNo",
+                            "versionDetails"
+                          ],
+                          "properties": {
+                            "versionId": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "createdBy": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "statsSummary": {
+                              "type": "object",
+                              "properties": {
+                                "totalFrames": {
+                                  "type": "number"
+                                },
+                                "totalBoxes": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "totalFrames",
+                                "totalBoxes"
+                              ]
+                            },
+                            "versionNo": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "versionDetails": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "example-1": [
+                      {
+                        "id": "61f23adee91a72dac0da888c",
+                        "name": "Road Traffic Data 1",
+                        "createdAt": "2022-01-27T06:25:34.484Z",
+                        "versionList": [
+                          {
+                            "versionId": "6206706735bef1399e88d9f5",
+                            "createdAt": "2022-02-11T14:19:19.735Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6826
+                            },
+                            "versionNo": "1.1.0",
+                            "versionDetails": "11 February 2022, 839 Images - 471MB"
+                          },
+                          {
+                            "versionId": "620657c935bef1399e88d951",
+                            "createdAt": "2022-02-11T12:34:17.301Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6826
+                            },
+                            "versionNo": "1.0.9",
+                            "versionDetails": "11 February 2022, 531 Images - 261MB"
+                          },
+                          {
+                            "versionId": "6206578b35bef1399e88d947",
+                            "createdAt": "2022-02-11T12:33:15.961Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6826
+                            },
+                            "versionNo": "1.0.8",
+                            "versionDetails": "11 February 2022, 487 Images - 239MB"
+                          },
+                          {
+                            "versionId": "6204f1803f71aa05e5c24e2a",
+                            "createdAt": "2022-02-10T11:05:36.877Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6826
+                            },
+                            "versionNo": "1.0.7",
+                            "versionDetails": "10 February 2022, 531 Images - 261MB"
+                          },
+                          {
+                            "versionId": "6204f01e3f71aa05e5c24e29",
+                            "createdAt": "2022-02-10T10:59:42.776Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6826
+                            },
+                            "versionNo": "1.0.6",
+                            "versionDetails": "10 February 2022, 487 Images - 239MB"
+                          },
+                          {
+                            "versionId": "6204d9b43f71aa05e5c24e03",
+                            "createdAt": "2022-02-10T09:24:04.665Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6826
+                            },
+                            "versionNo": "1.0.5",
+                            "versionDetails": "10 February 2022, 751 Images - 427MB"
+                          },
+                          {
+                            "versionId": "6204d7be3f71aa05e5c24e02",
+                            "createdAt": "2022-02-10T09:15:42.490Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6826
+                            },
+                            "versionNo": "1.0.4",
+                            "versionDetails": "10 February 2022, 707 Images - 352MB"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "61f2a32a67642d1eafb70700",
+                        "name": "Road Traffic Data 2",
+                        "createdAt": "2022-01-27T13:50:34.492Z",
+                        "versionList": [
+                          {
+                            "versionId": "6203cce63f71aa05e5c23846",
+                            "createdAt": "2022-02-09T14:17:10.290Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6828
+                            },
+                            "versionNo": "1.0.3",
+                            "versionDetails": "9 February 2022, 443 Images - 228MB"
+                          },
+                          {
+                            "versionId": "61f2a36967642d1eafb70701",
+                            "createdAt": "2022-01-27T13:51:37.640Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6826
+                            },
+                            "versionNo": "1.0.1",
+                            "versionDetails": "27 January 2022, 443 Images - 228MB"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "6203d4f53f71aa05e5c239c8",
+                        "name": "Road Traffic Data 3",
+                        "createdAt": "2022-02-09T14:51:33.267Z",
+                        "versionList": [
+                          {
+                            "versionId": "6206727535bef1399e88d9f6",
+                            "createdAt": "2022-02-11T14:28:05.328Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6828
+                            },
+                            "versionNo": "1.0.4",
+                            "versionDetails": "11 February 2022, 619 Images - 316MB"
+                          },
+                          {
+                            "versionId": "620661a435bef1399e88d9e3",
+                            "createdAt": "2022-02-11T13:16:20.315Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6828
+                            },
+                            "versionNo": "1.0.3",
+                            "versionDetails": "11 February 2022, 487 Images - 315MB"
+                          },
+                          {
+                            "versionId": "62052c0b3f71aa05e5c251cb",
+                            "createdAt": "2022-02-10T15:15:23.581Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6828
+                            },
+                            "versionNo": "1.0.2",
+                            "versionDetails": "10 February 2022, 487 Images - 315MB"
+                          },
+                          {
+                            "versionId": "6203d4ff3f71aa05e5c239c9",
+                            "createdAt": "2022-02-09T14:51:43.051Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 443,
+                              "totalBoxes": 6828
+                            },
+                            "versionNo": "1.0.1",
+                            "versionDetails": "9 February 2022, 443 Images - 228MB"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "620ba9471b0b6f17aed63ceb",
+                        "name": "Agri Data 1",
+                        "createdAt": "2022-02-15T13:23:19.014Z",
+                        "versionList": [
+                          {
+                            "versionId": "620ba9571b0b6f17aed63cec",
+                            "createdAt": "2022-02-15T13:23:35.320Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 221,
+                              "totalBoxes": 15
+                            },
+                            "versionNo": "1.0.1",
+                            "versionDetails": "15 February 2022, 221 Images - 160MB"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "620e317c743f1af547b715fc",
+                        "name": "Agri Data 2",
+                        "createdAt": "2022-02-17T11:29:00.180Z",
+                        "versionList": [
+                          {
+                            "versionId": "620e6665743f1af547b71e2c",
+                            "createdAt": "2022-02-17T15:14:45.131Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 221,
+                              "totalBoxes": 15
+                            },
+                            "versionNo": "1.0.2",
+                            "versionDetails": "17 February 2022, 265 Images - 192MB"
+                          },
+                          {
+                            "versionId": "620e3197743f1af547b715fd",
+                            "createdAt": "2022-02-17T11:29:27.564Z",
+                            "createdBy": "Kelum Vithana",
+                            "statsSummary": {
+                              "totalFrames": 221,
+                              "totalBoxes": 15
+                            },
+                            "versionNo": "1.0.1",
+                            "versionDetails": "17 February 2022, 221 Images - 160MB"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "examples": {
+                  "dataset list example": {
+                    "value": [
+                      {
+                        "id": "string",
+                        "name": "string",
+                        "createdAt": "string",
+                        "versionList": [
+                          {
+                            "versionId": "string",
+                            "createdAt": "string",
+                            "createdBy": "string",
+                            "statsSummary": {
+                              "totalFrames": 0,
+                              "totalBoxes": 0
+                            },
+                            "versionNo": "string",
+                            "versionDetails": "string"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-datasets-list",
+        "description": "Get a list of dataset groups that are created under your team plus all versions under each group."
+      },
+      "parameters": []
+    },
+    "/api/datasets/{datasetVersionId}/downloadDataset": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "datasetVersionId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the required version of relevant dataset group. This id can be taken from response of Dataset List endpoint."
+        }
+      ],
+      "get": {
+        "summary": "Download Dataset",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-api-datasets-datasetVersionId-downloadDataset",
+        "description": "Returns training data and urls of images for all frames (both real and augmented) in given export format",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "pageIndex",
+            "description": "Index of the page of data frames (default = 0)"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "pageSize",
+            "description": "No of frames contained in each page (default 100 and maximum is 10000)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "exportFormat",
+            "description": "Output format of data (accepted formats are: yolo, rcnn, tensorflow)",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/datasets/{datasetGroupId}/create": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "datasetGroupId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the dataset group under which this version to be created. This ID can be retrieved from the Dataset List endpoint response."
+        }
+      ],
+      "post": {
+        "summary": "Create Dataset Version",
+        "operationId": "post-api-datasets-datasetGroupId-create",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "trainingSetPercentage": {
+                    "type": "number"
+                  },
+                  "testingSetPercentage": {
+                    "type": "number"
+                  },
+                  "validationSetPercentage": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "trainingSetPercentage",
+                  "testingSetPercentage",
+                  "validationSetPercentage"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "trainingSetPercentage": 69,
+                    "testingSetPercentage": 20,
+                    "validationSetPercentage": 11
+                  }
+                }
+              }
+            }
+          },
+          "description": "The percentages to which the dataset should be split for training, testing and validation. Make sure the sum of percentages equals 100."
+        },
+        "description": "Creates a dataset version under required dataset group using given projects. You can input the split percentage for 3 categories that are required for ML process - training / testing and validation."
+      }
+    },
+    "/api/datasets/createGroup": {
+      "post": {
+        "summary": "Create Dataset Group",
+        "operationId": "post-api-datasets-createGroup",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Before creating a dataset, a group should be created. ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "name": "My Dataset Group"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Only a name should be provided to create a group."
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
