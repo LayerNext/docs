@@ -3,16 +3,8 @@
 
 # Quick start
 
-## Getting a LayerNext account
+The LayerNext platform is available as a hosted service, or self hosted on your infrastructure.
 
-// WIP
+During our closed beta period, please contact us at support@layernext.ai or through our website and we will reach out to onboard you to our service.
 
-## Connecting your cloud storage
-
-With the
-
-## Creating a dataset
-
-// WIP
-
-## Syncing data to your training environment
+We will update the page as we get closer to the public launch of LayerNext.
