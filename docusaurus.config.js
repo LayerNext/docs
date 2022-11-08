@@ -35,7 +35,6 @@ const config = {
                 docs: {
                     routeBasePath: "/",
                     sidebarPath: require.resolve("./sidebars.js"),
-                    sidebarCollapsed: false,
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     // editUrl:
@@ -85,12 +84,11 @@ const config = {
                     src: "img/logo.svg",
                 },
                 items: [
-                    // {
-                    //     type: "doc",
-                    //     docId: "intro",
-                    //     position: "left",
-                    //     label: "Tutorial",
-                    // },
+                    {
+                        href: "https://www.layernext.ai",
+                        label: "Back to LayerNext",
+                        position: "right",
+                    },
                     // {
                     //     href: "https://github.com/facebook/docusaurus",
                     //     label: "GitHub",
@@ -99,50 +97,53 @@ const config = {
                 ],
             },
             footer: {
-                // style: "dark",
-                // links: [
-                //     {
-                //         title: "Docs",
-                //         items: [
-                //             {
-                //                 label: "Tutorial",
-                //                 to: "/docs/intro",
-                //             },
-                //         ],
-                //     },
-                //     {
-                //         title: "Community",
-                //         items: [
-                //             {
-                //                 label: "Stack Overflow",
-                //                 href: "https://stackoverflow.com/questions/tagged/docusaurus",
-                //             },
-                //             {
-                //                 label: "Discord",
-                //                 href: "https://discordapp.com/invite/docusaurus",
-                //             },
-                //             {
-                //                 label: "Twitter",
-                //                 href: "https://twitter.com/docusaurus",
-                //             },
-                //         ],
-                //     },
-                //     {
-                //         title: "More",
-                //         items: [
-                //             {
-                //                 label: "Blog",
-                //                 to: "/blog",
-                //             },
-                //             {
-                //                 label: "GitHub",
-                //                 href: "https://github.com/facebook/docusaurus",
-                //             },
-                //         ],
-                //     },
-                // ],
                 copyright: `Copyright © ${new Date().getFullYear()} LayerNext, Inc.`,
             },
+            // {
+            // style: "dark",
+            // links: [
+            //     {
+            //         title: "Docs",
+            //         items: [
+            //             {
+            //                 label: "Tutorial",
+            //                 to: "/docs/intro",
+            //             },
+            //         ],
+            //     },
+            //     {
+            //         title: "Community",
+            //         items: [
+            //             {
+            //                 label: "Stack Overflow",
+            //                 href: "https://stackoverflow.com/questions/tagged/docusaurus",
+            //             },
+            //             {
+            //                 label: "Discord",
+            //                 href: "https://discordapp.com/invite/docusaurus",
+            //             },
+            //             {
+            //                 label: "Twitter",
+            //                 href: "https://twitter.com/docusaurus",
+            //             },
+            //         ],
+            //     },
+            //     {
+            //         title: "More",
+            //         items: [
+            //             {
+            //                 label: "Blog",
+            //                 to: "/blog",
+            //             },
+            //             {
+            //                 label: "GitHub",
+            //                 href: "https://github.com/facebook/docusaurus",
+            //             },
+            //         ],
+            //     },
+            // ],
+            // copyright: `Copyright © ${new Date().getFullYear()} LayerNext, Inc.`,
+            // },
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
