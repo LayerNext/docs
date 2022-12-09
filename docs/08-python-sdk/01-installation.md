@@ -1,23 +1,33 @@
 ---
 ---
 
-# Installation
+# Getting Started
 
-The Python SDK provides necessary functions to use LayerX platform for your machine learning needs such as uploading annotations, downloading datasets and downloading annotations.
+The LayerNext Python SDK provides a programmatic way to access all the functions inside the LayerNext platform, including uploading annotations, downloading datasets and annotations, and other functions.
 
-It is available as pip installable package where you get it to your Python program by:
+## Installation
+
+The SDK is available as a package on PyPI
 
 ```bash
 pip install layerx-sdk
 ```
 
-You need your LayerX API key and secret to use the Python SDK. Those can be found and copied from the ‘API Keys’ section of the frontend (See screenshot below).
+## API Keys
 
-The first thing is to create a LayerX API client with security credentials as below. Please note that you should give the base url of the LayerX API depending on your customer sub domain.
+To use the SDK, you will need your LayerNxt API Key and Secret. Those can be found and copied from the **API Keys** section in your account's UI.
 
-```
-url = 'https://api.[customer_sub_domain].layerx.ai'
+![Product UI showing API Key and secret](img/api-keys.png)
+
+## Setting up the SDK
+
+Before you start, you will have to create a `client` instance with permissions to access your account. You will need the API Key and Secret as detailed above, as well as the domain where your data is hosted.
+
+```python
+url = "https://api.[customer_sub_domain].layerx.ai"
 client = layerx.LayerxClient(api_key, secret, url)
 ```
 
-Then with the created API client, you can access all the available functions in Python SDK reference. For further information regarding Python AP client, please refer to the relevant github repository: https://github.com/LayerX-AI/layerx-python-sdk
+Then, the created API client can use the available functions inside this SDK reference.
+
+You can find more information in the github repository here: https://github.com/LayerX-AI/layerx-python-sdk

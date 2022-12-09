@@ -1,22 +1,22 @@
 ---
 ---
 
-# Upload results
+# Upload Model Predictions
 
-You can feed the Data Lake with a json file having model run output for each image in a DataLake image collection. The correct file name should be set to the ‘image’ field in uploading Json. The format of the json file depends shape type of annotations.
+You can feed the Data Lake with a json file having model run output for each image in a DataLake image collection. The correct file name should be set to the `image` field in uploading Json. The format of the json file depends shape type of annotations.
 
 ```python
 upload_modelrun_from_json(collection_base_path, model_id, json_data_file_path, shape_name)
 ```
 
-Parameters:
+## Parameters
 
-| Parameter            | Value                                        |
-| -------------------- | -------------------------------------------- |
-| collection_base_path | “S3 path of the relevant collection”         |
-| model_id             | model_id                                     |
-| json_data_file_path  | "/path/to/my/file"                           |
-| shape_name           | This can be `rectangle`, `polygon` or `line` |
+| Parameter              | Value                                   |
+| ---------------------- | --------------------------------------- |
+| `collection_base_path` | S3 path of the relevant collection      |
+| `model_id`             | model_id                                |
+| `json_data_file_path`  | "/path/to/my/file"                      |
+| `shape_name`           | One of `rectangle`, `polygon` or `line` |
 
 Sample JSON format for `rectangle`:
 
@@ -71,8 +71,8 @@ Sample JSON format for `polygon` and `line`:
 }
 ```
 
-Example usage:
+## Example usage
 
-```javascript
-	client.upload_modelrun_from_json(‘s3_path/to/collection/’, “yolov5.0.1”, ‘/my/file/path/file.json’, ‘polygon’)
+```python
+client.upload_modelrun_from_json(‘s3_path/to/collection/’, “yolov5.0.1”, ‘/my/file/path/file.json’, ‘polygon’)
 ```
