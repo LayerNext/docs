@@ -11,7 +11,7 @@ file_upload(path, content_type, collection_name, meta_data_object)
 
 ## Parameters
 
-| Parameter          | Data type   | Value                                                                                                                                    |
+| Parameter          | Data type          | Value                                                                                                                                    |
 | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `path`             | string | directory or file path (should be absolute path) - the SDK automatically identifies whether its a directory or single file based on path |
 | `content_type`     | string | "image" or "video"                                                                                                                       |
