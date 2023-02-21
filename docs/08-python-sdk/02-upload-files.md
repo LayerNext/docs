@@ -11,12 +11,12 @@ file_upload(path, content_type, collection_name, meta_data_object)
 
 ## Parameters
 
-| Parameter          | Value                                                                                                                                    |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `path`             | directory or file path (should be absolute path) - the SDK automatically identifies whether its a directory or single file based on path |
-| `content_type`     | "image" or "video"                                                                                                                       |
-| `collection_name`  | A name given by user for collection, if existing collection name is given, then files will be added to that collection.                  |
-| `meta_data_object` | Dictionary having custom meta data                                                                                                       |
+| Parameter          | Data type   | Value                                                                                                                                    |
+| ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `path`             | string | directory or file path (should be absolute path) - the SDK automatically identifies whether its a directory or single file based on path |
+| `content_type`     | string | "image" or "video"                                                                                                                       |
+| `collection_name`  | string | A name given by user for collection, if existing collection name is given, then files will be added to that collection.                  |
+| `meta_data_object` | dictionary | Object having custom meta data                                                                                                       |
 
 ## Example usage
 
