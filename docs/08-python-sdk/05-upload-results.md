@@ -1,78 +1,25 @@
 ---
 ---
 
-# Upload Model Predictions
+# 5. Working with Datasets
 
-You can feed the Data Lake with a json file having model run output for each image in a DataLake image collection. The correct file name should be set to the `image` field in uploading Json. The format of the json file depends shape type of annotations.
+## 5.1. Download datasets
 
-```python
-upload_modelrun_from_json(collection_base_path, model_id, json_data_file_path, shape_name)
-```
+You can use the "download_dataset" method in the Python SDK to download the datasets that were created in the Dataset Manager App. You need the following information to use it
 
-## Parameters
+###### 1. Id of the dataset version: `version_id`
+###### 2. Dataset export format: `export_type`
 
-| Parameter              | Value                                   |
-| ---------------------- | --------------------------------------- |
-| `collection_base_path` | S3 path of the relevant collection      |
-| `model_id`             | model_id                                |
-| `json_data_file_path`  | "/path/to/my/file"                      |
-| `shape_name`           | One of `rectangle`, `polygon` or `line` |
+You can easily copy above values from LayerNext Dataset Manager tool by accessing the ‘download’ of required dataset export format as shown below
 
-Sample JSON format for `rectangle`:
-
-```json
-{
-    "images": [
-        {
-            "image": "000000397133.jpg",
-            "annotations": [
-                {
-                    "bbox": [217.62, 240.54, 38.99, 57.75],
-                    "label": "kitchen",
-                    "metadata": {
-                        "name": "bottle"
-                    },
-                    "confidence": 0.30611335805442985
-                }
-            ]
-        }
-    ]
-}
-```
-
-Sample JSON format for `polygon` and `line`:
-
-```json
-{
-    "images": [
-        {
-            "image": "000000397133.jpg",
-            "annotations": [
-                {
-                    "polygon": [
-                        [224.24, 297.18],
-                        [228.29, 297.18],
-                        [234.91, 298.29],
-                        [241.53, 260.04],
-                        [224.24, 255.62],
-                        [217.62, 268.5],
-                        [218.72, 295.71],
-                        [225.34, 297.55]
-                    ],
-                    "label": "kitchen",
-                    "metadata": {
-                        "name": "bottle"
-                    },
-                    "confidence": 0.8316836170368476
-                }
-            ]
-        }
-    ]
-}
-```
-
-## Example usage
+![Product UI showing steps to download the dataset](img/download-datasets-01.png)
 
 ```python
-client.upload_modelrun_from_json(‘s3_path/to/collection/’, “yolov5.0.1”, ‘/my/file/path/file.json’, ‘polygon’)
+download_dataset(version_id, export_type)
+```
+
+## Example Usage
+
+```python
+client.download_dataset("635eafbec1a605ab795d2768", "YOLO Darknet")
 ```
