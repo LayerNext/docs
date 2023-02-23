@@ -15,15 +15,15 @@ create_annotation_project_from_collection(project_name, collection_id, query, fi
 
 ## Parameters
 
-| Parameter          | Data type          | Default value       | Value         |                                                                                                                                  
+| Parameter          | Data type         | Default          | Description        |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `project_name`     | string | - | Project name (should be non-empty) |
 | `collection_id`     | string | - | Collection ID |
-| `query`     | string | - | The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
-| `filter`     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified in the filter object as shown here { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
-| `fps`     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. Note that this parameter has no effect for the projects created from images. |
-| `frames_per_task`     | integer | 120 | Specifies number of frames or images attached to the each annotation task. |
-| `is_assign_annotators`     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
+| `query` (Optional)     | string | - | The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
+| `filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified in the filter object as shown here { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
+| `fps` (Optional)     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. Note that this parameter has no effect for the projects created from images. |
+| `frames_per_task` (Optional)     | integer | 120 | Specifies number of frames or images attached to the each annotation task. |
+| `is_assign_annotators` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
 
 
 ## Returns
@@ -48,15 +48,15 @@ create_annotation_project_from_Data Lake(project_name, Data Lake_query, Data Lak
 
 ## Parameters
 
-| Parameter          | Data type          | Default value       | Value         |                                                                                                                                  
+| Parameter          | Data type         | Default          | Description        |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `project_name`     | string | - | Project name (should be non-empty) |
-| `Data Lake_query`     | string | - | The search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
-| `datake_filter`     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
+| `Data Lake_query` (Optional)     | string | - | The search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
+| `datake_filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
 | `content_type`     | string | - | “image” or “video” |
-| `fps`     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. |
-| `frames_per_task`     | integer | 120 | Specifies the number of images or frames attached to each annotation task. |
-| `is_assign_annotators`     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
+| `fps` (Optional)     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. |
+| `frames_per_task` (Optional)     | integer | 120 | Specifies the number of images or frames attached to each annotation task. |
+| `is_assign_annotators` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
 
 
 ## Returns
@@ -88,10 +88,10 @@ attach_label_group_to_annotation_project(project_id, group_id)
 
 ## Parameters
 
-| Parameter          | Data type          | Value                                                                                                                                    |
-| ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_id`             | string | Id of the project which labels are updating |
-| `group_id`             | string | Label group Id |
+| Parameter          | Data type         | Default          | Description        |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_id`             | string | - | Id of the project which labels are updating |
+| `group_id`             | string | - | Label group Id |
 
 
 ## Example Usage
@@ -110,12 +110,12 @@ download_project_annotations(project_id, task_status_list, is_annotated_only, cu
 
 ## Parameters
 
-| Parameter          | Data type          | Default value       | Value         |                                                                                                                                  
+| Parameter          | Data type         | Default          | Description        |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `project_id`     | string | - | ID of the project |
-| `task_status_list`     | array | [] | To filter the images by status of the relevant task, we can give a list of status values. The valid values are: “in_progress”, “completed”, “accepted”, “qa_completed”. By default, no filtering of tasks applied (all tasks included). |
-| `Is_annotated_only`     | boolean | False | if this is True, then only the annotated images are downloaded. |
-| `custom_download_path`     | string | empty | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path. |
+| `task_status_list` (Optional)     | array | [] | To filter the images by status of the relevant task, we can give a list of status values. The valid values are: “in_progress”, “completed”, “accepted”, “qa_completed”. By default, no filtering of tasks applied (all tasks included). |
+| `Is_annotated_only` (Optional)     | boolean | False | if this is True, then only the annotated images are downloaded. |
+| `custom_download_path` (Optional)     | string | empty | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path. |
 
 The downloaded JSON data format is the same as download annotations from collection.
 
@@ -138,13 +138,13 @@ add_files_to_annotation_project_from_collection(project_id, collection_id, query
 
 ## Parameters
 
-| Parameter          | Data type          | Value                                                                                                                                    |
-| ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_id`             | string | ID of the project |
-| `collection_id`             | string | Collection ID |
-| `query`             | string | the search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
-| `filter`             | object | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below                 { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
-| `fps`             | integer | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default) |
+| Parameter          | Data type         | Default          | Description        |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_id`             | string | - | ID of the project |
+| `collection_id`             | string | - | Collection ID |
+| `query` (Optional)             | string | - | the search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
+| `filter` (Optional)             | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below                 { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
+| `fps` (Optional)             | integer | - | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default) |
 
 
 ## 3.7. Add Files to Project without a collection
@@ -157,13 +157,13 @@ add_files_to_annotation_project_from_Data Lake(project_id, query, filter, conten
 
 ## Parameters
 
-| Parameter          | Data type          | Value                                                                                                                                    |
-| ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_id`             | string | Project ID |
-| `query`             | string | the search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
-| `filter`             | object | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
-| `content_type`             | string | “image” or “video” |
-| `fps`             | integer | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default). |
+| Parameter          | Data type         | Default          | Description        |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_id`             | string | - | Project ID |
+| `query` (Optional)             | string | - | the search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
+| `filter` (Optional)             | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
+| `content_type`             | string | - | “image” or “video” |
+| `fps` (Optional)             | integer | - | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default). |
 
 
 
