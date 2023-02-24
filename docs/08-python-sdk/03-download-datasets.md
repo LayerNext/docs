@@ -28,14 +28,25 @@ create_annotation_project_from_collection(project_name, collection_id, query, fi
 
 ## Returns
 
-Id of the project that was created. 
+Id of the project that was created and the corresponding job id.
+
+```python
+{
+    'id': '<Id of the project created / updated >', 
+    'job_id': '<Job Id of the operation>'
+}
+```
 
 ## Example Usage
 
 To create a project from images having the Meta Tag “water” and containing human annotations from a given collection
 
 ```python
-client.create_annotation_project_from_collection("My Project”, "<collection id>”, "MetaData.Tags=water", {“annotation_types”: [“human”]}, 4, 10, True )
+project_res = client.create_annotation_project_from_collection("My Project”, "<collection id>”, "MetaData.Tags=water", {“annotation_types”: [“human”]}, 4, 10, True )
+proj_job_id = project_res['job_id']
+
+#Wait until all tasks are created in the project
+client.wait_for_job_complete(proj_job_id)
 ```
 
 ## 3.2. Create Annotation Project without a collection
@@ -43,7 +54,7 @@ client.create_annotation_project_from_collection("My Project”, "<collection id
 An annotation project can be created without specifying a collection, but choosing a set of items by query and filter.
 
 ```python
-create_annotation_project_from_Data Lake(project_name, Data Lake_query, Data Lake_filter, content_type:, fps, frames_per_task, is_assign_annotators)
+create_annotation_project_from_datalake(project_name, Data Lake_query, Data Lake_filter, content_type:, fps, frames_per_task, is_assign_annotators)
 ```
 
 ## Parameters
@@ -73,7 +84,7 @@ Id of the project that was created and the corresponding job id.
 ## Example Usage
 
 ```python
-project_res = client.create_annotation_project_from_Data Lake("My Project", "metadata.Tags=water", {}, "image" )
+project_res = client.create_annotation_project_from_datalake("My Project", "metadata.Tags=water", {}, "image" )
 proj_job_id = project_res['job_id']
 
 #Wait until all tasks are created in the project
