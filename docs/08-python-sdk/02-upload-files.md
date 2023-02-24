@@ -22,7 +22,15 @@ upload_files_to_collection(path, content_type, collection_name, meta_data_object
 
 ## Returns
 
-ID of the new collection created.
+Id of the new collection created and the corresponding job Id
+
+```python
+{
+    'is_success': True/False, 
+    'job_id': '<Job Id of the operation>', 
+    'collection_id': '<Id of the uploading collection>'
+}
+```
 
 ## Example usage
 
@@ -34,7 +42,12 @@ meta_data_object = {
         "#retail"
     ]
 }
-client.upload_files_to_collection(‘/home/user/images, “image”, “my_collection”, meta_data_object)
+upload_res = client.upload_files_to_collection(‘/home/user/images, “image”, “my_collection”, meta_data_object)
+upload_job_id = upload_res['job_id']
+
+#Waiting for upload processing to complete
+client.wait_for_job_complete(upload_job_id)
+print('Upload Done!')
 ```
 
 ## 2.2. Upload Files (Deprecated)
