@@ -32,6 +32,36 @@ Then, the created API client can use the available functions inside this SDK ref
 
 You can find more information in the github repository here: https://github.com/LayerX-AI/layerx-python-sdk
 
+## 1.4. Tracking the Completion of Operations
 
+Some of the functions in the SDK trigger operations or jobs in the Data Lake that run in the background and may take several minutes to finish. If your program needs to wait for these operations to complete, you can use the 'wait_for_job_complete' function. This function will cause your program to pause until the job has been fully executed.
 
+```python
+client.wait_for_job_complete(job_id)
+```
+## Parameters
 
+| Parameter          | Data type         | Default          | Description         |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `job_id`             | string | - | Job Id corresponding to the operation invoked in a previous SDK function (eg: Project creation) |
+
+## Returns
+
+Status of the job (complete or fail) once the job is done
+
+```python
+{
+    'is_success': True/False, 
+    'job_status': 'COMPLETED/FAILED', 
+}
+```
+
+## Example usage
+
+```python
+upload_res = client.upload_files_to_collection(‘/home/user/images', “image”, “my_collection”, {})
+upload_job_id = upload_res['job_id']
+
+#Waiting for upload processing to complete
+client.wait_for_job_complete(upload_job_id)
+```
