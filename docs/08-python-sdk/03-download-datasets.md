@@ -61,12 +61,23 @@ create_annotation_project_from_Data Lake(project_name, Data Lake_query, Data Lak
 
 ## Returns
 
-Id of the project that was created. 
+Id of the project that was created and the corresponding job id.
+
+```python
+{
+    'id': '<Id of the project created / updated >', 
+    'job_id': '<Job Id of the operation>'
+}
+```
 
 ## Example Usage
 
 ```python
-client.create_annotation_project_from_Data Lake("My Project", "metadata.Tags=water", {}, "image" )
+project_res = client.create_annotation_project_from_Data Lake("My Project", "metadata.Tags=water", {}, "image" )
+proj_job_id = project_res['job_id']
+
+#Wait until all tasks are created in the project
+client.wait_for_job_complete(proj_job_id)
 ```
 
 ## 3.3. List All Projects
