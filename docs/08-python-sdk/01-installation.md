@@ -3,7 +3,7 @@
 
 # 1. Getting Started
 
-The LayerNext Python SDK provides a programmatic way to access all the functions inside the LayerNext platform, including uploading annotations, downloading datasets and annotations, and other functions.
+The LayerNext Python SDK provides a programmatic way to access all the functions inside the LayerNext platform, including uploading annotations, searching data sets, downloading datasets and annotations, and other functions.
 
 ## 1.1. Installation
 
@@ -15,7 +15,7 @@ pip install layerx-sdk
 
 ## 1.2. API Keys
 
-To use the SDK, you will need your LayerNxt API Key and Secret. Those can be found and copied from the **API Keys** section in your account's UI.
+To use the SDK, you will need your LayerNext API Key and Secret. Those can be found and copied from the **API Keys** section in your account's UI.
 
 ![Product UI showing API Key and secret](img/api-keys.png)
 
@@ -28,13 +28,13 @@ url = "https://api.[customer_sub_domain].layerx.ai"
 client = layerx.LayerxClient(api_key, secret, url)
 ```
 
-Then, the created API client can use the available functions inside this SDK reference.
+Once created, the API client can use all of the available functions inside this SDK.
 
-You can find more information in the github repository here: https://github.com/LayerX-AI/layerx-python-sdk
+You can find more information in the Github repository here: https://github.com/LayerX-AI/layerx-python-sdk
 
 ## 1.4. Tracking the Completion of Operations
 
-Some of the functions in the SDK trigger operations or jobs in the Data Lake that run in the background and may take several minutes to finish. If your program needs to wait for these operations to complete, you can use the 'wait_for_job_complete' function. This function will cause your program to pause until the job has been fully executed.
+Some of the functions in the SDK trigger operations (or jobs) in the Data Lake that run in the background and may take several minutes to finish. If your program needs to wait for these operations to complete, you can use the 'wait_for_job_complete' function. This function will cause your program to pause until the job has been fully executed.
 
 ```python
 client.wait_for_job_complete(job_id)
