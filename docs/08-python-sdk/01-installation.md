@@ -3,7 +3,7 @@
 
 # 1. Getting Started
 
-The LayerNext Python SDK provides a programmatic way to access all the functions inside the LayerNext platform, including uploading annotations, searching data sets, downloading datasets and annotations, and other functions.
+The LayerNext Python SDK provides a programmatic way to access all the functions inside the LayerNext platform, including uploading annotations, downloading datasets and annotations, and other functions.
 
 ## 1.1. Installation
 
