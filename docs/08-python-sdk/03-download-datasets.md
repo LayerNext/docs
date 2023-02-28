@@ -3,11 +3,11 @@
 
 # 3. Working with Annotation Projects
 
-LayerNext SDK provides functionality for managing Annotation Studio projects, including creating, updating, downloading, and deleting them.
+The LayerNext SDK provides functionality for managing Annotation Studio projects, including creating, updating, downloading, and deleting them.
 
-## 3.1. Create Annotation Project from Collection
+## 3.1. Create an Annotation Project from a Collection
 
-With this SDK function, an annotation project can be created from all or a subset of frames in a given collection in DataLake.
+With this SDK function, an annotation project can be created from all or a subset of frames in a given collection in the DataLake.
 
 ```python
 create_annotation_project_from_collection(project_name, collection_id, query, filter, fps, frames_per_task, assign_project_to_annotation)
@@ -21,8 +21,8 @@ create_annotation_project_from_collection(project_name, collection_id, query, fi
 | `collection_id`     | string | - | Collection ID |
 | `query` (Optional)     | string | - | The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
 | `filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified in the filter object as shown here { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
-| `fps` (Optional)     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. Note that this parameter has no effect for the projects created from images. |
-| `frames_per_task` (Optional)     | integer | 120 | Specifies number of frames or images attached to the each annotation task. |
+| `fps` (Optional)     | integer | 4 | For video projects: the number of frames per second. If 0 is provided then all frames are taken. For image projects: this parameter has no effect. |
+| `frames_per_task` (Optional)     | integer | 120 | Specifies the number of frames or images attached to the each annotation task. |
 | `is_assign_annotators` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
 
 
@@ -39,7 +39,7 @@ Id of the project that was created and the corresponding job id.
 
 ## Example Usage
 
-To create a project from images having the Meta Tag “water” and containing human annotations from a given collection
+To create a project from images having the Meta Tag “water” and containing human annotations from a given collection:
 
 ```python
 project_res = client.create_annotation_project_from_collection("My Project”, "<collection id>”, "MetaData.Tags=water", {“annotation_types”: [“human”]}, 4, 10, True )
@@ -49,9 +49,9 @@ proj_job_id = project_res['job_id']
 client.wait_for_job_complete(proj_job_id)
 ```
 
-## 3.2. Create Annotation Project without a collection
+## 3.2. Create an Annotation Project without a collection
 
-An annotation project can be created without specifying a collection, but choosing a set of items by query and filter.
+An annotation project can be created without specifying a collection, choosing a set of items using a query string and filters.
 
 ```python
 create_annotation_project_from_datalake(project_name, Data Lake_query, Data Lake_filter, content_type:, fps, frames_per_task, is_assign_annotators)
@@ -62,7 +62,7 @@ create_annotation_project_from_datalake(project_name, Data Lake_query, Data Lake
 | Parameter          | Data type         | Default          | Description        |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `project_name`     | string | - | Project name (should be non-empty) |
-| `Data Lake_query` (Optional)     | string | - | The search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
+| `Data Lake_query` (Optional)     | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
 | `datake_filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
 | `content_type`     | string | - | “image” or “video” |
 | `fps` (Optional)     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. |
@@ -100,9 +100,9 @@ get_annotation_project_list()
 ```
 A list of all project id-name pairs in the system will be returned.
 
-## 3.4. Set Label (Ontology) Group to a Project
+## 3.4. Set Label (Ontology) Group for a Project
 
-To set labels to a project, we can attach an existing group of ontology(labels). To create a group of labels, please refer to the function for label group creation.
+To set labels for a project, we can attach an existing group of ontology(labels). To create a group of labels, please refer to the function for label group creation.
 
 ```python
 attach_label_group_to_annotation_project(project_id, group_id)
@@ -112,7 +112,7 @@ attach_label_group_to_annotation_project(project_id, group_id)
 
 | Parameter          | Data type         | Default          | Description        |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_id`             | string | - | Id of the project which labels are updating |
+| `project_id`             | string | - | Id of the project in which labels shall be updated |
 | `group_id`             | string | - | Label group Id |
 
 
@@ -144,7 +144,7 @@ The downloaded JSON data format is the same as download annotations from collect
 
 ## Example Usage
 
-To download only the completed or accepted tasks
+To download only the completed or accepted tasks:
 
 ```python
 client.download_project_annotations(<project_id>, [’completed’,’accepted’])
@@ -152,7 +152,7 @@ client.download_project_annotations(<project_id>, [’completed’,’accepted�
 
 ## 3.6. Add Files to a Project from a Collection
 
-In addition to creating new annotation projects from collections, we can also add an existing collection to a pre-existing annotation project. We can specify certain query and filter parameters to only include a specific subset of files within the collection, rather than including all of the files.
+In addition to creating new annotation projects from collections we can also add an existing collection to a pre-existing annotation project. We can specify certain query and filter parameters to only include a specific subset of files within the collection (rather than including all of the files).
 
 ```python
 add_files_to_annotation_project_from_collection(project_id, collection_id, query, filter, fps)
@@ -164,14 +164,14 @@ add_files_to_annotation_project_from_collection(project_id, collection_id, query
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `project_id`             | string | - | ID of the project |
 | `collection_id`             | string | - | Collection ID |
-| `query` (Optional)             | string | - | the search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
+| `query` (Optional)             | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
 | `filter` (Optional)             | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below                 { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
 | `fps` (Optional)             | integer | - | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default) |
 
 
-## 3.7. Add Files to Project without a collection
+## 3.7. Add Files to a Project without a collection
 
-This function enables you to add files to an existing project from many collections in the Data Lake, but choosing a set of items via query and filter.
+This function enables you to add files to an existing project from many collections in the Data Lake. A query string and filters select which files are added.
 
 ```python
 add_files_to_annotation_project_from_Data Lake(project_id, query, filter, content_type, fps)
@@ -182,7 +182,7 @@ add_files_to_annotation_project_from_Data Lake(project_id, query, filter, conten
 | Parameter          | Data type         | Default          | Description        |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `project_id`             | string | - | Project ID |
-| `query` (Optional)             | string | - | the search query that filters items in the collection (This is the same query format that we use in the Data Lake frontend ) |
+| `query` (Optional)             | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
 | `filter` (Optional)             | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
 | `content_type`             | string | - | “image” or “video” |
 | `fps` (Optional)             | integer | - | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default). |
