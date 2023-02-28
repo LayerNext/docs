@@ -5,7 +5,7 @@
 
 ## 2.1. Upload Files to a Collection
 
-You can upload file/files in a directory to a collection in the data lake - the same functionality as the upload facility given in the web frontend. Optionally, the user can include custom metadata, which may include attributes or additional information about the file. Only one type of content (either image or video) can be uploaded in a single API call.
+You can upload files in a directory to a collection in the Data Lake (which is the same functionality as the 'Upload' feature in the web frontend). Optionally, you can include custom metadata, which may include attributes or additional information about the file. Only one type of content (either image or video) can be uploaded in a single API call.
 
 ```python
 upload_files_to_collection(path, content_type, collection_name, meta_data_object)
@@ -15,9 +15,9 @@ upload_files_to_collection(path, content_type, collection_name, meta_data_object
 
 | Parameter          | Data type         | Default          | Description         |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `path`             | string | - | directory or file path (should be absolute path) - The SDK automatically identifies whether its a directory or single file based on the given path |
+| `path`             | string | - | directory or file path (should be an absolute path) - The SDK automatically identifies whether it's a directory or single file based on the given path |
 | `content_type`     | string | - | “image” for image files and “video” for video files                                                                                                                       |
-| `collection_name`  | string | - | A name given for collection, if an existing collection name is given, then files will be added to that collection.                  |
+| `collection_name`  | string | - | A name given for the collection. If an existing collection name is given, then files will be added to that collection.                  |
 | `meta_data_object` | dictionary | - | custom metadata field and value pairs                                                                                                       |
 
 ## Returns
@@ -47,12 +47,12 @@ upload_job_id = upload_res['job_id']
 
 #Waiting for upload processing to complete
 client.wait_for_job_complete(upload_job_id)
-print('Upload Done!')
+print('Upload Completed!')
 ```
 
 ## 2.2. Upload Files (Deprecated)
 
-You can upload a single file or files in a directory to data lake with custom metadata. Only one type of content (either image or video) can be uploaded in a single API call.
+You can upload a single file or files in a directory to the Data Lake with custom metadata. Only one type of content (either image or video) can be uploaded in a single API call.
 
 ```python
 file_upload(path, collection_type, collection_name, meta_data_object, override)
@@ -62,7 +62,7 @@ file_upload(path, collection_type, collection_name, meta_data_object, override)
 
 | Parameter          | Data type         | Default          | Description         |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `path`             | string | - | directory or file path (should be absolute path) - the SDK automatically identifies whether its a directory or single file based on path |
+| `path`             | string | - | directory or file path (should be an absolute path) - the SDK automatically identifies whether its a directory or single file based on path |
 | `content_type`     | integer | - | 5 for image 4 for video                                                                                                                       |
 | `collection_name`  | string | - | A name given for collection, if an existing collection name is given, then files will be added to that collection.                  |
 | `meta_data_object` | dictionary | - | custom metadata field and value pairs                                                                                                       |
@@ -90,10 +90,10 @@ You can feed the Data Lake with a json file having model run output (machine) or
 upload_annoations_for_folder(collection_name, operation_unique_id, json_data_file_path, annotation_shape_type, is_normalized, is_model_run)
 ```
 
-Note that the correct file name should be set to the ‘image’ field in uploading Json. The format of the json file depends shape type of annotations.
+Note that the correct file name should be set to the ‘image’ field in uploading a json file. The format of the json file depends on the shape type of the annotations.
 
 
-## Sample JSON format for rectangle’
+## Sample JSON format for 'rectangle’
 
 ```json
 {
@@ -193,7 +193,7 @@ client.upload_annoations_for_folder(‘my_collection’, “annotation_project_0
 
 ## 2.4. Download Annotations of a Collection
 
-We can download annotation data from a given image collection. It will dump the annotations as JSON format - the same format we use for uploading annotations data and images in a folder. The user needs to supply the collection id which can be viewed from metadata inside the collection in the data lake frontend.
+We can download annotation data from a given image collection. It will dump the annotations as JSON format - the same format we use for uploading annotations data and images. You need to supply the collection id which can be viewed from metadata inside the collection in the Data Lake frontend.
 
 ```python
 download_annotations(collection_id, model_id)
@@ -203,14 +203,14 @@ download_annotations(collection_id, model_id)
 
 | Parameter          | Data type         | Default          | Description         |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `collection_id`             | string | - | The image collection id in data lake |
-| `model_id`     | string/None | - | If this is present, then the system fetches the annotations belonging to that model run, otherwise (if None) the ground truth data will be fetched instead.                                                                                                                       |
+| `collection_id`             | string | - | The image collection id in the Data Lake |
+| `model_id`     | string/None | - | If this is present the system fetches the annotations belonging to that model run, otherwise (if None) the ground truth data will be fetched instead.                                                                                                                       |
 
 
 ## Returns
 
-The function creates a new directory with a specific name and saves a JSON file inside it. The JSON file contains annotations for a collection of data.
-Then it downloads specific frames related to the collection and saves them in a directory called "data" within the newly created directory.
+The function creates a new directory with a specific name and saves a JSON file inside it containing annotations for a collection of data.
+Next, it downloads specific frames related to the collection and saves them in a directory called "data" within the newly created directory.
 
 
 ## Example usage
