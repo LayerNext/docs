@@ -1,11 +1,13 @@
 ---
 ---
 
-# 2. Uploading and Downloading Data
+# 2. Uploading and Downloading
 
 ## 2.1. Upload Files to a Collection
 
 You can upload files in a directory to a collection in the Data Lake (which is the same functionality as the 'Upload' feature in the web frontend). Optionally, you can include custom metadata, which may include attributes or additional information about the file. Only one type of content (either image or video) can be uploaded in a single API call.
+
+Note that currently we are supporting following file types for upload: jpeg, jpg, png, mp4, mkv
 
 ```python
 upload_files_to_collection(path, content_type, collection_name, meta_data_object)
