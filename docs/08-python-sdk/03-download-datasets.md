@@ -1,7 +1,7 @@
 ---
 ---
 
-# 3. Working with Annotation Projects
+# 3. Annotation Projects
 
 The LayerNext SDK provides functionality for managing Annotation Studio projects, including creating, updating, downloading, and deleting them.
 
