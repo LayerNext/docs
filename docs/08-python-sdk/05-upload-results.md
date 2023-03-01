@@ -1,7 +1,7 @@
 ---
 ---
 
-# 5. Working with Datasets
+# 5. Datasets
 
 ## 5.1. Downloading datasets
 
