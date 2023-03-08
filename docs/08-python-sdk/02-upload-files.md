@@ -187,10 +187,10 @@ Note that the correct file name should be set to the ‘image’ field in upload
 client.upload_annoations_for_folder(‘my_collection’, “yolov5.0.1”, ‘/my/file/path/file.json’, ‘polygon’, False, True)
 ```
 
-###### 2. For a human annotation
+###### 2. For a human annotation (Upload annotations to an existing project)
 
 ```python
-client.upload_annoations_for_folder(‘my_collection’, “annotation_project_001”, ‘/my/file/path/file.json’, ‘polygon’, False, False)
+client.upload_annoations_for_folder(‘my_collection’, “<annotation_project_id>”, ‘/my/file/path/file.json’, ‘polygon’, False, False)
 ```
 
 ## 2.4. Download Annotations of a Collection
