@@ -54,7 +54,7 @@ client.wait_for_job_complete(proj_job_id)
 An annotation project can be created without specifying a collection, choosing a set of items using a query string and filters.
 
 ```python
-create_annotation_project_from_datalake(project_name, Data Lake_query, Data Lake_filter, content_type:, fps, frames_per_task, is_assign_annotators)
+create_annotation_project_from_datalake(project_name, Data Lake_query, Data Lake_filter, content_type:, fps, frames_per_task, is_assign_annotators, send_email)
 ```
 
 ## Parameters
@@ -67,8 +67,8 @@ create_annotation_project_from_datalake(project_name, Data Lake_query, Data Lake
 | `content_type`     | string | - | “image” or “video” |
 | `fps` (Optional)     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. |
 | `frames_per_task` (Optional)     | integer | 120 | Specifies the number of images or frames attached to each annotation task. |
-| `is_assign_annotators` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
-
+| `assign_to_all` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
+| `send_email` (Optional)             | boolean | False | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators |
 
 ## Returns
 
@@ -155,7 +155,7 @@ client.download_project_annotations(<project_id>, [’completed’,’accepted�
 In addition to creating new annotation projects from collections we can also add an existing collection to a pre-existing annotation project. We can specify certain query and filter parameters to only include a specific subset of files within the collection (rather than including all of the files).
 
 ```python
-add_files_to_annotation_project_from_collection(project_id, collection_id, query, filter, fps)
+add_files_to_annotation_project_from_collection(project_id, collection_id, query, filter, fps, frames_per_task, assign_to_all, send_email)
 ```
 
 ## Parameters
@@ -167,6 +167,9 @@ add_files_to_annotation_project_from_collection(project_id, collection_id, query
 | `query` (Optional)             | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
 | `filter` (Optional)             | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below                 { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
 | `fps` (Optional)             | integer | - | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default) |
+| `frames_per_task` (Optional)             | integer | 120 | No of frames per tasks created |
+| `assign_to_all` (Optional)             | boolean | False | If this is True, project will be assigend to all annotators once its created |
+| `send_email` (Optional)             | boolean | False | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators |
 
 
 ## 3.7. Add Files to a Project without a collection
@@ -174,7 +177,7 @@ add_files_to_annotation_project_from_collection(project_id, collection_id, query
 This function enables you to add files to an existing project from many collections in the Data Lake. A query string and filters select which files are added.
 
 ```python
-add_files_to_annotation_project_from_Data Lake(project_id, query, filter, content_type, fps)
+add_files_to_annotation_project_from_datalake(project_id, query, filter, content_type, fps, frames_per_task, assign_to_all, send_email)
 ```
 
 ## Parameters
@@ -186,6 +189,9 @@ add_files_to_annotation_project_from_Data Lake(project_id, query, filter, conten
 | `filter` (Optional)             | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
 | `content_type`             | string | - | “image” or “video” |
 | `fps` (Optional)             | integer | - | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default). |
+| `frames_per_task` (Optional)             | integer | 120 | No of frames per tasks created |
+| `assign_to_all` (Optional)             | boolean | False | If this is True, project will be assigend to all annotators once its created |
+| `send_email` (Optional)             | boolean | False | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators |
 
 
 

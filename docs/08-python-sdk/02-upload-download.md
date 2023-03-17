@@ -89,32 +89,33 @@ client.file_upload(‘/home/user/images, 5, “my_collection”, meta_data_objec
 You can feed the Data Lake with a json file having model run output (machine) or ground truth (human) annotations for frames in a given image collection.
 
 ```python
-upload_annoations_for_folder(collection_name, operation_unique_id, json_data_file_path, annotation_shape_type, is_normalized, is_model_run)
+upload_annoations_for_folder(collection_name, operation_unique_id, json_data_file_path, annotation_shape_type, is_normalized, is_model_run, destination_project_id)
 ```
 
 Note that the correct file name should be set to the ‘image’ field in uploading a json file. The format of the json file depends on the shape type of the annotations.
 
 
-## Sample JSON format for 'rectangle’
+## JSON format for 'rectangle’
 
 ```json
 {
    "images":[
       {
-         "image":"000000397133.jpg",
+         "image":"<image_filename>",
          "annotations":[
             {
                "bbox":[
-                  217.62,
-                  240.54,
-                  38.99,
-                  57.75
+                  <top1_left_x(number)>,
+                  <top1_left_y(number)>,
+                  <width1(number)>,
+                  <height1(number)>
                ],
-               "label":"kitchen",
+               "label":"<label_name>",
                "metadata":{
-                  "name":"bottle"
+                  "<attribute_name1>":"<attribute_value1>",
+                  "<attribute_name2>":"<attribute_value2>"
                },
-               "confidence":0.30611335805442985
+               "confidence":<confidence_value(number)>
             }
          ]
       }
@@ -123,7 +124,7 @@ Note that the correct file name should be set to the ‘image’ field in upload
 
 ```
 
-## Sample JSON format for ‘polygon’ and ‘line’
+## JSON format for ‘polygon’ and ‘line’
 
 ```json
 {
@@ -134,31 +135,23 @@ Note that the correct file name should be set to the ‘image’ field in upload
             {
                "polygon":[
                   [
-                     224.24,
-                     297.18
+                     <point1_x(number)>,
+                     <point1_y(number)>
                   ],
                   [
-                     228.29,
-                     297.18
+                     <point2_x(number)>,
+                     <point2_y(number)>
                   ],
                   [
-                     234.91,
-                     298.29
-       	     ],
-                  [
-                     218.72,
-                     295.71
-                  ],
-                  [
-                     225.34,
-                     297.55
+                     <pont3_x(number)>,
+                     <point3_y(number)>
                   ]
                ],
-               "label":"kitchen",
+               "label":"<label1>",
                "metadata":{
-                  "name":"bottle"
+                  "<attribute1_name>":"<attribute1_value>"
                },
-               "confidence":0.8316836170368476
+               "confidence":<confidence_value(number)>
             }
          ]
       }
@@ -177,7 +170,7 @@ Note that the correct file name should be set to the ‘image’ field in upload
 | `annotation_shape_type` | string | - | This can be ‘rectangle’, ‘polygon’ or ‘line’                                                                                                       |
 | `Is_normalized` | boolean | - | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the Data Lake backend.                                                                                                       |
 | `is_model_run` | boolean | - | True if this is machine annotations, False if this is human annotations                                                                                                       |
-
+| `destination_project_id`(optional) | string | None | If this is given then annotations are copied to the given studio project - this can be used for attaching auto annotations to studio projects                                                                                                      |
 
 ## Example usage
 
@@ -193,7 +186,7 @@ client.upload_annoations_for_folder(‘my_collection’, “yolov5.0.1”, ‘/m
 client.upload_annoations_for_folder(‘my_collection’, “<annotation_project_id>”, ‘/my/file/path/file.json’, ‘polygon’, False, False)
 ```
 
-## 2.4. Download Annotations of a Collection
+## 2.4. Download Annotations of a Collection - Deprecated
 
 We can download annotation data from a given image collection. It will dump the annotations as JSON format - the same format we use for uploading annotations data and images. You need to supply the collection id which can be viewed from metadata inside the collection in the Data Lake frontend.
 
@@ -221,4 +214,33 @@ Next, it downloads specific frames related to the collection and saves them in a
 client.download_annotations(“63579fa0f7eb5e0e62d4705”, None)
 ```
 
+
+## 2.5. Download a Collection with Annotations
+
+This function can be used for downloading annotation data for a list of any human or machine annotation operations from a given image collection. It will dump the annotations as JSON format - the same format we use for uploading annotations data and images. 
+
+```python
+download_collection(collection_id, annotation_type, operation_id_list, custom_download_path)
+```
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description         |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `collection_id`             | string | - | The image collection id in the Data Lake |
+| `annotation_type`(Optional)     | string | all | Type of annotation to download - available values are: 'human', 'machine' or 'all'. Note that this is applicable only when operation_id_list is not given or empty.                                                                                                                        |
+| `operation_id_list`(Optional)     | string | [] | List of required annotation operation ids - This can be  project id in case of human annotations or model id in case of machine annotations.                       
+| `custom_download_path` (Optional)     | string | empty | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path. |
+
+## Returns
+
+The function creates a new directory with a specific name and saves a JSON file inside it containing annotations for the collection for all required annotation operations.
+Next, it downloads specific frames related to the collection and saves them in a directory called "data" within the newly created directory.
+
+
+## Example usage
+
+```python
+client.download_collection("<collection_id>", "human", ["project1_id", "project2_id"], "/my/custom/path")
+```
 
