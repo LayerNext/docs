@@ -10,7 +10,7 @@ The LayerNext SDK provides functionality for managing Annotation Studio projects
 With this SDK function, an annotation project can be created from all or a subset of frames in a given collection in the DataLake.
 
 ```python
-create_annotation_project_from_collection(project_name, collection_id, query, filter, fps, frames_per_task, assign_project_to_annotation)
+create_annotation_project_from_collection(project_name, collection_id, query, filter, fps, frames_per_task, assign_project_to_annotation, send_email)
 ```
 
 ## Parameters
@@ -23,7 +23,8 @@ create_annotation_project_from_collection(project_name, collection_id, query, fi
 | `filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified in the filter object as shown here { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
 | `fps` (Optional)     | integer | 4 | For video projects: the number of frames per second. If 0 is provided then all frames are taken. For image projects: this parameter has no effect. |
 | `frames_per_task` (Optional)     | integer | 120 | Specifies the number of frames or images attached to the each annotation task. |
-| `is_assign_annotators` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
+| `assign_to_all` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
+| `send_email` (Optional)             | boolean | False | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators |
 
 
 ## Returns
