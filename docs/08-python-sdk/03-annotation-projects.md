@@ -64,7 +64,7 @@ create_annotation_project_from_datalake(project_name, Data Lake_query, Data Lake
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `project_name`     | string | - | Project name (should be non-empty) |
 | `Data Lake_query` (Optional)     | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
-| `datake_filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
+| `Data Lake_filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> |
 | `content_type`     | string | - | “image” or “video” |
 | `fps` (Optional)     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. |
 | `frames_per_task` (Optional)     | integer | 120 | Specifies the number of images or frames attached to each annotation task. |
