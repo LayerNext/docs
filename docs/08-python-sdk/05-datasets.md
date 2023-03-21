@@ -26,7 +26,7 @@ client.download_dataset("635eafbec1a605ab795d2768", "YOLO Darknet")
 
 ## 5.2. Create a Dataset from a Collection
 
-With this SDK function, a dataset can be created from all or a subset of frames in a given collection in the DataLake.
+This SDK function creates a dataset from all or a subset of frames in a given collection in the DataLake.
 
 
 ```python
@@ -54,7 +54,7 @@ client.create_dataset_from_collection("Balloons Dataset", "<datalake_collection_
 
 ## 5.3. Create a Dataset Without Giving a Collection
 
-With this SDK function, a dataset can be created from a subset of frames in the DataLake without specifying a collection.
+This SDK function creates a dataset from a subset of frames in the DataLake without specifying a collection.
 
 
 ```python
@@ -82,7 +82,7 @@ client.create_dataset_from_datalake("Balloons Dataset - V2", {"train":100, "test
 
 ## 5.4. Update a Dataset Version with Images from a Collection
 
-To update an existing dataset with new data from a given collection, this SDK function can be used.
+This SDK function updates an existing dataset with new data from a given collection.
 
 ```python
 update_dataset_version_from_collection(dataset_id: str, version_id:str, collection_id: str, split_info:dict, labels:list, export_types:list,  query: str, filter:dict, is_new_version_required:bool)
@@ -112,7 +112,7 @@ client.create_dataset_from_collection("<dataset_id>", "<current_dataset_version_
 
 ## 5.5. Update a Dataset Version from frames Without Giving a Collection
 
-With this SDK function, a dataset can be updated from a subset of frames in the DataLake without specifying a collection.
+This SDK function updates a dataset from a subset of frames in the DataLake without specifying a collection.
 
 
 ```python
