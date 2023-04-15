@@ -30,7 +30,7 @@ This SDK function creates a dataset from all or a subset of frames in a given co
 
 
 ```python
-create_dataset_from_collection(dataset_name: str, collection_id: str, split_info:dict, labels:list, export_types:list,  query: str, filter:dict)
+create_dataset_from_collection(dataset_name: str, collection_id: str, split_info:dict, labels:list, export_types:list,  query: str, filter:dict, operation_list: list, augmentation_list: list)
 ```
 
 ## Parameters
@@ -44,6 +44,8 @@ create_dataset_from_collection(dataset_name: str, collection_id: str, split_info
 | `export_types` (Optional)     | list | [] | List of formats to which the exports should be generated. Available export types are "RAW", "YOLO Darknet", "Semantic Segmentation"  |
 | `query` (Optional)     | string | empl| The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
 | `filter` (Optional)     | object | - | Additional criteria can be specified in the filter object as similar to annotation project creation |
+| `operation_list` (Optional)     | list | None | The Ids of annotation projects or model runs that are included in the dataset. If this is None, then all available projects or model runs associated with selected images are taken. If this is empty, then none of the annotations are included. |
+| `augmentation_list` (Optional)     | object | None | Dictionary containing the configurations for different types of augmentations enabled for this dataset. The details on augmentation configuration is given in the section 5.6 |
 
 ## Example Usage
 
@@ -72,6 +74,8 @@ create_dataset_from_datalake(dataset_name: str, split_info:dict, labels:list, ex
 | `item_type`     | string | image | Valid values are “image” or "image_collection" or "dataset" |
 | `query` (Optional)     | string | empl| The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
 | `filter` (Optional)     | object | - | Additional criteria can be specified in the filter object as similar to annotation project creation |
+| `operation_list` (Optional)     | list | None | The Ids of annotation projects or model runs that are included in the dataset. If this is None, then all available projects or model runs associated with selected images are taken. If this is empty, then none of the annotations are included. |
+| `augmentation_list` (Optional)     | object | None | Dictionary containing the configurations for different types of augmentations enabled for this dataset. The details on augmentation configuration is given in the section 5.6 |
 
 ## Example Usage
 
@@ -101,6 +105,8 @@ update_dataset_version_from_collection(dataset_id: str, version_id:str, collecti
 | `query` (Optional)     | string | {} | The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
 | `filter` (Optional)     | object | - | Additional criteria can be specified in the filter object as similar to annotation project creation |
 | `is_new_version_required` (Optional)     | boolean | - | True if new version of dataset to be created |
+| `operation_list` (Optional)     | list | None | The Ids of annotation projects or model runs that are included in the dataset. If this is None, then all available projects or model runs associated with selected images are taken. If this is empty, then none of the annotations are included. |
+| `augmentation_list` (Optional)     | object | None | Dictionary containing the configurations for different types of augmentations enabled for this dataset. The details on augmentation configuration is given in the section 5.6 |
 
 ## Example Usage
 
@@ -132,9 +138,101 @@ update_dataset_version_from_datalake(dataset_id: str, version_id:str, split_info
 | `query` (Optional)     | string | empl| The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
 | `filter` (Optional)     | object | - | Additional criteria can be specified in the filter object as similar to annotation project creation |
 | `is_new_version_required` (Optional)     | boolean | - | True if new version of dataset to be created |
+| `operation_list` (Optional)     | list | None | The Ids of annotation projects or model runs that are included in the dataset. If this is None, then all available projects or model runs associated with selected images are taken. If this is empty, then none of the annotations are included. |
+| `augmentation_list` (Optional)     | object | None | Dictionary containing the configurations for different types of augmentations enabled for this dataset. The details on augmentation configuration is given in the section 5.6 |
 
 ## Example Usage
 
 ```python
 
 ```
+
+## 5.6. Configuring Augmentations
+
+When creating or updating a dataset, the configuration of augmentation options should be provided as a dictionary that represents a JSON structure. The JSON format should follow the structure shown below.
+{
+    "<AUGMENTATION_CATEGORY>": [
+        {
+            "id": "<AUGMENTATION_TYPE_ID>",
+            "properties": [
+                {
+                    "id": "<PROPERTY_ID1>",
+                    "values": [
+                        <VALUE_1>,
+                        <VALUE_2>
+                    ]
+                },
+                {
+                    "id": "<PROPERTY_ID2>",
+                    "values": [
+                        <VALUE_1>
+                    ]
+                }
+            ]
+        },
+        {
+            <Configuration for next augmentation type>
+        }
+    ]
+}
+
+Note that currently LayerNext supports only one Augmentation category - IMAGE_LEVEL.
+
+The available augmentation types and their properties are listed in below table.
+
+| Type ID         | Property ID        | Description          | Value type | Valid values or value ranges        |
+| ------------------ | ------------------ | ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `FLIP_IMAGE`     | FLIP_HORIZONTAL | If this is True, horizontal flip will be applied | Boolean (True / False) |
+
+
+## Example Augmentation configuration dictionary
+
+```python
+{
+    "IMAGE_LEVEL": [
+        {
+            "id": "FLIP_IMAGE",
+            "properties": [
+                {
+                    "id": "FLIP_HORIZONTAL",
+                    "values": [
+                        False
+                    ]
+                },
+                {
+                    "id": "FLIP_VERTICAL",
+                    "values": [
+                        True
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "IMAGE_ROTATION",
+            "properties": [
+                {
+                    "id": "PERCENTAGE_SCALE",
+                    "values": [
+                        -10,
+                        30
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "GRAYSCALE",
+            "description": "",
+            "isSelected": True,
+            "properties": [
+                {
+                    "id": "GRAYSCALE_PERCENTAGE",
+                    "values": [
+                        5,
+                        10
+                    ]
+                }
+            ]
+        }
+    ]
+    }
+    ```
