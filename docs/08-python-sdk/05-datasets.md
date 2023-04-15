@@ -150,6 +150,8 @@ update_dataset_version_from_datalake(dataset_id: str, version_id:str, split_info
 ## 5.6. Configuring Augmentations
 
 When creating or updating a dataset, the configuration of augmentation options should be provided as a dictionary that represents a JSON structure. The JSON format should follow the structure shown below.
+
+```python
 {
     "<AUGMENTATION_CATEGORY>": [
         {
@@ -175,15 +177,17 @@ When creating or updating a dataset, the configuration of augmentation options s
         }
     ]
 }
+```
 
 Note that currently LayerNext supports only one Augmentation category - IMAGE_LEVEL.
 
 The available augmentation types and their properties are listed in below table.
 
 | Type ID         | Property ID        | Description          | Value type | Valid values or value ranges        |
-| ------------------ | ------------------ | ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `FLIP_IMAGE`     | FLIP_HORIZONTAL | If this is True, horizontal flip will be applied | Boolean (True / False) |
-
+| ------------------ | ------------------ | ------------------------------------ | -------------- | ---------------------------| ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `FLIP_IMAGE`     | FLIP_HORIZONTAL | If this is True, horizontal flip will be applied, otherwise no operation applied. | Boolean  | True, False |
+|      | FLIP_VERTICAL | If this is True, vertical flip will be applied, otherwise no operation applied. | Boolean  | True, False |
+| `IMAGE_ROTATION`     | PERCENTAGE_SCALE | Image will be rotated at an angle within the given maximum and minimum limit. | Array of integer  | Two angles with range -180 to 180 (eg: -10, 30) |
 
 ## Example Augmentation configuration dictionary
 
