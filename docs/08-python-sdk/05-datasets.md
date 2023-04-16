@@ -122,7 +122,7 @@ This SDK function updates a dataset from a subset of frames in the DataLake with
 
 
 ```python
-update_dataset_version_from_datalake(dataset_id: str, version_id:str, split_info:dict, labels:list, export_types:list, item_type:str,  query: str, filter:dict, is_new_version_required: bool operation_list: list, augmentation_list: list)
+update_dataset_version_from_datalake(dataset_version_id: str, split_info:dict, labels:list, export_types:list, item_type:str,  query: str, filter:dict, is_new_version_required: bool operation_list: list, augmentation_list: list)
 ```
 
 ## Parameters
