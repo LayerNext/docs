@@ -184,7 +184,7 @@ Note that currently LayerNext supports only one Augmentation category - IMAGE_LE
 The available augmentation types and their properties are listed in below table.
 
 | Type ID         | Property ID        | Description          | Value type | Valid values or value ranges        |
-| ------------------ | ------------------ | ------------------------------------ | -------------- | ---------------------------| ---------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------ | ------------------ | ------------------------------------------------------ | ----------------- | ---------------------------|
 | `FLIP_IMAGE`     | FLIP_HORIZONTAL | If this is True, horizontal flip will be applied, otherwise no operation applied. | Boolean  | True, False |
 |      | FLIP_VERTICAL | If this is True, vertical flip will be applied, otherwise no operation applied. | Boolean  | True, False |
 | `IMAGE_ROTATION`     | PERCENTAGE_SCALE | Image will be rotated at an angle within the given maximum and minimum limit. | Array of Integer  | Two angles within the range -360 to 36  0 (eg: -10, 30) |
