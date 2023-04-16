@@ -81,7 +81,7 @@ create_dataset_from_datalake(dataset_name: str, split_info:dict, labels:list, ex
 
 ```python
 #This will create a dataset called "Balloons Dataset - V2" from all images with Balloon annotations and export to Semantic Segmentation
-client.create_dataset_from_datalake("Balloons Dataset - V2", {"train":100, "test":0, "validation":0}, ["Balloon"], ["Semantic Segmentation"], "image", "annotation.label=Balloon")
+client.create_dataset_from_datalake("Balloons Dataset - V2", {"train":100, "test":0, "validation":0}, ["Balloon"], ["Semantic Segmentation", "YOLO Darknet"], "image", "annotation.label=Balloon")
 ```
 
 ## 5.4. Update a Dataset Version with Images from a Collection
@@ -89,7 +89,7 @@ client.create_dataset_from_datalake("Balloons Dataset - V2", {"train":100, "test
 This SDK function updates an existing dataset with new data from a given collection.
 
 ```python
-update_dataset_version_from_collection(dataset_id: str, version_id:str, collection_id: str, split_info:dict, labels:list, export_types:list,  query: str, filter:dict, is_new_version_required:bool)
+update_dataset_version_from_collection(dataset_version_id:str, collection_id: str, split_info:dict, labels:list, export_types:list,  query: str, filter:dict, is_new_version_required:bool, operation_list: list, augmentation_list: list)
 ```
 
 ## Parameters
@@ -122,7 +122,7 @@ This SDK function updates a dataset from a subset of frames in the DataLake with
 
 
 ```python
-update_dataset_version_from_datalake(dataset_id: str, version_id:str, split_info:dict, labels:list, export_types:list, item_type:str,  query: str, filter:dict, is_new_version_required: bool)
+update_dataset_version_from_datalake(dataset_id: str, version_id:str, split_info:dict, labels:list, export_types:list, item_type:str,  query: str, filter:dict, is_new_version_required: bool operation_list: list, augmentation_list: list)
 ```
 
 ## Parameters
@@ -144,7 +144,7 @@ update_dataset_version_from_datalake(dataset_id: str, version_id:str, split_info
 ## Example Usage
 
 ```python
-
+client.update_dataset_version_from_datalake("<dataset_version_id>", {"train":60, "test":30, "validation":10}, ["Balloon"], ["RAW"], "image", "annotation.label=Balloon")
 ```
 
 ## 5.6. Configuring Augmentations
