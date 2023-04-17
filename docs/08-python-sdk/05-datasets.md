@@ -193,12 +193,12 @@ The available augmentation types and their properties are listed in below table.
 |      | COUNTER_CLOCKWISE | The image will be rotated 90° anticlockwise if this True, otherwise no operation applied. | Boolean  | True, False |
 |      | UPSIDE_DOWN | The image will be rotated upside down if this True, otherwise no operation applied. | Boolean  | True, False |
 | `GRAYSCALE`     | GRAYSCALE_PERCENTAGE | Maximum and minimum percentage of grey scaling applied. | Array of Integer  | Maximum and minimum percentage within the range 0 to 100 |
-| `HUE`     | HUE_DEGREES | Maximum and minimum degree of hue applied. | Array of Integer  | Pair of the degrees within the range -50 to 50 |
-| `SATURATION`     | SATURATION_DEGREES | Maximum and minimum degree of saturation applied. | Array of Integer  | Maximum and minimum degree within the range -50 to 50 |
+| `HUE`     | HUE_DEGREES | Maximum and minimum degree of hue applied. | Array of Integer  | Pair of the degrees within the range -100 to 100 |
+| `SATURATION`     | SATURATION_DEGREES | Maximum and minimum degree of saturation applied. | Array of Integer  | Maximum and minimum degree within the range -100 to 100 |
 | `BRIGHTNESS`     | BRIGHTNESS_DEGREES | Maximum and minimum degree of brightness applied. | Array of Integer  |Pair of degrees within the range -100 to 100 |
 | `NOISE`     | NOISE_PERCENTAGE | Maximum and minimum percentage of noise applied. | Array of Integer  | Pair of percentages within the range 0 to 100 |
-| `SHEAR`     | SHEAR_HORIZONTAL | Maximum and minimum horizontal shear angle | Array of Integer  | Pair of angles from -40 to 40 |
-|      | SHEAR_VERTICAL | Maximum and minimum vertical shear angle | Array of Integer  | Pair of angles from -40 to 40 |
+| `SHEAR`     | SHEAR_HORIZONTAL | Maximum and minimum horizontal shear angle | Array of Integer  | Pair of angles from -90 to 90 |
+|      | SHEAR_VERTICAL | Maximum and minimum vertical shear angle | Array of Integer  | Pair of angles from -90 to 90 |
 | `CROP`     | CROP_PERCENTAGE | Maximum and minimum percentage of crop applied. | Array of Integer  | Pair of percentages within the range 0 to 100 |
 
 ## Example Augmentation configuration dictionary
