@@ -18,7 +18,7 @@ upload_files_to_collection(path, content_type, collection_name, meta_data_object
 | Parameter          | Data type         | Default          | Description         |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `path`             | string | - | directory or file path (should be an absolute path) - The SDK automatically identifies whether it's a directory or single file based on the given path |
-| `content_type`     | string | - | “image” for image files and “video” for video files                                                                                                                       |
+| `content_type`     | string | - | “image” for image files, “video” for video files and "other" for all other files                                                                                                                      |
 | `collection_name`  | string | - | A name given for the collection. If an existing collection name is given, then files will be added to that collection.                  |
 | `meta_data_object` | dictionary | - | custom metadata field and value pairs                                                                                                       |
 
