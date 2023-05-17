@@ -244,9 +244,9 @@ Next, it downloads specific frames related to the collection and saves them in a
 client.download_collection("<collection_id>", "human", ["project1_id", "project2_id"], "/my/custom/path")
 ```
 
-## 2.6. Trash items from a Collection
+## 2.6. Trash Items from a Collection
 
-With this SDK function, all or a subset of frames in a given collection can be moved to the trash.
+With this SDK function, all or a subset of items in a given collection can be moved to the trash.
 
 ```python
 trash_objects_from_collection(collection_id, query, filter)
@@ -270,9 +270,9 @@ trash_objects_from_collection(collection_id, query, filter)
 }
 ```
 
-## 2.7. Trash objects from DataLake
+## 2.7. Trash Items from DataLake
 
-Given objects in DataLake can be trashed without specifying a collection, choosing a set of items using a query string and filters.
+Given items in DataLake can be trashed without specifying a collection, choosing a set of items using a query string and filters.
 
 ```python
 trash_objects_from_datalake(datalake_query, datalake_filter, content_type)
