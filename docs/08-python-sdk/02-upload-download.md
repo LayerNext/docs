@@ -244,3 +244,53 @@ Next, it downloads specific frames related to the collection and saves them in a
 client.download_collection("<collection_id>", "human", ["project1_id", "project2_id"], "/my/custom/path")
 ```
 
+## 2.6. Trash items from a Collection
+
+With this SDK function, all or a subset of frames in a given collection can be moved to the trash.
+
+```python
+trash_objects_from_collection(collection_id, query, filter)
+```
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description        |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `collection_id`     | string | - | Collection ID |
+| `query` (Optional)     | string | - | The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
+| `filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified in the filter object as shown here:\n { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> }|
+
+
+## Returns
+
+```python
+{
+    'message': '[success_count] objects successfully trashed, [failed_count] objects failed to trash', 
+    'isSuccess': 'True or False'
+}
+```
+
+## 2.7. Trash objects from DataLake
+
+Given objects in DataLake can be trashed without specifying a collection, choosing a set of items using a query string and filters.
+
+```python
+trash_objects_from_datalake(datalake_query, datalake_filter, content_type)
+```
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description        |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `datalake_query` (Optional)     | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
+| `datalake_filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
+| `content_type`     | string | "image" | Type of items that needs to be trashed: “image” or “video” |
+
+## Returns
+
+```python
+{
+    'message': '[success_count] objects successfully trashed, [failed_count] objects failed to trash', 
+    'isSuccess': 'True or False'
+}
+```
