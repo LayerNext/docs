@@ -21,6 +21,7 @@ upload_files_to_collection(path, content_type, collection_name, meta_data_object
 | `content_type`     | string | - | “image” for image files, “video” for video files and "other" for all other files                                                                                                                      |
 | `collection_name`  | string | - | A name given for the collection. If an existing collection name is given, then files will be added to that collection.                  |
 | `meta_data_object` | dictionary | - | custom metadata field and value pairs                                                                                                       |
+| meta_data_override | boolean      | False | Optional: If this flag is True, the metadata of already uploaded files will be overridden, even if the file is skipped during the upload process.  |
 
 ## Returns
 
@@ -244,7 +245,32 @@ Next, it downloads specific frames related to the collection and saves them in a
 client.download_collection("<collection_id>", "human", ["project1_id", "project2_id"], "/my/custom/path")
 ```
 
-## 2.6. Trash Items from a Collection
+## 2.6. Get Downloadable Url for a File
+
+This function retrieves the URL of any file within the Data Lake, enabling its download.
+
+```python
+get_downloadable_url(file_key)
+```
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description         |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `file_key`             | string | - | File path in the Data Lake |
+
+## Returns
+
+A signed URL is provided, enabling direct downloading of the corresponding file from the Data Lake. Please be aware that this URL has a limited lifespan, and it is crucial that your application does not reuse it.
+
+
+## Example usage
+
+```python
+client.get_downloadable_url("my_collection/image1.jpeg")
+```
+
+## 2.7. Trash Items from a Collection
 
 With this SDK function, all or a subset of items in a given collection can be moved to the trash.
 
@@ -270,7 +296,7 @@ trash_objects_from_collection(collection_id, query, filter)
 }
 ```
 
-## 2.7. Trash Items from DataLake
+## 2.8. Trash Items from DataLake
 
 Given items in DataLake can be trashed without specifying a collection, choosing a set of items using a query string and filters.
 
