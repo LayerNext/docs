@@ -10,7 +10,7 @@ You can upload files in a directory to a collection in the Data Lake (which is t
 Note that currently we are supporting following file types for upload: jpeg, jpg, png, mp4, mkv
 
 ```python
-upload_files_to_collection(path, content_type, collection_name, meta_data_object)
+upload_files_to_collection(path, content_type, collection_name, meta_data_object, meta_data_override)
 ```
 
 ## Parameters
