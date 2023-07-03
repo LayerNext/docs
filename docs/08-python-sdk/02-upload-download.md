@@ -10,7 +10,7 @@ You can upload files in a directory to a collection in the Data Lake (which is t
 Note that currently we are supporting following file types for upload: jpeg, jpg, png, mp4, mkv
 
 ```python
-upload_files_to_collection(path, content_type, collection_name, meta_data_object, meta_data_override)
+upload_files_to_collection(path, content_type, collection_name, meta_data_object, meta_data_override, file_meta_data_json_path)
 ```
 
 ## Parameters
@@ -21,7 +21,8 @@ upload_files_to_collection(path, content_type, collection_name, meta_data_object
 | `content_type`     | string | - | “image” for image files, “video” for video files and "other" for all other files                                                                                                                      |
 | `collection_name`  | string | - | A name given for the collection. If an existing collection name is given, then files will be added to that collection.                  |
 | `meta_data_object` | dictionary | - | custom metadata field and value pairs                                                                                                       |
-| meta_data_override | boolean      | False | Optional: If this flag is True, the metadata of already uploaded files will be overridden, even if the file is skipped during the upload process.  |
+| `meta_data_override` | boolean      | False | Optional: If this flag is True, the metadata of already uploaded files will be overridden, even if the file is skipped during the upload process.  |
+| `file_meta_data_json_path` | string | None | Optional: If we need to set specific metadata (both meta fields and tags) to each individual file, then we can give the path of the JSON file that contain these metadata. The format of the JSON is given below.   |
 
 ## Returns
 
@@ -34,8 +35,37 @@ Id of the new collection created and the corresponding job Id
     'collection_id': '<Id of the uploading collection>'
 }
 ```
+## JSON format of metadata for individual files
+```JSON
+{
+	"files" : [
+      {
+         "file": "<file_name1>",
+         "metadata": {
+            "field1": "data1",
+            "field2": "data2",
+            "Tags": [
+               "<tag1>", "<tag2>"
+            ]
+         }
+      },
+      {
+         "file": "<file_name2>",
+         "metadata": {
+            "field1": "data3",
+            "field3": "data4",
+            "Tags": [
+               "<tag2>","<tag3>"
+            ]
+         }
+      }
+	]
+}
+```
 
-## Example usage
+## Example usage:
+
+###### 1. Upload with metadata for whole collection
 
 ```python
 meta_data_object = {
@@ -45,12 +75,26 @@ meta_data_object = {
         "#retail"
     ]
 }
-upload_res = client.upload_files_to_collection(‘/home/user/images, “image”, “my_collection”, meta_data_object)
+upload_res = client.upload_files_to_collection("/home/user/images", "image", "my_collection", meta_data_object)
 upload_job_id = upload_res['job_id']
 
 #Waiting for upload processing to complete
 client.wait_for_job_complete(upload_job_id)
 print('Upload Completed!')
+```
+
+###### 2. Upload with metadata specific to each file
+
+```python
+meta_data_object = {
+    "Captured Location": "Toronto",
+    "Camera Id": "CAM_0002",
+    "Tags": [
+        "#retail"
+    ]
+}
+metadata_json_path = '/home/user/path/to/json/metadata.json'
+upload_res = client.upload_files_to_collection("/home/user/images", "image", "my_collection1", meta_data_object, False, metadata_json_path)
 ```
 
 ## 2.2. Upload Files (Deprecated)
@@ -320,3 +364,67 @@ trash_objects_from_datalake(datalake_query, datalake_filter, content_type)
     'isSuccess': 'True or False'
 }
 ```
+
+
+## 2.9. Update metadata for a collection
+
+This function can be used for updating metadata for a given collection. By default, the metadata will be applied for all the files under that collection too.
+
+```python
+upload_metadata_for_collection(collection_name, content_type, metadata_obj, is_apply_to_all_files)
+```
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description         |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `collection_name`              | string | - | Name of the collection in the Data Lake |
+| `content_type`       | string | - | Type of files in the collection.        |
+| `metadata_obj`     | dictionary | {} | Custom metadata field and value pairs to be applied to the collection.                 |      
+| `is_apply_to_all_files` (Optional)     | boolean | True | If this is False, then given metadata will be applied only to the collection head  |
+
+## Returns
+
+```python
+{
+    'message': 'Error message if there is any', 
+    'isSuccess': 'True or False'
+}
+```
+
+## Example usage
+   
+   ```python   
+   client.upload_metadata_for_collection("my_collection", "image", {"my_key1": "my_value1", "my_key2": "my_value2"})
+   ```
+
+## 2.10. Update metadata for given set of individual files
+
+This function is used to update metadata for all or a set of files in a given collection.
+
+```python
+upload_metadata_for_files(collection_base_path, file_meta_data_json_path )
+```
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description         |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `collection_base_path`              | string | - | Base path of the set of files that metadata needs to be updated in a collection, this can be the collection name   |
+| `file_meta_data_json_path`       | string | - | Path to the JSON file containing metadata for the each file in the collection.        |
+
+## Returns
+
+```python
+{
+    'message': 'Error message if there is any', 
+    'isSuccess': 'True or False'
+}
+```
+
+## Example usage
+   
+   ```python   
+   client.upload_metadata_for_files("my_collection", "/path/to/my/file_metadata.json")
+   ```
+
