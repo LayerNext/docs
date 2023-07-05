@@ -26,8 +26,7 @@ information in order to connect to your S3 bucket.
 2. Download the automated deployment wizard (Python script) to the server with command
 
 ```bash
-“curl --location --request GET 'https://cms.layernext.ai/api/download/deployment/script' -o
-layernext-self-install.py”
+“curl --location --request GET 'https://cms.layernext.ai/api/download/deployment/script' -o layernext-self-install.py”
 ```
 3. Run the wizard as
 
