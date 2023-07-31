@@ -129,8 +129,7 @@ update_dataset_version_from_datalake(dataset_version_id: str, split_info:dict, l
 
 | Parameter          | Data type         | Default          | Description        |
 | ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `dataset_id`     | string | - | ID of the dataset |
-| `version_id`     | string | - | ID of the current dataset version (source version) |
+| `dataset_version_id`     | string | - | ID of the current dataset version (source version) |
 | `split_info`     | dictionary | - | Percentage of frames assigned for each of the portions of dataset: train, test and validation. Should be given as dictionary with train/test/validation as key and percentage as value. |
 | `labels`     | list | - | The labels belong to the dataset. At least one label should be given. |
 | `export_types` (Optional)     | list | [] | List of formats to which the exports should be generated. Available export types are "RAW", "YOLO Darknet", "Semantic Segmentation"  |

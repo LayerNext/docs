@@ -10,7 +10,7 @@ The LayerNext Python SDK provides a programmatic way to access all the functions
 The SDK is available as a package on PyPI
 
 ```bash
-pip install layerx-sdk
+pip install layernext-enterprise
 ```
 
 ## 1.2. API Keys
@@ -24,10 +24,10 @@ To use the SDK, you will need your LayerNext API Key and Secret. Those can be fo
 Before you start, you will have to create a `client` instance with permissions to access your account. You will need the API Key and Secret as detailed above, as well as the domain where your data is hosted.
 
 ```python
-import layerx
+import layernext
 
-url = "https://api.[customer_sub_domain].layerx.ai"
-client = layerx.LayerxClient(api_key, secret, url)
+url = "https://api.[customer_sub_domain].layernext.ai"
+client = layernext.LayerNextClient(api_key, secret, url)
 ```
 
 Once created, the API client can use all of the available functions inside this SDK.
