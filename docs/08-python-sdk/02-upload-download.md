@@ -209,6 +209,42 @@ This function is designed to upload annotations exclusively for collections crea
          "image":"image_file_name.jpg",
          "annotations":[
             {
+               "type": "polygon",
+               "polygon":[
+                  [
+                     <point1_x(number)>,
+                     <point1_y(number)>
+                  ],
+                  [
+                     <point2_x(number)>,
+                     <point2_y(number)>
+                  ],
+                  [
+                     <pont3_x(number)>,
+                     <point3_y(number)>
+                  ]
+               ],
+               "label":"<label_name>",
+               "confidence": 0.53,
+               "metadata":{
+                  "<meta_field_name1>":"<metadata_value1>"
+               }
+            }
+         ]
+      }
+   ]
+}
+
+## JSON format for ‘line'
+
+```json
+{
+   "images":[
+      {
+         "image":"image_file_name.jpg",
+         "annotations":[
+            {
+               "type": "line",
                "polygon":[
                   [
                      <point1_x(number)>,
@@ -362,7 +398,7 @@ client.upload_annotations_by_unique_name(“yolov5.0.1”, ‘/my/file/path/file
 You can feed the Data Lake with a json file having model run output (machine) or ground truth (human) annotations for frames in a given image collection.
 
 ```python
-upload_annoations_for_folder(collection_name, operation_unique_id, json_data_file_path, is_normalized, is_model_run, destination_project_id)
+upload_annoations_for_folder(collection_name, operation_unique_id, json_data_file_path, shape_type, is_normalized, is_model_run, destination_project_id)
 ```
 
 Note that the correct file name should be set to the ‘image’ field in uploading a json file. The format of the json file depends on the shape type of the annotations.
@@ -440,6 +476,7 @@ Note that the correct file name should be set to the ‘image’ field in upload
 | `collection_name`             | string | - | Name of the existing image collection |
 | `operation_unique_id`     | string | - | This is a unique identifier that is used to distinguish between different sets of annotations. This ID is important in both human and machine annotations because it ensures that annotations from different sources are not mixed up. If the same ID is used for multiple API calls, the previous annotations will be replaced by the new ones. However, if a different ID is used, the new annotations will be added to the Data Lake.                                                                                                                       |
 | `json_data_file_path`  | string | - | Absolute path of the json file having annotation data                  |
+| `shape_type`    | string | - | Type of the annotations - can be rectangle, polygon, or line.                 |
 | `Is_normalized` | boolean | - | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the Data Lake backend.                                                                                                       |
 | `is_model_run` | boolean | - | True if this is machine annotations, False if this is human annotations                                                                                                       |
 | `destination_project_id`(optional) | string | None | If this is given then annotations are copied to the given studio project - this can be used for attaching auto annotations to studio projects                                                                                                      |
