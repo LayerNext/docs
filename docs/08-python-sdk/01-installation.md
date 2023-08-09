@@ -10,7 +10,7 @@ The LayerNext Python SDK provides a programmatic way to access all the functions
 The SDK is available as a package on PyPI
 
 ```bash
-pip install layernext-enterprise
+pip install layernext
 ```
 
 ## 1.2. API Keys

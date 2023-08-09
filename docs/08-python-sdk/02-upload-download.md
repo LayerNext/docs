@@ -97,7 +97,7 @@ metadata_json_path = '/home/user/path/to/json/metadata.json'
 upload_res = client.upload_files_to_collection("/home/user/images", "image", "my_collection1", meta_data_object, False, metadata_json_path)
 ```
 
-## 2.2. Upload Files (Deprecated)
+## 2.2. Upload Files -- Deprecated
 
 You can upload a single file or files in a directory to the Data Lake with custom metadata. Only one type of content (either image or video) can be uploaded in a single API call.
 
@@ -129,12 +129,240 @@ meta_data_object = {
 client.file_upload(‘/home/user/images, 5, “my_collection”, meta_data_object)
 ```
 
-## 2.3. Upload Model Predictions / Annotations
+## 2.3. Upload Model Predictions / Annotations to a Collection in DataLake
+
+You can feed the Data Lake with a json file having model run output (machine) or ground truth (human) annotations for frames in a given image collection. 
+
+```python
+upload_annotations_for_collection(collection_name, operation_unique_id, json_data_file_path, is_normalized, is_model_run)
+```
+Note that the correct file name should be set to the ‘image’ field in uploading a json file. The format of the json file depends on the shape type of the annotations.
+
+#### Limitations
+This function is designed to upload annotations exclusively for collections created after the initial extraction of data from storage. Note that it is not compatible with virtual collections.
+
+
+## JSON format for 'rectangle’
+
+```json
+
+{
+    "images": [
+       {
+        "image": "image_file_name.jpg",
+        "annotations": [
+          {
+            "type": "rectangle",
+            "bbox": [
+               <top1_left_x(number)>,
+               <top1_left_y(number)>,
+               <width1(number)>,
+               <height1(number)>
+            ],
+            "confidence": 0.53,
+            "label": "<label_name>",
+            "metadata": {
+              "<optional_meta_field1>": "<metadata_value1>",
+              "<optional_meta_field2>": "<metadata_value2>"
+            },
+            "attributes": {
+              "<optional_attribute_name1>": [
+                {
+                  "value": "<attribute_value1>",
+                  "confidence": 0.35,
+                  "metadata": {
+                    "<optional_attribute_value1_metadata_field1>": "<attribute_metadata_value3>",
+                    "<optional_attribute_value1_metadata_field2>": "<attribute_metadata_value4>"
+                  }
+                },
+                {
+                  "value": "attribute_value2",
+                  "confidence": 0.33,
+                  "metadata": {
+                  }
+                }
+              ],
+              "<optional_attribute_name2>": [
+                {
+                  "value": "<attribute_value3>",
+                  "confidence": 0.23,
+                  "metadata": {
+                   
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+}
+
+```
+
+## JSON format for ‘polygon’ and ‘line’
+
+```json
+{
+   "images":[
+      {
+         "image":"image_file_name.jpg",
+         "annotations":[
+            {
+               "polygon":[
+                  [
+                     <point1_x(number)>,
+                     <point1_y(number)>
+                  ],
+                  [
+                     <point2_x(number)>,
+                     <point2_y(number)>
+                  ],
+                  [
+                     <pont3_x(number)>,
+                     <point3_y(number)>
+                  ]
+               ],
+               "label":"<label_name>",
+               "confidence": 0.53,
+               "metadata":{
+                  "<meta_field_name1>":"<metadata_value1>"
+               }
+            }
+         ]
+      }
+   ]
+}
+
+```
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description         |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `collection_name`             | string | - | Name of the existing image collection |
+| `operation_unique_id`     | string | - | The ID of the relevant model run or annotation project. This is a unique identifier that is used to distinguish between different sets of annotations. This ID is important in both human and machine annotations because it ensures that annotations from different sources are not mixed up. If the same ID is used for multiple API calls, the previous annotations will be replaced by the new ones. However, if a different ID is used, the new annotations will be added to the DataLake.                                                                                                                       |
+| `json_data_file_path`  | string | - | Absolute path of the json file having annotation data                  |
+| `Is_normalized` | boolean | - | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the Data Lake backend.                                                                                                       |
+| `is_model_run` | boolean | - | True if this is machine annotations, False if this is human annotations                                                                                                       |
+
+## Example usage
+
+```python
+client.upload_annoations_for_collection(‘my_collection’, “yolov5.0.1”, ‘/my/file/path/file.json’, False, True)
+```
+
+## 2.4. Upload Model Predictions / Annotations to Images in a Storage Path
+
+This function uploads annotation data in the same manner as "upload_annoations_for_collection" but targets images at a specified path within storage (e.g., a folder path inside an AWS S3 bucket). It is particularly useful for handling files retrieved during initial system crawling or data import from storage.
+
+```python
+upload_annotations_by_storage_path(operation_unique_id, json_data_file_path, is_normalized, is_model_run, bucket_name)
+```
+Note that for the ‘image’ field in uploading a json file, the correct path in the storage. Eg: If the image is in folder /folder/subfolder, then the 'image' should be '/folder/subfolder/image_name.jpg'. 
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description         |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `operation_unique_id`     | string | - | The ID of the relevant model run or annotation project                                                                                                                  |
+| `json_data_file_path`  | string | - | Absolute path of the json file having annotation data                  |
+| `Is_normalized` | boolean | - | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the Data Lake backend.                                                                                                       |
+| `is_model_run` | boolean | - | True if this is machine annotations, False if this is human annotations                                                                                                       |
+| `bucket_name` | string | None | The name of the bucket which images are located. If this not given, then the default bucket is assumed.                                                                                                      |
+
+## Example usage
+
+```python
+client.upload_annotations_by_storage_path(“yolov5.0.1”, ‘/my/file/path/file.json’, False, True, 'img_bucket_2')
+```
+
+## JSON format example
+
+```json
+{
+   "images": [
+       {
+        "image": "/path/in/bucket/image_file_name.jpg",
+        "annotations": [
+          {
+            "type": "rectangle",
+            "bbox": [
+               358`,
+               239,
+               45,
+               16
+            ],
+            "confidence": 0.53,
+            "label": "<label_name>",
+            "metadata": {
+            
+            }
+          }
+       }
+   ]
+}
+```
+
+
+## 2.5. Upload Model Predictions / Annotations to Images by Unique Name
+
+This function uploads annotation data in the same way as 'upload_annotations_for_collection', but the images are referenced by the 'Unique Name', a metadata attribute generated by the DataLake. It is specifically useful for handling files contained in a virtual collection, where the 'upload_annotations_for_collection' function is not applicable.
+
+```python
+upload_annotations_by_unique_name(operation_unique_id, json_data_file_path, is_normalized, is_model_run)
+```
+Note that when uploading a JSON file, the 'Unique Name' of the relevant image should be specified in the ‘image’ field. If you download the files from DataLake, the file name will be set to match the 'Unique Name'
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description         |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `operation_unique_id`     | string | - | The ID of the relevant model run or annotation project                                                                                                                  |
+| `json_data_file_path`  | string | - | Absolute path of the json file having annotation data                  |
+| `Is_normalized` | boolean | - | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the Data Lake backend.                                                                                                       |
+| `is_model_run` | boolean | - | True if this is machine annotations, False if this is human annotations                                                                                                       |
+
+## Example usage
+
+```python
+client.upload_annotations_by_unique_name(“yolov5.0.1”, ‘/my/file/path/file.json’, False, True)
+```
+
+## JSON format example
+
+```json
+{
+   "images": [
+       {
+        "image": "collection-name_image.jpg",
+        "annotations": [
+          {
+            "type": "rectangle",
+            "bbox": [
+               330,
+               102,
+               20,
+               32
+            ],
+            "confidence": 0.53,
+            "label": "<label_name>",
+            "metadata": {
+            
+            }
+          }
+       }
+   ]
+}
+```
+
+
+## 2.6. Upload Model Predictions / Annotations -- Deprecated
 
 You can feed the Data Lake with a json file having model run output (machine) or ground truth (human) annotations for frames in a given image collection.
 
 ```python
-upload_annoations_for_folder(collection_name, operation_unique_id, json_data_file_path, annotation_shape_type, is_normalized, is_model_run, destination_project_id)
+upload_annoations_for_folder(collection_name, operation_unique_id, json_data_file_path, is_normalized, is_model_run, destination_project_id)
 ```
 
 Note that the correct file name should be set to the ‘image’ field in uploading a json file. The format of the json file depends on the shape type of the annotations.
@@ -212,7 +440,6 @@ Note that the correct file name should be set to the ‘image’ field in upload
 | `collection_name`             | string | - | Name of the existing image collection |
 | `operation_unique_id`     | string | - | This is a unique identifier that is used to distinguish between different sets of annotations. This ID is important in both human and machine annotations because it ensures that annotations from different sources are not mixed up. If the same ID is used for multiple API calls, the previous annotations will be replaced by the new ones. However, if a different ID is used, the new annotations will be added to the Data Lake.                                                                                                                       |
 | `json_data_file_path`  | string | - | Absolute path of the json file having annotation data                  |
-| `annotation_shape_type` | string | - | This can be ‘rectangle’, ‘polygon’ or ‘line’                                                                                                       |
 | `Is_normalized` | boolean | - | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the Data Lake backend.                                                                                                       |
 | `is_model_run` | boolean | - | True if this is machine annotations, False if this is human annotations                                                                                                       |
 | `destination_project_id`(optional) | string | None | If this is given then annotations are copied to the given studio project - this can be used for attaching auto annotations to studio projects                                                                                                      |
@@ -231,7 +458,7 @@ client.upload_annoations_for_folder(‘my_collection’, “yolov5.0.1”, ‘/m
 client.upload_annoations_for_folder(‘my_collection’, “<annotation_project_id>”, ‘/my/file/path/file.json’, ‘polygon’, False, False)
 ```
 
-## 2.4. Download Annotations of a Collection - Deprecated
+## 2.7. Download Annotations of a Collection -- Deprecated
 
 We can download annotation data from a given image collection. It will dump the annotations as JSON format - the same format we use for uploading annotations data and images. You need to supply the collection id which can be viewed from metadata inside the collection in the Data Lake frontend.
 
@@ -260,7 +487,7 @@ client.download_annotations(“63579fa0f7eb5e0e62d4705”, None)
 ```
 
 
-## 2.5. Download a Collection with Annotations
+## 2.8. Download a Collection with Annotations
 
 This function can be used for downloading annotation data for a list of any human or machine annotation operations from a given image collection. It will dump the annotations as JSON format - the same format we use for uploading annotations data and images. 
 
@@ -289,7 +516,7 @@ Next, it downloads specific frames related to the collection and saves them in a
 client.download_collection("<collection_id>", "human", ["project1_id", "project2_id"], "/my/custom/path")
 ```
 
-## 2.6. Get Downloadable Url for a File
+## 2.9. Get Downloadable Url for a File
 
 This function retrieves the URL of any file within the Data Lake, enabling its download.
 
@@ -314,7 +541,7 @@ A signed URL is provided, enabling direct downloading of the corresponding file 
 client.get_downloadable_url("my_collection/image1.jpeg")
 ```
 
-## 2.7. Trash Items from a Collection
+## 2.10. Trash Items from a Collection
 
 With this SDK function, all or a subset of items in a given collection can be moved to the trash.
 
@@ -340,7 +567,7 @@ trash_objects_from_collection(collection_id, query, filter)
 }
 ```
 
-## 2.8. Trash Items from DataLake
+## 2.11. Trash Items from DataLake
 
 Given items in DataLake can be trashed without specifying a collection, choosing a set of items using a query string and filters.
 
@@ -366,7 +593,7 @@ trash_objects_from_datalake(datalake_query, datalake_filter, content_type)
 ```
 
 
-## 2.9. Update metadata for a collection
+## 2.12. Update metadata for a collection
 
 This function can be used for updating metadata for a given collection. By default, the metadata will be applied for all the files under that collection too.
 
@@ -398,7 +625,7 @@ upload_metadata_for_collection(collection_name, content_type, metadata_obj, is_a
    client.upload_metadata_for_collection("my_collection", "image", {"my_key1": "my_value1", "my_key2": "my_value2"})
    ```
 
-## 2.10. Update metadata for given set of individual files
+## 2.13. Update metadata for given set of individual files
 
 This function is used to update metadata for all or a set of files in a given collection.
 
