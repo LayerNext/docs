@@ -32,8 +32,6 @@ client = layernext.LayerNextClient(api_key, secret, url)
 
 Once created, the API client can use all of the available functions inside this SDK.
 
-You can find more information in the Github repository here: https://github.com/LayerX-AI/layerx-python-sdk
-
 ## 1.4. Tracking the Completion of Operations
 
 Some of the functions in the SDK trigger operations (or jobs) in the Data Lake that run in the background and may take several minutes to finish. If your program needs to wait for these operations to complete, you can use the 'wait_for_job_complete' function. This function will cause your program to pause until the job has been fully executed.
