@@ -15,8 +15,94 @@ get_all_labels()
 
 A list of objects that includes the system label's name, description, and key(ID).
 
+## 4.2 Create System Label
 
-## 4.2. Create Label Group
+To create a new label to the sytem, following function can be used.
+```python
+create_system_label(label)
+```
+
+## Parameters
+
+| Parameter          | Data type         | Default          | Description        |
+| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `label`     | dictionary | - | Dictionary having all the configurations for the label (See the format below) |
+
+## Format for 'label'
+
+```python
+{
+    "className": "Class Att3333",
+    "description": "description 1.111",
+    "attributes": [
+        {
+            "attributeName": "Att1",
+            "values": [
+                {
+                    "valueName": "value_1.1",
+                    "description": "description 1.1"
+                },
+                {
+                    "valueName": "value_1.2",
+                    "description": "description 1.2"
+                }
+            ]
+        },
+        {
+            "attributeName": "Att2",
+            "values": [
+                {
+                    "valueName": "value_2.1",
+                    "description": "description 2.1"
+                },
+                {
+                    "valueName": "value_2.2",
+                    "description": "description 2.2"
+                }
+            ]
+        }
+    ]
+}
+```
+### Example usage1: create a label with no attributes
+
+```python
+label_data = {
+    "className": "Vehicle",
+    "description": "Vehicle travelling or parked on the road",
+}
+client.create_system_label(label_data)
+
+```
+
+### Example usage2: create a label with one attribute
+
+```python
+label_data = {
+    "className": "Vehicle",
+    "description": "Vehicle travelling or parked on the road",
+    "attributes": [
+        {
+            "attributeName": "vehicle_type",
+            "values": [
+                {
+                    "valueName": "car",
+                    "description": "Car"
+                },
+                {
+                    "valueName": "truck",
+                    "description": "Truck"
+                }
+            ]
+        }
+    ]
+}
+
+client.create_system_label(label_data)
+
+```
+
+## 4.3. Create Label Group
 
 To create a new ontology(label) group, use the function below:
 
@@ -41,7 +127,7 @@ Id of the created label group
 client.create_label_group("Ontology-Group-1", ["bdff4719-1eaa-4b92-90ba-a1959579e621", "4e47644c-043f-4b4b-8874-4f7ac1399cd1" ])
 ```
 
-## 4.3. List the Label Groups
+## 4.4. List the Label Groups
 
 The list of all available ontology(label) groups can be obtained using:
 
@@ -53,7 +139,7 @@ get_all_label_groups()
 
 A list of objects containing the Id and the name of each group
 
-## 4.4. Add Labels to a Group
+## 4.5. Add Labels to a Group
 
 This function attaches a list of labels to an existing ontology group:
 
@@ -69,7 +155,7 @@ attach_labels_to_group(group_id, label_ids)
 | `label_ids`     | array | - | List of label keys required to be included in the group |
 
 
-## 4.5. Remove Labels from Group
+## 4.6. Remove Labels from Group
 
 This function detaches a given list of labels from an ontology group:
 
