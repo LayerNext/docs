@@ -32,38 +32,41 @@ create_system_label(label)
 
 ```python
 {
-    "className": "Class Att3333",
-    "description": "description 1.111",
+    "className": "class_name",
+    "description": "Description of class",
     "attributes": [
         {
-            "attributeName": "Att1",
+            "attributeName": "attribute_1",
             "values": [
                 {
-                    "valueName": "value_1.1",
-                    "description": "description 1.1"
+                    "valueName": "value_1_of_attribute_1",
+                    "description": "Description of value"
                 },
                 {
-                    "valueName": "value_1.2",
-                    "description": "description 1.2"
+                    "valueName": "value_2_of_attribute_1",
+                    "description": "Description of value"
                 }
             ]
         },
         {
-            "attributeName": "Att2",
+            "attributeName": "attribute_2",
             "values": [
                 {
-                    "valueName": "value_2.1",
-                    "description": "description 2.1"
+                    "valueName": "value_1_of_attribute_2",
+                    "description": "Description of value"
                 },
                 {
-                    "valueName": "value_2.2",
-                    "description": "description 2.2"
+                    "valueName": "value_2_of_attribute_2",
+                    "description": "Description of value"
                 }
             ]
         }
     ]
 }
 ```
+
+Note: If one of the label class names given here are already existing or nearly similar ones already there (eg: try to add 'Vehicle' when 'vehicle' is already there), then an error is given.
+
 ### Example usage1: create a label with no attributes
 
 ```python
