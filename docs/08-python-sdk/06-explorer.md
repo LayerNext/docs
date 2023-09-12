@@ -52,8 +52,8 @@ get_collection_details(collection_id, fields_filter)
 ## Example usage
 
 ```python
-client.get_file_details(
-    'image collection_pexels-athena-2582937.jpg',
+client.get_collection_details(
+    '64e4330130b4f6a0360bf2b3',
     {
         contentType: False,
         frameCount: True,
