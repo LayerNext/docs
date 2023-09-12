@@ -105,16 +105,16 @@ List of items in the MetaLake.
 ```python
 
 res = client.get_item_list_from_datalake(
-            "image",
-            "annotation.label=Balloon",
-            {
-                "annotation_types": ["human", "machine"],
-                "from_date": "2020-01-01",
-                "to_date": "2020-12-31",
-            },
-            0,
-            20
-        )
+        "image",
+        "annotation.label=Balloon",
+        {
+            "annotation_types": ["human", "machine"],
+            "from_date": "2020-01-01",
+            "to_date": "2020-12-31",
+        },
+        0,
+        20
+)
 ```
 
 ## 6.4. List items from a MetaLake collection
@@ -128,7 +128,7 @@ client.get_item_list_from_collection(
             filter,
             page_index,
             page_size
-        )
+)
 ```
 
 ## Parameters
@@ -158,14 +158,14 @@ list of items of the given collection.
 ```python
 
 res = client.get_item_list_from_collection(
-            "65004ce4365f0510adb2f649",
-            "annotation.label=Balloon",
-            {
-                "annotation_types": ["human", "machine"],
-                "from_date": "2020-01-01",
-                "to_date": "2020-12-31",
-            },
-            0,
-            20
-        )
+        "65004ce4365f0510adb2f649",
+        "annotation.label=Balloon",
+        {
+            "annotation_types": ["human", "machine"],
+            "from_date": "2020-01-01",
+            "to_date": "2020-12-31",
+        },
+        0,
+        20
+)
 ```
