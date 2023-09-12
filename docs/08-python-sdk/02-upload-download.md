@@ -537,17 +537,18 @@ client.download_annotations(“63579fa0f7eb5e0e62d4705”, None)
 This function can be used for downloading annotation data for a list of any human or machine annotation operations from a given image collection. It will dump the annotations as JSON format - the same format we use for uploading annotations data and images.
 
 ```python
-download_collection(collection_id, annotation_type, operation_id_list, custom_download_path)
+download_collection(collection_id, annotation_type, operation_id_list, custom_download_path, is_media_include)
 ```
 
 ## Parameters
 
-| Parameter                         | Data type | Default | Description                                                                                                                                                                          |
-| --------------------------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `collection_id`                   | string    | -       | The image collection id in the Data Lake                                                                                                                                             |
-| `annotation_type`(Optional)       | string    | all     | Type of annotation to download - available values are: 'human', 'machine' or 'all'. Note that this is applicable only when operation_id_list is not given or empty.                  |
-| `operation_id_list`(Optional)     | string    | []      | List of required annotation operation ids - This can be project id in case of human annotations or model id in case of machine annotations.                                          |
-| `custom_download_path` (Optional) | string    | empty   | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path. |
+| Parameter                         | Data type | Default | Description                                                                                                                                                                                                                                  |
+| --------------------------------- | --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `collection_id`                   | string    | -       | The image collection id in the Data Lake                                                                                                                                                                                                     |
+| `annotation_type`(Optional)       | string    | all     | Type of annotation to download - available values are: 'human', 'machine' or 'all'. Note that this is applicable only when operation_id_list is not given or empty.                                                                          |
+| `operation_id_list`(Optional)     | string    | []      | List of required annotation operation ids - This can be project id in case of human annotations or model id in case of machine annotations.                                                                                                  |
+| `custom_download_path` (Optional) | string    | empty   | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path.                                                         |
+| `is_media_include` (Optional)     | boolean   | True    | If the value of this field is set to True, the system will download both the annotation data and the associated media files. If the value is set to False, only the annotation data will be downloaded, and the media files will be skipped. |
 
 ## Returns
 
