@@ -34,7 +34,7 @@ client.get_file_details(
  )
 ```
 
-## 6.1. Get details of a MetaLake collection
+## 6.2. Get details of a MetaLake collection
 
 You can get the details of a MetaLake collection by calling this function.
 
