@@ -15,17 +15,16 @@ create_annotation_project_from_collection(project_name, collection_id, query, fi
 
 ## Parameters
 
-| Parameter          | Data type         | Default          | Description        |
-| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_name`     | string | - | Project name (should be non-empty) |
-| `collection_id`     | string | - | Collection ID |
-| `query` (Optional)     | string | - | The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend ) |
-| `filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified in the filter object as shown here:\n { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> }|
-| `fps` (Optional)     | integer | 4 | For video projects: the number of frames per second. If 0 is provided then all frames are taken. For image projects: this parameter has no effect. |
-| `frames_per_task` (Optional)     | integer | 120 | Specifies the number of frames or images attached to the each annotation task. |
-| `assign_to_all` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
-| `send_email` (Optional)             | boolean | False | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators |
-
+| Parameter                    | Data type | Default | Description                                                                                                                                                                                                                                                                                       |
+| ---------------------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_name`               | string    | -       | Project name (should be non-empty)                                                                                                                                                                                                                                                                |
+| `collection_id`              | string    | -       | Collection ID                                                                                                                                                                                                                                                                                     |
+| `query` (Optional)           | string    | -       | The search query that filters the items in the collection (This is the same query format that we use in the Data Lake frontend )                                                                                                                                                                  |
+| `filter` (Optional)          | object    | -       | Additional criteria, such as annotation type and uploaded date range, can be specified in the filter object as shown here:\n { “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> } |
+| `fps` (Optional)             | integer   | 4       | For video projects: the number of frames per second. If 0 is provided then all frames are taken. For image projects: this parameter has no effect.                                                                                                                                                |
+| `frames_per_task` (Optional) | integer   | 120     | Specifies the number of frames or images attached to the each annotation task.                                                                                                                                                                                                                    |
+| `assign_to_all` (Optional)   | boolean   | False   | If True, all annotators will be assigned to the project, otherwise none will be assigned.                                                                                                                                                                                                         |
+| `send_email` (Optional)      | boolean   | False   | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators                                                                                                                                                                               |
 
 ## Returns
 
@@ -33,7 +32,7 @@ Id of the project that was created and the corresponding job id.
 
 ```python
 {
-    'id': '<Id of the project created / updated >', 
+    'id': '<Id of the project created / updated >',
     'job_id': '<Job Id of the operation>'
 }
 ```
@@ -60,16 +59,16 @@ create_annotation_project_from_datalake(project_name, Data Lake_query, Data Lake
 
 ## Parameters
 
-| Parameter          | Data type         | Default          | Description        |
-| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_name`     | string | - | Project name (should be non-empty) |
-| `Data Lake_query` (Optional)     | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
-| `Data Lake_filter` (Optional)     | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
-| `content_type`     | string | - | “image” or “video” |
-| `fps` (Optional)     | integer | 4 | Number of frames per second in case of video projects. If 0 is given, then all frames are taken. |
-| `frames_per_task` (Optional)     | integer | 120 | Specifies the number of images or frames attached to each annotation task. |
-| `assign_to_all` (Optional)     | boolean | False | If True, all annotators will be assigned to the project, otherwise none will be assigned. |
-| `send_email` (Optional)             | boolean | False | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators |
+| Parameter                     | Data type | Default | Description                                                                                                                                                                                                                                                                 |
+| ----------------------------- | --------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_name`                | string    | -       | Project name (should be non-empty)                                                                                                                                                                                                                                          |
+| `Data Lake_query` (Optional)  | string    | -       | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend.                                                                                                                                                 |
+| `Data Lake_filter` (Optional) | object    | -       | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
+| `content_type`                | string    | -       | “image” or “video”                                                                                                                                                                                                                                                          |
+| `fps` (Optional)              | integer   | 4       | Number of frames per second in case of video projects. If 0 is given, then all frames are taken.                                                                                                                                                                            |
+| `frames_per_task` (Optional)  | integer   | 120     | Specifies the number of images or frames attached to each annotation task.                                                                                                                                                                                                  |
+| `assign_to_all` (Optional)    | boolean   | False   | If True, all annotators will be assigned to the project, otherwise none will be assigned.                                                                                                                                                                                   |
+| `send_email` (Optional)       | boolean   | False   | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators                                                                                                                                                         |
 
 ## Returns
 
@@ -77,7 +76,7 @@ Id of the project that was created and the corresponding job id.
 
 ```python
 {
-    'id': '<Id of the project created / updated >', 
+    'id': '<Id of the project created / updated >',
     'job_id': '<Job Id of the operation>'
 }
 ```
@@ -99,6 +98,7 @@ Use the following function to get a list of all annotation projects.
 ```python
 get_annotation_project_list()
 ```
+
 A list of all project id-name pairs in the system will be returned.
 
 ## 3.4. Set Label (Ontology) Group for a Project
@@ -111,11 +111,10 @@ attach_label_group_to_annotation_project(project_id, group_id)
 
 ## Parameters
 
-| Parameter          | Data type         | Default          | Description        |
-| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_id`             | string | - | Id of the project in which labels shall be updated |
-| `group_id`             | string | - | Label group Id |
-
+| Parameter    | Data type | Default | Description                                        |
+| ------------ | --------- | ------- | -------------------------------------------------- |
+| `project_id` | string    | -       | Id of the project in which labels shall be updated |
+| `group_id`   | string    | -       | Label group Id                                     |
 
 ## Example Usage
 
@@ -128,20 +127,20 @@ client.attach_label_group_to_annotation_project( “<project_id>”, “<label_g
 This function is designed to download specific frames with annotations that belong to a particular annotation project.The downloaded frames can be stored in a local folder for easy access and use.
 
 ```python
-download_project_annotations(project_id, task_status_list, is_annotated_only, custom_download_path)
+download_project_annotations(project_id, task_status_list, is_annotated_only, custom_download_path, is_media_include)
 ```
 
 ## Parameters
 
-| Parameter          | Data type         | Default          | Description        |
-| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_id`     | string | - | ID of the project |
-| `task_status_list` (Optional)     | array | [] | To filter the images by status of the relevant task, we can give a list of status values. The valid values are: “in_progress”, “completed”, “accepted”, “qa_completed”. By default, no filtering of tasks applied (all tasks included). |
-| `Is_annotated_only` (Optional)     | boolean | False | if this is True, then only the annotated images are downloaded. |
-| `custom_download_path` (Optional)     | string | empty | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path. |
+| Parameter                         | Data type | Default | Description                                                                                                                                                                                                                                  |
+| --------------------------------- | --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_id`                      | string    | -       | ID of the project                                                                                                                                                                                                                            |
+| `task_status_list` (Optional)     | array     | []      | To filter the images by status of the relevant task, we can give a list of status values. The valid values are: “in_progress”, “completed”, “accepted”, “qa_completed”. By default, no filtering of tasks applied (all tasks included).      |
+| `Is_annotated_only` (Optional)    | boolean   | False   | if this is True, then only the annotated images are downloaded.                                                                                                                                                                              |
+| `custom_download_path` (Optional) | string    | empty   | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path.                                                         |
+| `is_media_include`                | boolean   | True    | If the value of this field is set to True, the system will download both the annotation data and the associated media files. If the value is set to False, only the annotation data will be downloaded, and the media files will be skipped. |
 
 The downloaded JSON data format is the same as download annotations from collection.
-
 
 ## Example Usage
 
@@ -161,17 +160,16 @@ add_files_to_annotation_project_from_collection(project_id, collection_id, query
 
 ## Parameters
 
-| Parameter          | Data type         | Default          | Description        |
-| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_id`             | string | - | ID of the project |
-| `collection_id`             | string | - | Collection ID |
-| `query` (Optional)             | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
-| `filter` (Optional)             | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below                 \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> }|
-| `fps` (Optional)             | integer | - | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default) |
-| `frames_per_task` (Optional)             | integer | 120 | No of frames per tasks created |
-| `assign_to_all` (Optional)             | boolean | False | If this is True, project will be assigend to all annotators once its created |
-| `send_email` (Optional)             | boolean | False | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators |
-
+| Parameter                    | Data type | Default | Description                                                                                                                                                                                                                                                                  |
+| ---------------------------- | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_id`                 | string    | -       | ID of the project                                                                                                                                                                                                                                                            |
+| `collection_id`              | string    | -       | Collection ID                                                                                                                                                                                                                                                                |
+| `query` (Optional)           | string    | -       | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend.                                                                                                                                                  |
+| `filter` (Optional)          | object    | -       | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> } |
+| `fps` (Optional)             | integer   | -       | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default)                                                                                                                                                                     |
+| `frames_per_task` (Optional) | integer   | 120     | No of frames per tasks created                                                                                                                                                                                                                                               |
+| `assign_to_all` (Optional)   | boolean   | False   | If this is True, project will be assigend to all annotators once its created                                                                                                                                                                                                 |
+| `send_email` (Optional)      | boolean   | False   | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators                                                                                                                                                          |
 
 ## 3.7. Add Files to a Project without a collection
 
@@ -183,32 +181,13 @@ add_files_to_annotation_project_from_datalake(project_id, query, filter, content
 
 ## Parameters
 
-| Parameter          | Data type         | Default          | Description        |
-| ------------------ | ------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `project_id`             | string | - | Project ID |
-| `query` (Optional)             | string | - | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend. |
-| `filter` (Optional)             | object | - | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below: \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> } |
-| `content_type`             | string | - | “image” or “video” |
-| `fps` (Optional)             | integer | - | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default). |
-| `frames_per_task` (Optional)             | integer | 120 | No of frames per tasks created |
-| `assign_to_all` (Optional)             | boolean | False | If this is True, project will be assigend to all annotators once its created |
-| `send_email` (Optional)             | boolean | False | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| Parameter                    | Data type | Default | Description                                                                                                                                                                                                                                                                   |
+| ---------------------------- | --------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_id`                 | string    | -       | Project ID                                                                                                                                                                                                                                                                    |
+| `query` (Optional)           | string    | -       | The search query that filters items in the collection. This is the same query format that we use in the Data Lake frontend.                                                                                                                                                   |
+| `filter` (Optional)          | object    | -       | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below: \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\> } |
+| `content_type`               | string    | -       | “image” or “video”                                                                                                                                                                                                                                                            |
+| `fps` (Optional)             | integer   | -       | No of frames per second in case of video projects. If 0 is given, then all the frames are taken(default).                                                                                                                                                                     |
+| `frames_per_task` (Optional) | integer   | 120     | No of frames per tasks created                                                                                                                                                                                                                                                |
+| `assign_to_all` (Optional)   | boolean   | False   | If this is True, project will be assigend to all annotators once its created                                                                                                                                                                                                  |
+| `send_email` (Optional)      | boolean   | False   | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators                                                                                                                                                           |
