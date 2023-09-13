@@ -26,18 +26,9 @@ upload_files_to_collection(path, content_type, collection_name, meta_data_object
 
 ## Returns
 
-Id of the new collection created and the corresponding job Id will be returned.
-Unique name of the file will be return if you upload a single file.
+The ID of the newly created collection and the corresponding job ID will be returned. The unique name of the file will be returned only if you upload a single file.
 
 ```python
-{
-    'is_success': True/False,
-    'job_id': '<Job Id of the operation>',
-    'collection_id': '<Id of the uploading collection>'
-}
-
-or
-
 {
     'is_success': True/False,
     'job_id': '<Job Id of the operation>',
