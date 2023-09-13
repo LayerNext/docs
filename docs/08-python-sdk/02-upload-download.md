@@ -42,7 +42,7 @@ or
     'is_success': True/False,
     'job_id': '<Job Id of the operation>',
     'collection_id': '<Id of the uploading collection>',
-    'unique_file_name': '<unique name of the file>'
+    'unique_name': '<unique name of the file>'
 }
 ```
 
