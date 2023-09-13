@@ -96,6 +96,8 @@ client.get_item_list_from_datalake(
 
 Returns a list of items in MetaLake.
 
+if files, the response will be:
+
 ```python
 [
     {
@@ -103,6 +105,17 @@ Returns a list of items in MetaLake.
         'fileName': '<name of the object>',
         'uniqueName': '<name of the object>',
         'url': '<url of the object>',
+    }
+]
+```
+
+if collections, the response will be:
+
+```python
+[
+    {
+        'id': '<Id of the object>',
+        'name': '<name of the object>'
     }
 ]
 ```
