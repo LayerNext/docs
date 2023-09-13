@@ -96,28 +96,15 @@ client.get_item_list_from_datalake(
 
 ## Returns
 
-Returns a list of items in MetaLake.
-
-if files, the response will be:
+Returns a list of items in MetaLake. The unique name and URL of the files will be returned only when listing files.
 
 ```python
 [
     {
         'id': '<Id of the object>',
-        'fileName': '<name of the object>',
-        'uniqueName': '<name of the object>',
+        'name': '<file name or collection name>',
+        'uniqueName': '<unique name of the object>',
         'url': '<url of the object>',
-    }
-]
-```
-
-if collections, the response will be:
-
-```python
-[
-    {
-        'id': '<Id of the object>',
-        'name': '<name of the object>'
     }
 ]
 ```
@@ -172,8 +159,8 @@ Returns a list of items from the specified collection.
 [
     {
         'id': '<Id of the object>',
-        'fileName': '<name of the object>',
-        'uniqueName': '<name of the object>',
+        'name': '<file name of the object>',
+        'uniqueName': '<unique name of the object>',
         'url': '<url of the object>',
     }
 ]
