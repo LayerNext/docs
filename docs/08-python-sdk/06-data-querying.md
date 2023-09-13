@@ -1,7 +1,7 @@
 ---
 ---
 
-# 6. Explorer
+# 6. Data Querying
 
 ## 6.1. Get details of a MetaLake object
 
@@ -11,11 +11,13 @@ Retrieve the metadata of a MetaLake object by invoking the following function:
 get_file_details(unique_name, fields_filter)
 ```
 
+The 'unique name' serves as a specific identifier for each file within the MetaLake environment and is generated during the file upload process to MetaLake. Unlike a regular file name, which may be duplicated or reused, a unique name is a distinct string that ensures the individual identification of each object within the system.
+
 ## Parameters
 
 | Parameter                  | Data type  | Default | Description                                                                                                                                                                                                                                                                                                                                 |
 | -------------------------- | ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `unique_name`              | string     | -       | 'Unique Name' of the relevant file                                                                                                                                                                                                                                                                                                          |
+| `unique_name`              | string     | -       | 'unique name' of the relevant file                                                                                                                                                                                                                                                                                                          |
 | `fields_filter` (Optional) | dictionary | None    | Use this filter to specify which fields to return, including custom fields. If not specified, default fields will be retrieved. These are id, name, uniqueName, and url. Additionally, you can request fileSize, frameCount, frameRate, resolution, storagePath, Tags, createdAt, bucketName, updatedAt fields, and custom metadata fields. |
 
 ## Example usage
