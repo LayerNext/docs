@@ -5,7 +5,7 @@
 
 ## 2.1. Upload Files to a Collection
 
-You can upload files in a directory to a collection in the Data Lake (which is the same functionality as the 'Upload' feature in the web frontend). Optionally, you can include custom metadata, which may include attributes or additional information about the file. Only one type of content (either image or video) can be uploaded in a single API call.
+You can upload files in a directory to a collection in the MetaLake (which is the same functionality as the 'Upload' feature in the web frontend). Optionally, you can include custom metadata and annotation data. Custom metadata may include attributes or additional information about the file. Annotation data may include labeling data for images. Only one type of content (either image or video) can be uploaded in a single API call.
 
 Note that currently we are supporting following file types for upload: jpeg, jpg, png, mp4, mkv
 
@@ -15,14 +15,23 @@ upload_files_to_collection(path, content_type, collection_name, meta_data_object
 
 ## Parameters
 
-| Parameter                  | Data type  | Default | Description                                                                                                                                                                                                       |
-| -------------------------- | ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `path`                     | string     | -       | directory or file path (should be an absolute path) - The SDK automatically identifies whether it's a directory or single file based on the given path                                                            |
-| `content_type`             | string     | -       | “image” for image files, “video” for video files and "other" for all other files                                                                                                                                  |
-| `collection_name`          | string     | -       | A name given for the collection. If an existing collection name is given, then files will be added to that collection.                                                                                            |
-| `meta_data_object`         | dictionary | -       | custom metadata field and value pairs                                                                                                                                                                             |
-| `meta_data_override`       | boolean    | False   | Optional: If this flag is True, the metadata of already uploaded files will be overridden, even if the file is skipped during the upload process.                                                                 |
-| `file_meta_data_json_path` | string     | None    | Optional: If we need to set specific metadata (both meta fields and tags) to each individual file, then we can give the path of the JSON file that contain these metadata. The format of the JSON is given below. |
+| Parameter                             | Data type  | Default | Description                                                                                                                                                                                                                                           |
+| ------------------------------------- | ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `path`                                | string     | -       | directory or file path (should be an absolute path) - The SDK automatically identifies whether it's a directory or single file based on the given path                                                                                                |
+| `content_type`                        | string     | -       | “image” for image files, “video” for video files and "other" for all other files                                                                                                                                                                      |
+| `collection_name`                     | string     | -       | A name given for the collection. If an existing collection name is given, then files will be added to that collection.                                                                                                                                |
+| `meta_data_object` (optional)         | dictionary | {}      | Custom metadata fields and value pairs. These will be applied to all files that are going to be uploaded.                                                                                                                                             |
+| `meta_data_override` (optional)       | boolean    | False   | If this flag is True, the metadata of already uploaded files will be overridden, even if the file is skipped during the upload process.                                                                                                               |
+| `file_meta_data_json_path` (optional) | string     | None    | If we need to set specific metadata (both meta fields and tags) to each individual file, then we can give the path of the JSON file that contain these metadata. The format of the JSON is given below.                                               |
+| `storage_prefix_path` (optional)      | string     | None    | By default, the uploaded file collection will be created in the root directory of the bucket. If you wish to avoid creating folders in the root directory and instead specify a specific directory, you can use this parameter. Ex: 'dir_1/sub_dir_1' |
+| `annotation_data` (optional)          | dictionary | None    | Contains details about annotation data. Fields within this dictionary are described below.                                                                                                                                                            |
+
+### `annotation_data` Fields
+
+- `json_data_file_path`: (String) The absolute path of the JSON file containing annotation data.
+- `operation_unique_id`: (String) A unique ID representing the relevant model run or annotation project. This ensures annotations from different sources aren't mixed. Using the same ID for multiple API calls will replace previous annotations with new ones.
+- `is_normalized`: (Boolean) Set to True if normalized values (instead of actual pixel values) are provided for coordinates and dimensions. If True, conversion occurs at the MetaLake.
+- `is_model_run`: (Boolean) Indicates the type of annotation: True for machine annotations and False for human annotations.
 
 ## Returns
 
@@ -100,35 +109,165 @@ metadata_json_path = '/home/user/path/to/json/metadata.json'
 upload_res = client.upload_files_to_collection("/home/user/images", "image", "my_collection1", meta_data_object, False, metadata_json_path)
 ```
 
-## 2.2. Upload Files -- Deprecated
+## JSON format for annotation data with 'rectangle’ shape type
 
-You can upload a single file or files in a directory to the Data Lake with custom metadata. Only one type of content (either image or video) can be uploaded in a single API call.
+```json
 
-```python
-file_upload(path, collection_type, collection_name, meta_data_object, override)
+{
+    "images": [
+       {
+        "image": "image_file_name.jpg",
+        "annotations": [
+          {
+            "type": "rectangle",
+            "bbox": [
+               <top1_left_x(number)>,
+               <top1_left_y(number)>,
+               <width1(number)>,
+               <height1(number)>
+            ],
+            "confidence": 0.53,
+            "label": "<label_name>",
+            "metadata": {
+              "<optional_meta_field1>": "<metadata_value1>",
+              "<optional_meta_field2>": "<metadata_value2>"
+            },
+            "attributes": {
+              "<optional_attribute_name1>": [
+                {
+                  "value": "<attribute_value1>",
+                  "confidence": 0.35,
+                  "metadata": {
+                    "<optional_attribute_value1_metadata_field1>": "<attribute_metadata_value3>",
+                    "<optional_attribute_value1_metadata_field2>": "<attribute_metadata_value4>"
+                  }
+                },
+                {
+                  "value": "attribute_value2",
+                  "confidence": 0.33,
+                  "metadata": {
+                  }
+                }
+              ],
+              "<optional_attribute_name2>": [
+                {
+                  "value": "<attribute_value3>",
+                  "confidence": 0.23,
+                  "metadata": {
+
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+}
+
 ```
 
-## Parameters
+## JSON format for annotation data with 'polygon' shape type
 
-| Parameter          | Data type  | Default | Description                                                                                                                                                     |
-| ------------------ | ---------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `path`             | string     | -       | directory or file path (should be an absolute path) - the SDK automatically identifies whether its a directory or single file based on path                     |
-| `content_type`     | integer    | -       | 5 for image 4 for video                                                                                                                                         |
-| `collection_name`  | string     | -       | A name given for collection, if an existing collection name is given, then files will be added to that collection.                                              |
-| `meta_data_object` | dictionary | -       | custom metadata field and value pairs                                                                                                                           |
-| `override`         | boolean    | -       | If the value is set to True, the new file will override the existing file with the same name. Otherwise, the upload process will skip files with the same name. |
+```json
+{
+   "images":[
+      {
+         "image":"image_file_name.jpg",
+         "annotations":[
+            {
+               "type": "polygon",
+               "polygon":[
+                  [
+                     <point1_x(number)>,
+                     <point1_y(number)>
+                  ],
+                  [
+                     <point2_x(number)>,
+                     <point2_y(number)>
+                  ],
+                  [
+                     <pont3_x(number)>,
+                     <point3_y(number)>
+                  ]
+               ],
+               "label":"<label_name>",
+               "confidence": 0.53,
+               "metadata":{
+                  "<meta_field_name1>":"<metadata_value1>"
+               }
+            }
+         ]
+      }
+   ]
+}
+```
 
-## Example usage
+## JSON format for annotation data with 'line' shape type
+
+```json
+{
+   "images":[
+      {
+         "image":"image_file_name.jpg",
+         "annotations":[
+            {
+               "type": "line",
+               "line":[
+                  [
+                     <point1_x(number)>,
+                     <point1_y(number)>
+                  ],
+                  [
+                     <point2_x(number)>,
+                     <point2_y(number)>
+                  ],
+                  [
+                     <pont3_x(number)>,
+                     <point3_y(number)>
+                  ]
+               ],
+               "label":"<label_name>",
+               "confidence": 0.53,
+               "metadata":{
+                  "<meta_field_name1>":"<metadata_value1>"
+               }
+            }
+         ]
+      }
+   ]
+}
+
+```
+
+###### 3. Upload with annotation data to each file
 
 ```python
 meta_data_object = {
-    "Captured Location": "Winnipeg",
-    "Camera Id": "CAM_0001",
+    "Captured Location": "Toronto",
+    "Camera Id": "CAM_0002",
     "Tags": [
         "#retail"
     ]
 }
-client.file_upload(‘/home/user/images, 5, “my_collection”, meta_data_object)
+metadata_json_path = '/home/user/path/to/json/metadata.json'
+json_data_file_path = '/home/user/path/to/json/annotation.json'
+
+upload_res = client.upload_files_to_collection(
+   "/home/user/images",
+   "image",
+   "my_collection1",
+    meta_data_object,
+    False,
+    metadata_json_path,
+    None,
+    {
+      "json_data_file_path": json_data_file_path,
+      "operation_unique_id": "car_human_annotations",
+      "is_normalized": False,
+      "is_model_run": False
+    }
+)
 ```
 
 ## 2.3. Upload Model Predictions / Annotations to a Collection in DataLake
@@ -143,7 +282,7 @@ Note that the correct file name should be set to the ‘image’ field in upload
 
 #### Limitations
 
-This function is designed to upload annotations exclusively for collections created after the initial extraction of data from storage. Note that it is not compatible with virtual collections.
+This function is designed to upload annotations exclusively for images uploaded for a collection after the initial extraction of data from storage. Note that it is only compatible with images directly uploaded to the given collection. If images are added to the collection using the 'Add to collection' option, this function will not support them
 
 ## JSON format for 'rectangle’
 
@@ -203,9 +342,9 @@ This function is designed to upload annotations exclusively for collections crea
 
 ```
 
-## JSON format for ‘polygon’ and ‘line’
+## JSON format for ‘polygon’
 
-````json
+```json
 {
    "images":[
       {
@@ -237,6 +376,7 @@ This function is designed to upload annotations exclusively for collections crea
       }
    ]
 }
+```
 
 ## JSON format for ‘line'
 
@@ -248,7 +388,7 @@ This function is designed to upload annotations exclusively for collections crea
          "annotations":[
             {
                "type": "line",
-               "polygon":[
+               "line":[
                   [
                      <point1_x(number)>,
                      <point1_y(number)>
@@ -273,22 +413,22 @@ This function is designed to upload annotations exclusively for collections crea
    ]
 }
 
-````
+```
 
 ## Parameters
 
 | Parameter             | Data type | Default | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | --------------------- | --------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `collection_name`     | string    | -       | Name of the existing image collection                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `operation_unique_id` | string    | -       | The ID of the relevant model run or annotation project. This is a unique identifier that is used to distinguish between different sets of annotations. This ID is important in both human and machine annotations because it ensures that annotations from different sources are not mixed up. If the same ID is used for multiple API calls, the previous annotations will be replaced by the new ones. However, if a different ID is used, the new annotations will be added to the DataLake. |
+| `operation_unique_id` | string    | -       | The ID of the relevant model run or annotation project. This is a unique identifier that is used to distinguish between different sets of annotations. This ID is important in both human and machine annotations because it ensures that annotations from different sources are not mixed up. If the same ID is used for multiple API calls, the previous annotations will be replaced by the new ones. However, if a different ID is used, the new annotations will be added to the MetaLake. |
 | `json_data_file_path` | string    | -       | Absolute path of the json file having annotation data                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `Is_normalized`       | boolean   | -       | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the Data Lake backend.                                                                                                                                                                                                                                                                                                              |
+| `Is_normalized`       | boolean   | -       | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the MetaLake backend.                                                                                                                                                                                                                                                                                                               |
 | `is_model_run`        | boolean   | -       | True if this is machine annotations, False if this is human annotations                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Example usage
 
 ```python
-client.upload_annoations_for_collection(‘my_collection’, “yolov5.0.1”, ‘/my/file/path/file.json’, False, True)
+client.upload_annoations_for_collection('my_collection', 'yolov5.0.1', '/my/file/path/file.json', False, True)
 ```
 
 ## 2.4. Upload Model Predictions / Annotations to Images in a Storage Path
@@ -686,4 +826,35 @@ upload_metadata_for_files(collection_base_path, file_meta_data_json_path )
 
 ```python
 client.upload_metadata_for_files("my_collection", "/path/to/my/file_metadata.json")
+```
+
+## 2.2. Upload Files -- Deprecated
+
+You can upload a single file or files in a directory to the Data Lake with custom metadata. Only one type of content (either image or video) can be uploaded in a single API call.
+
+```python
+file_upload(path, collection_type, collection_name, meta_data_object, override)
+```
+
+## Parameters
+
+| Parameter          | Data type  | Default | Description                                                                                                                                                     |
+| ------------------ | ---------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `path`             | string     | -       | directory or file path (should be an absolute path) - the SDK automatically identifies whether its a directory or single file based on path                     |
+| `content_type`     | integer    | -       | 5 for image 4 for video                                                                                                                                         |
+| `collection_name`  | string     | -       | A name given for collection, if an existing collection name is given, then files will be added to that collection.                                              |
+| `meta_data_object` | dictionary | -       | custom metadata field and value pairs                                                                                                                           |
+| `override`         | boolean    | -       | If the value is set to True, the new file will override the existing file with the same name. Otherwise, the upload process will skip files with the same name. |
+
+## Example usage
+
+```python
+meta_data_object = {
+    "Captured Location": "Winnipeg",
+    "Camera Id": "CAM_0001",
+    "Tags": [
+        "#retail"
+    ]
+}
+client.file_upload(‘/home/user/images, 5, “my_collection”, meta_data_object)
 ```
