@@ -1268,7 +1268,7 @@ meta_data_object = {
 client.file_upload(‘/home/user/images, 5, “my_collection”, meta_data_object)
 ```
 
-## 6.3. Download files from MetaLake
+## 2.19. Download files from MetaLake
 
 Download files from MetaLake based on specified criteria and pagination details.
 
@@ -1333,7 +1333,7 @@ client.download_files_from_metalake(
 )
 ```
 
-## 6.4. Download files from a MetaLake collection
+## 2.20. Download files from a MetaLake collection
 
 Download files from a MetaLake collection based on specified criteria and pagination details.
 
