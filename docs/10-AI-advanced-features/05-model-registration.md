@@ -44,7 +44,7 @@ Example folder :    (Main folder | path to this folder should be given in the SD
 Once you have arranged the files as per the specified folder structure, you can proceed to register your model with the LayerNext system using our model registration SDK (link to be inserted). Upon successful registration, your model will appear in the 'Other Collections' section within Metalake, specifically under the 'Automatic Analysis Models' collection, saved in a tar.gz compressed format. Should you require, the model can be downloaded and extracted to access the individual files.
 
 
-## inference.py script structure
+#### inference.py script structure
 
 The inference.py file should be a python file which includes the following specific functions which will be used to inference the model and provide a prediction. To inference.py to function properly below provided structure needed to be adhered to- properly. 
 

@@ -7,7 +7,7 @@ Adding metadata tags to identify objects in images or videos is a valuable featu
 
 The Auto Tagging feature automates this process, freeing you from the tedious task of manually tagging objects in images and videos. 
 
-# How it works
+## How it works
 
 Object Detection Models serve as the foundational technology for this application. Essentially, our pipeline processes images or video frames by running them through an object detection model that is trained to recognize specific types of objects. When an object is detected, the corresponding tag is automatically applied to the image or video frame within the pipeline.
 
@@ -24,13 +24,13 @@ For tagging requirements that involve different classes not covered by the COCO 
 We offer an Auto Tagging feature through our SDK (insert link here), which allows for the automated tagging of any specified image or video collection. To use this feature, simply input the collection ID of the desired collection along with the model name you wish to use for inference. In cases where a model name is not specified, our system will automatically use our default model for the inference process.
 
 
-#### confidence threshold
+#### Confidence Threshold
 
 The confidence threshold is a crucial parameter in Auto Tagging, as it determines the confidence level at which the model identifies an object. This threshold can be set to any floating-point value between 0 and 1. The default setting for our system is 0.5. A higher confidence threshold means that only objects identified with a high probability will be tagged, while a lower threshold allows for more objects to be tagged, even if the model is less certain.
 
 Depending on the specific needs and context of your application, you may find it beneficial to adjust this value to fine-tune your tagging results. To modify the confidence threshold, users can easily update this parameter within the SDK as required for their use case.
 
-### input resolution
+#### Input Resolution
 
 Different deep learning architectures are optimized for various input image resolutions. For this reason, it is advisable to use the same image resolution for inference that was used during the training phase. We have incorporated a feature that allows you to specify the desired input resolution to ensure the Auto Tagging process performs optimally.
 

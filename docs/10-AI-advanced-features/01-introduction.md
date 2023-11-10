@@ -9,21 +9,22 @@ Layernext offers advanced AI features designed to enhance and streamline user wo
 
 03. Auto Annotation : Annotating images for tasks such as object detection and segmentation often becomes a labor-intensive phase in the machine learning pipeline. With our Auto Annotation feature, we alleviate this burden, automating the annotation process within your project. Experience a smoother, hands-off approach to image annotation, streamlining your workflow further.
 
-# Default Models and Custom Models 
+## Default Models and Custom Models 
 
 All these applications are set to run through the backbone of a Machine learning Models.We at Layernext have developed default models for each application and configured them to the system so that users can use them whenever needed. These default Models are developed based on popular pretrained models such as YOLOv8 trained on COCO dataset for auto tagging,Resnet50 trained on ImageNet Dataset for embedding generation and Facebooks's LANG SAM model for auto annotation application.
 
 If the users want, they can use different custom models according to their use case. All they have to do is make the model files according to guidelines provided by Layernext and register the model beforehand to the system through the SDK provided by us. Then users can use that model for the above applications without any problem. 
 
-
 For more information and guidelines about custom model registration see our documentation about Model Registration(add the link here).
 
 
-# Using different Inference Platforms 
+## Using different Inference Platforms 
 
 We offer the capability to perform Advanced AI feature inferencing both locally and through AWS SageMaker.
 With the local inferencing option, Layernext utilizes a hosted Virtual Machine instance to establish the inference endpoint. This endpoint is subsequently deleted once the inference process is complete. In the case of AWS SageMaker, the AWS facility is leveraged to create an endpoint for the specified model. Similar to the local option, this endpoint is also removed after each inference session.
+
 Using SageMaker accelerates the inference process by employing a GPU machine, but it incurs additional costs for the duration of its use. On the other hand, local inferencing, while more time-consuming, does not add extra costs to the operation.
+
 The choice of inferencing platform can be configured in the deployment environment of Layernext under the INFERENCE_PLATFORM environment variable. This should be set to either 'local' or 'aws', depending on your preference. If you encounter any issues or need assistance, please reach out to our support engineers for guidance.
 
 
