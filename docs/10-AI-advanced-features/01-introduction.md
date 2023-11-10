@@ -3,11 +3,11 @@
 
 Layernext offers advanced AI features designed to enhance and streamline user workflows.These features are specifically tailored to address key applications within Layernext. The features include:
 
-01. Auto Tagging : Managing, versioning, searching, and overseeing data in Layernext is primarily accomplished through the allocation of Metadata Tags for images, videos, or entire collections. Manually tagging vast quantities of images or videos, especially to denote specific objects, can become a cumbersome endeavor. Enter our Auto Tagging feature: designed to effortlessly assign metadata tags to specified collections automatically, pinpointing objects within images or videos. Harness this feature to enhance data management and elevate efficiency.
+**01. Auto Tagging :** Managing, versioning, searching, and overseeing data in Layernext is primarily accomplished through the allocation of Metadata Tags for images, videos, or entire collections. Manually tagging vast quantities of images or videos, especially to denote specific objects, can become a cumbersome endeavor. Enter our Auto Tagging feature: designed to effortlessly assign metadata tags to specified collections automatically, pinpointing objects within images or videos. Harness this feature to enhance data management and elevate efficiency.
 
-02. Embedding Generation : Image Embeddings stand as one of the most distinct feature descriptors within the realm of computer vision. With Layernext, you're empowered to generate embeddings automatically for a designated collection of images. Harnessing these image embeddings offers streamlined efficiency for tasks like similarity assessments, dataset evaluations, cluster analyses, and more. Dive in and explore the potential these embeddings bring to Layernext.
+**02. Embedding Generation :** Image Embeddings stand as one of the most distinct feature descriptors within the realm of computer vision. With Layernext, you're empowered to generate embeddings automatically for a designated collection of images. Harnessing these image embeddings offers streamlined efficiency for tasks like similarity assessments, dataset evaluations, cluster analyses, and more. Dive in and explore the potential these embeddings bring to Layernext.
 
-03. Auto Annotation : Annotating images for tasks such as object detection and segmentation often becomes a labor-intensive phase in the machine learning pipeline. With our Auto Annotation feature, we alleviate this burden, automating the annotation process within your project. Experience a smoother, hands-off approach to image annotation, streamlining your workflow further.
+**03. Auto Annotation :** Annotating images for tasks such as object detection and segmentation often becomes a labor-intensive phase in the machine learning pipeline. With our Auto Annotation feature, we alleviate this burden, automating the annotation process within your project. Experience a smoother, hands-off approach to image annotation, streamlining your workflow further.
 
 ## Default Models and Custom Models 
 
@@ -18,7 +18,7 @@ If the users want, they can use different custom models according to their use c
 For more information and guidelines about custom model registration see our documentation about Model Registration(add the link here).
 
 
-## Using different Inference Platforms 
+## Using Different Inference Platforms 
 
 We offer the capability to perform Advanced AI feature inferencing both locally and through AWS SageMaker.
 With the local inferencing option, Layernext utilizes a hosted Virtual Machine instance to establish the inference endpoint. This endpoint is subsequently deleted once the inference process is complete. In the case of AWS SageMaker, the AWS facility is leveraged to create an endpoint for the specified model. Similar to the local option, this endpoint is also removed after each inference session.
