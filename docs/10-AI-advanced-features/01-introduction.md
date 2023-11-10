@@ -15,7 +15,7 @@ All these applications are set to run through the backbone of a Machine learning
 
 If the users want, they can use different custom models according to their use case. All they have to do is make the model files according to guidelines provided by Layernext and register the model beforehand to the system through the SDK provided by us. Then users can use that model for the above applications without any problem. 
 
-For more information and guidelines about custom model registration see our documentation about [Model Registration](model-registration.md).
+For more information and guidelines about custom model registration see our documentation about [Model Registration](05-model-registration.md).
 
 
 ## Using Different Inference Platforms 
