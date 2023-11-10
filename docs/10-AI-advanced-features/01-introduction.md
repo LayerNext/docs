@@ -23,9 +23,11 @@ For more information and guidelines about custom model registration see our docu
 We offer the capability to perform Advanced AI feature inferencing both locally and through AWS SageMaker.
 With the local inferencing option, Layernext utilizes a hosted Virtual Machine instance to establish the inference endpoint. This endpoint is subsequently deleted once the inference process is complete. In the case of AWS SageMaker, the AWS facility is leveraged to create an endpoint for the specified model. Similar to the local option, this endpoint is also removed after each inference session.
 
-Using SageMaker accelerates the inference process by employing a GPU machine, but it incurs additional costs for the duration of its use. On the other hand, local inferencing, while more time-consuming, does not add extra costs to the operation.
+- **Local Inferencing**: Utilizes a hosted Virtual Machine instance; no additional costs but potentially more time-consuming.
+- **AWS SageMaker**: Offers faster processing with GPU support but incurs additional costs.
 
 The choice of inferencing platform can be configured in the deployment environment of Layernext under the INFERENCE_PLATFORM environment variable. This should be set to either 'local' or 'aws', depending on your preference. If you encounter any issues or need assistance, please reach out to our support engineers for guidance.
 
+> 🚀 **Pro Tip**: Layernext is continually evolving. Keep an eye on our [Updates Page](insert-updates-link-here) for the latest features and enhancements!
 
 
