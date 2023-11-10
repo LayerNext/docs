@@ -12,7 +12,7 @@ Dataset Curation by Anomaly Detection: By learning the normal pattern of embeddi
 
 Search and Retrieval: Image embeddings can be represented in a scatter plot allowing the user to select certain types of clusters or any certain images and retrieve that has the selected embedding. This will create the facility of identifying patterns in the dataset or collection. 
 
-## How it works
+## How it Works
 
 It is clear that image embeddings play a vital role in the computer vision work pipeline. So it is crucial to understand how it works properly. 
 The embedding generation pipeline in Layernext operates utilizing pre-trained deep learning architectures, which have been developed using specific datasets. 
@@ -26,7 +26,7 @@ However, if there is a need to use an alternative pipeline for generating embedd
 
 
 
-## How to generate embeddings for an image collection or dataset
+## How to Generate Embeddings for an Image Collection or Dataset Collection
 
 To begin using our SDK for Generate Embeddings(insert link here), start by completing the Layer Next client initialization process. Once Layernext client is initialized, you can proceed by providing the necessary parameters to generate embeddings SDK: collection ID, and optionally, model ID.Here for collection ID you can use either a ID of an image collection or a ID of a dataset collection. 
 
