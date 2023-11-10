@@ -83,7 +83,9 @@ For both AWS SageMaker inference and local inference, the fundamental output for
 
 ```python
 import json
-#output generation code here
+###
+###output generation code here
+###
 json.dumps(output)
 ```
 
@@ -91,13 +93,19 @@ Next, let's delve into the specific dictionary keys that need to be included as 
 
 **For Auto Tagging:** 
 
+```python
 Output_dictionary = {‘boxes’:’bounding boxes of identified objects’, ‘masks’:’mask of identified objects, ‘probs’;’probabilities of identified objects’} 
+```
 
 **For Embedding Generation :** 
 
+```python
 Output_dictionary = {‘embedding’:’embedding of the inferenced payload’} 
-
+```
 **For Auto Annotation :** 
 
-Output_dictionary = {‘boxes’:’bounding boxes of identified objects’, ‘masks’:’mask of identified objects, ‘logits’;’probabilities of identified objects’,’phrases’:’phrase each object is identified as’} 
+```python
+Output_dictionary = {‘boxes’:’bounding boxes of identified objects’, ‘masks’:’mask of identified objects, ‘logits’;’probabilities of identified objects’,’phrases’:’phrase each object is identified as’}
+```
+
 It's crucial to use the precise keys and corresponding values as specified, as any discrepancies can lead to errors. Should you require any assistance or encounter issues, please do not hesitate to reach out to our support engineers for help.(add the link here)
