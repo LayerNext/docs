@@ -90,14 +90,6 @@ This function is tasked with generating a prediction or embedding, given the pro
 
 
 
-**Output Formatting (output_fn):**
-Parameters:
-prediction_output: Output from the predict_fn.
-content_type: Expected content type for the output.
-Returns:
-The structure and format of the response returned to the client are tailored to suit the specific application and depend on the chosen inference platform. Each application may require a unique response format, which varies based on the inferencing method used, whether it's local inferencing or through AWS SageMaker. For detailed guidance on how these formats should be adapted according to your application and inference platform, please click here (insert link) to learn more.
-
-
 <details>
 <summary><strong>Output Formatting (output_fn):</strong></summary>
 <br>
@@ -111,7 +103,7 @@ This function is crucial for determining the structure and format of the respons
 - **Returns:**
   - A response formatted according to the specific requirements of the application and the inference platform.
 
-For detailed guidance on adapting these formats to your specific application and inference platform, please [click here](insert-link) to learn more.
+For detailed guidance on adapting these formats to your specific application and inference platform, please [click here](for-auto-tagging) to learn more.
 
 </details>
 
