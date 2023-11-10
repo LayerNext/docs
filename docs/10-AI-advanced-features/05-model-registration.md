@@ -103,12 +103,12 @@ This function is crucial for determining the structure and format of the respons
 - **Returns:**
   - A response formatted according to the specific requirements of the application and the inference platform.
 
-For detailed guidance on adapting these formats to your specific application and inference platform, please [click here](formats-of-the-output-from-the-output_fn) to learn more.
+For detailed guidance on adapting these formats to your specific application and inference platform, please [click here](#output-formatting-specifics) to learn more.
 
 </details>
 
 
-## Formats of the output from the output_fn
+## Output Formatting Specifics
 
 The output returned by the output_fn function must adhere to the specific format outlined here, as deviations may result in malfunction during the inference process.
 For both AWS SageMaker inference and local inference, the fundamental output format is a dictionary. In the case of local inference, this dictionary should be returned as-is. However, for SageMaker inference, the dictionary should be converted into a JSON format using a command like the one shown in the following code snippet:
