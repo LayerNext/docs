@@ -23,20 +23,24 @@ The input text prompt is a critical parameter in the auto annotation process, as
 
 input prompt format : 
 
+```python
 [{‘label’: ‘label of object1’ , ‘description’: ‘description of object1’}, {‘label’: ‘label of object2’ , ‘description’: ‘description of object2’}, {‘label’: ‘label of object3’ , ‘description’: ‘description of object3’}]
+```
 
 The input text prompt for auto annotation in our LayerNext SDK is a Python list composed of dictionaries. Each dictionary contains two key-value pairs: one for the label ('label' parameter) and another for the description of the object to annotate ('description' parameter). Users have the flexibility to include one or multiple dictionaries in a single input text prompt, allowing for diverse and detailed annotations. The following example will illustrate this structure clearly.
 
 
 input prompt example : 
 
+```python
 [{‘label’:’ human’  , ‘description’:’people who are standing’ }, {‘label’:’cat’  , ‘description’:’cat’ }, {‘label’:’ dog’  , ‘description’:’white dogs’ }]
+```
 
-What is 'label' key : The 'label' parameter defines the specific identifier that will be assigned to the corresponding annotation within Metalake. Essentially, this label is how the annotation will be recognized or categorized in Metalake's system
+**What is 'label' key :** The 'label' parameter defines the specific identifier that will be assigned to the corresponding annotation within Metalake. Essentially, this label is how the annotation will be recognized or categorized in Metalake's system
 
-What is the 'description' key : The 'description' key serves as the text prompt for the model during inference, dictating which objects to annotate. The precision of the annotation is directly influenced by the clarity of this description. To ensure accuracy, it is advisable to use concise and straightforward prompts. Experience has shown that lengthy and complex descriptions tend to increase the error rate, so simplicity is key.
+**What is the 'description' key :** The 'description' key serves as the text prompt for the model during inference, dictating which objects to annotate. The precision of the annotation is directly influenced by the clarity of this description. To ensure accuracy, it is advisable to use concise and straightforward prompts. Experience has shown that lengthy and complex descriptions tend to increase the error rate, so simplicity is key.
 
-Tip : Although our system is fully capable of processing multiple labels for annotation in a single SDK run—achieved by including more than one dictionary—it has been observed that reducing the number of dictionaries can enhance the performance of the auto-annotation. For optimal results, running the SDK with a single dictionary entry per session is recommended. However, this approach may require more time and resources, presenting a trade-off between efficiency and performance. Ultimately, the choice of how to balance these factors should align with the specific needs and constraints of your application.
+> :bulb: **Tip:** Although our system is fully capable of processing multiple labels for annotation in a single SDK run—achieved by including more than one dictionary—it has been observed that reducing the number of dictionaries can enhance the performance of the auto-annotation. For optimal results, running the SDK with a single dictionary entry per session is recommended. However, this approach may require more time and resources, presenting a trade-off between efficiency and performance. Ultimately, the choice of how to balance these factors should align with the specific needs and constraints of your application.
 
 #### Confidence Threshold
 
@@ -48,7 +52,7 @@ Depending on the specific needs and context of your application, you may find it
 
 To begin using our SDK for Auto Annotation (insert link here), start by completing the Layernext client initialization process. Once Layernext client is initialized, you can proceed by providing the necessary parameters to Auto Annotation SDK: Annotation Project ID, and optionally, model ID,input prompt,annotation type and confidence threshold. 
 
-Important : Annotation projects should be created beforehand which includes the images you need to annotate. That project Id should be given in the above parameter. 
+> :bulb: **Important :** Annotation projects should be created beforehand which includes the images you need to annotate. That project Id should be given in the above parameter. 
 
 After setting these parameters, run the SDK to start the auto annotation process. The SDK will provide updates on the status of the operation. Please note that the duration of the process may vary based on the computational environment, so we ask for your patience.
 
