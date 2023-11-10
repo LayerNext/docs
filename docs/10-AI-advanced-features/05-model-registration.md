@@ -41,21 +41,21 @@ The inference.py file should be a python file which includes the following speci
 **Imports:**
 Begin with importing necessary libraries.Any library which needs to function the processes in below functions should be imported. 
 
-**Model Initialization (model_fn):**
-Parameters:
-model_dir: Directory where model artifacts are stored.
-Returns:
-Initialized model for inference.
-The purpose of this function is to initialize and return the model. The internal specifics may vary based on the architecture and dataset being used.
+<details>
+<summary><strong>Model Initialization (model_fn):</strong></summary>
+<br>
+
+This function is responsible for initializing and returning the model. The internal specifics of this process may vary depending on the architecture and dataset in use.
+
+- **Parameters:**
+  - `model_dir`: Directory where model artifacts are stored.
+
+- **Returns:**
+  - An initialized model ready for inference.
+
+</details>
 
 
-**Input Processing (input_fn):**
-Parameters:
-request_body: Body of the inference request.
-request_content_type: Content type of the inference request.
-Returns:
-Processed input data suitable for prediction.
-This function processes the incoming request to format the data into a form compatible with the model. It should handle various content types and convert them into a consistent input format for the model.
 
 <details>
 <summary><strong>Input Processing (input_fn):</strong></summary>
@@ -73,13 +73,21 @@ This function processes the incoming request to format the data into a form comp
 </details>
 
 
-**Prediction (predict_fn):**
-Parameters:
-input_data: Processed input data from the input_fn.
-model: Initialized model from the model_fn.
-Returns:
-Prediction or embedding result.
-Given the processed input data and initialized model, this function will generate a prediction or embedding.
+<details>
+<summary><strong>Prediction (predict_fn):</strong></summary>
+<br>
+
+This function is tasked with generating a prediction or embedding, given the processed input data and the initialized model.
+
+- **Parameters:**
+  - `input_data`: Processed input data from the `input_fn`.
+  - `model`: Initialized model from the `model_fn`.
+
+- **Returns:**
+  - The prediction or embedding result.
+
+</details>
+
 
 
 **Output Formatting (output_fn):**
@@ -90,10 +98,22 @@ Returns:
 The structure and format of the response returned to the client are tailored to suit the specific application and depend on the chosen inference platform. Each application may require a unique response format, which varies based on the inferencing method used, whether it's local inferencing or through AWS SageMaker. For detailed guidance on how these formats should be adapted according to your application and inference platform, please click here (insert link) to learn more.
 
 
-## Formats of the output from the output_fn
-The output returned by the output_fn function must adhere to the specific format outlined here, as deviations may result in malfunction during the inference process.
+<details>
+<summary><strong>Output Formatting (output_fn):</strong></summary>
+<br>
 
-For both AWS SageMaker inference and local inference, the fundamental output format is a dictionary. In the case of local inference, this dictionary should be returned as-is. However, for SageMaker inference, the dictionary should be converted into a JSON format using a command like the one shown in the following code snippet:
+This function is crucial for determining the structure and format of the response returned to the client, which is customized to fit the specific application and the chosen inference platform. The response format may vary significantly between applications and depends on whether local inferencing or AWS SageMaker is used.
+
+- **Parameters:**
+  - `prediction_output`: Output from the `predict_fn`.
+  - `content_type`: Expected content type for the output.
+
+- **Returns:**
+  - A response formatted according to the specific requirements of the application and the inference platform.
+
+For detailed guidance on adapting these formats to your specific application and inference platform, please [click here](insert-link) to learn more.
+
+</details>
 
 
 ```python
