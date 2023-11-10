@@ -34,7 +34,7 @@ The input directory should adhere to the specific folder hierarchy to ensure con
 Once you have arranged the files as per the specified folder structure, you can proceed to register your model with the LayerNext system using our model registration SDK (link to be inserted). Upon successful registration, your model will appear in the 'Other Collections' section within Metalake, specifically under the 'Automatic Analysis Models' collection, saved in a tar.gz compressed format. Should you require, the model can be downloaded and extracted to access the individual files.
 
 
-#### Inference Python Script Structure
+### Inference Python Script Structure
 
 The inference.py file should be a python file which includes the following specific functions which will be used to inference the model and provide a prediction. To inference.py to function properly below provided structure needed to be adhered to- properly. 
 
@@ -56,6 +56,21 @@ request_content_type: Content type of the inference request.
 Returns:
 Processed input data suitable for prediction.
 This function processes the incoming request to format the data into a form compatible with the model. It should handle various content types and convert them into a consistent input format for the model.
+
+<details>
+<summary><strong>Input Processing (input_fn):</strong></summary>
+<br>
+
+This function processes the incoming request to format the data into a form compatible with the model. It should handle various content types and convert them into a consistent input format for the model.
+
+- **Parameters:**
+  - `request_body`: Body of the inference request.
+  - `request_content_type`: Content type of the inference request.
+
+- **Returns:**
+  - Processed input data suitable for prediction.
+
+</details>
 
 
 **Prediction (predict_fn):**
