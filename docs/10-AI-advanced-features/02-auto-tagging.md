@@ -7,7 +7,7 @@ Adding metadata tags to identify objects in images or videos is a valuable featu
 
 The Auto Tagging feature automates this process, freeing you from the tedious task of manually tagging objects in images and videos. 
 
-## How it works
+## How it Works
 
 Object Detection Models serve as the foundational technology for this application. Essentially, our pipeline processes images or video frames by running them through an object detection model that is trained to recognize specific types of objects. When an object is detected, the corresponding tag is automatically applied to the image or video frame within the pipeline.
 
@@ -36,7 +36,7 @@ Different deep learning architectures are optimized for various input image reso
 
 It is important to consistently apply the input resolution that your models were trained with. The default values we provide correspond to the optimal resolutions for our default model. Adjusting this parameter to match the training resolution of your model can significantly enhance the effectiveness of the tagging.
 
-## How to Auto tag 
+## How to Auto Tag 
 
 To begin using our SDK for Auto Tagging (insert link here), start by completing the Layer Next client initialization process. Once the Layer Next client is initialized, you can proceed by providing the necessary parameters to Auto Tagging SDK: collection ID, and optionally, model ID, confidence threshold, and input resolution. After setting these parameters, run the SDK to start the auto-tagging process. The SDK will provide updates on the status of the operation. Please note that the duration of the process may vary based on the computational environment, so we ask for your patience.
 
