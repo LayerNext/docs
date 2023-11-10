@@ -109,7 +109,7 @@ The Layernext system proactively provides a system-generated default model tailo
 - **Embedding default Model:** This process produces robust feature embeddings for any image utilizing the pre-trained ResNet50 architecture.
 - **Auto annotation default Model:** This model is derived from the "Segment Anything" language model which allows users to input a text prompt and receive predictions based on it. For optimal performance ensure that the language used in the text input descriptions is concise and straightforward. Additionally, providing fewer labels in the input prompt can further enhance the auto-annotation performance.
 
-## Auto tagging a Specified Collection
+## 7.2. Auto tagging a Specified Collection
 
 Autotagging empowers users to automatically assign tags to a designated collection using a chosen inference model. The selected model dictates the types of tags generated. For instance, if a user intends to tag only the breeds of dogs within a collection, they should opt for a model specifically trained to recognize dog breeds. Such models can be pre-registered in the meta-lake using the `register_model` function.
 
@@ -134,7 +134,7 @@ auto_tag_collection(collection_id, model_name, input_resolution, confidence_thre
 client.auto_tag_collection("64f962e14f228f79e7806de6", ‘test_yolov8’, (480, 480))
 ```
 
-## Autotagging MetaLake Population
+## 7.3. Autotagging MetaLake Population
 
 The primary aim here is to enable autotagging across the entirety of MetaLake's content, encompassing both image and video files. Users have the flexibility to autotag all image files or all video files according to their preferences. As with collection-specific autotagging, it's essential that the model selected aligns with the user's desired outcomes and categorization preferences.
 
@@ -157,7 +157,7 @@ generate_auto_tags_to_metalake(content_type, model_name, input_resolution, confi
 client.generate_auto_tags_to_metalake("image", ‘test_yolov8’, (480, 480))
 ```
 
-## Embedding Generation for Specified Collection
+## 7.4. Embedding Generation for Specified Collection
 
 The `generate_embeddings_for_collection` function facilitates the generation of image embeddings for a specified image collection. These embeddings can then be stored and utilized for various machine learning applications and analytical tasks.
 
