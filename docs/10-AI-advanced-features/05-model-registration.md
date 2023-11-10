@@ -37,6 +37,13 @@ Example folder :    (Main folder | path to this folder should be given in the SD
   * label_list.yaml  (YAML file that lists the class labels of the model. Ensure that the class names are arranged in the same sequence as during training.                       Furthermore, these class names should  match the desired tag names for auto tagging. Needed only for autotag for the moment)
   * yolov8l.pt (trained inference model saved in .pt format)
 
++ root_folder/
+    * subfolder1/
+        - file1.txt
+        - file2.txt
+    * subfolder2/
+        - anotherfile.txt
+    * file_in_root.txt
 
 Folder structure for Embedding Generation 
 
