@@ -14,7 +14,7 @@ The main folder must follow this specific structure. It should contain a subfold
 The input directory should adhere to the specific folder hierarchy to ensure consistent and error-free processing.Users have to familiarize themselves with this structure and maintain uniformity.
 
 
-Folder structure for Auto Tagging 
+**Folder structure for Auto Tagging** 
 
 + Main folder/(path to this folder should be given in the SDK)
   * code/(A sub folder named “code”)
@@ -24,7 +24,7 @@ Folder structure for Auto Tagging
   * yolov8l.pt (trained inference model, object detection model saved in .pt format)
 
 
-Folder structure for Embedding Generation 
+**Folder structure for Embedding Generation** 
 
 + Main folder/(path to this folder should be given in the SDK)
   * code/(A sub folder named “code”)
@@ -38,9 +38,10 @@ Once you have arranged the files as per the specified folder structure, you can 
 
 The inference.py file should be a python file which includes the following specific functions which will be used to inference the model and provide a prediction. To inference.py to function properly below provided structure needed to be adhered to- properly. 
 
-Imports:
+**Imports:**
 Begin with importing necessary libraries.Any library which needs to function the processes in below functions should be imported. 
-Model Initialization (model_fn):
+
+**Model Initialization (model_fn):**
 Parameters:
 model_dir: Directory where model artifacts are stored.
 Returns:
@@ -48,7 +49,7 @@ Initialized model for inference.
 The purpose of this function is to initialize and return the model. The internal specifics may vary based on the architecture and dataset being used.
 
 
-Input Processing (input_fn):
+**Input Processing (input_fn):**
 Parameters:
 request_body: Body of the inference request.
 request_content_type: Content type of the inference request.
@@ -57,7 +58,7 @@ Processed input data suitable for prediction.
 This function processes the incoming request to format the data into a form compatible with the model. It should handle various content types and convert them into a consistent input format for the model.
 
 
-Prediction (predict_fn):
+**Prediction (predict_fn):**
 Parameters:
 input_data: Processed input data from the input_fn.
 model: Initialized model from the model_fn.
@@ -66,7 +67,7 @@ Prediction or embedding result.
 Given the processed input data and initialized model, this function will generate a prediction or embedding.
 
 
-Output Formatting (output_fn):
+**Output Formatting (output_fn):**
 Parameters:
 prediction_output: Output from the predict_fn.
 content_type: Expected content type for the output.
@@ -76,6 +77,7 @@ The structure and format of the response returned to the client are tailored to 
 
 ## Formats of the output from the output_fn
 The output returned by the output_fn function must adhere to the specific format outlined here, as deviations may result in malfunction during the inference process.
+
 For both AWS SageMaker inference and local inference, the fundamental output format is a dictionary. In the case of local inference, this dictionary should be returned as-is. However, for SageMaker inference, the dictionary should be converted into a JSON format using a command like the one shown in the following code snippet:
 
 
@@ -87,15 +89,15 @@ json.dumps(output)
 
 Next, let's delve into the specific dictionary keys that need to be included as key-value pairs in this output dictionary.
 
-For Auto Tagging: 
+**For Auto Tagging:** 
 
 Output_dictionary = {‘boxes’:’bounding boxes of identified objects’, ‘masks’:’mask of identified objects, ‘probs’;’probabilities of identified objects’} 
 
-For Embedding Generation : 
+**For Embedding Generation :** 
 
 Output_dictionary = {‘embedding’:’embedding of the inferenced payload’} 
 
-For Auto Annotation : 
+**For Auto Annotation :** 
 
 Output_dictionary = {‘boxes’:’bounding boxes of identified objects’, ‘masks’:’mask of identified objects, ‘logits’;’probabilities of identified objects’,’phrases’:’phrase each object is identified as’} 
 It's crucial to use the precise keys and corresponding values as specified, as any discrepancies can lead to errors. Should you require any assistance or encounter issues, please do not hesitate to reach out to our support engineers for help.(add the link here)
