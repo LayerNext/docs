@@ -30,13 +30,12 @@ Example folder :    (Main folder | path to this folder should be given in the SD
                                                            match the desired tag names for auto tagging)
                           |---yolov8l.pt         : (trained object detection model saved in .pt format)
 
-+ root_folder/
-  * subfolder1/
-      - file1.txt
-      - file2.txt
-  * subfolder2/
-      - anotherfile.txt
-  * file_in_root.txt
++ Main folder/(path to this folder should be given in the SDK)
+  * code/(A sub folder named “code”)
+      - inference.py (python code which includes custom inference script)
+      - requirements.txt (requirement file which includes requirements to be installed at the time of inference) 
+  * label_list.yaml  (YAML file that lists the class labels of the model. Ensure that the class names are arranged in the same sequence as during training.                       Furthermore, these class names should  match the desired tag names for auto tagging. Needed only for autotag for the moment)
+  * yolov8l.pt (trained inference model saved in .pt format)
 
 
 Folder structure for Embedding Generation 
