@@ -11,49 +11,25 @@ The main folder must follow this specific structure. It should contain a subfold
 
 ## Example Input Directory Folder Structure
 
-
 The input directory should adhere to the specific folder hierarchy to ensure consistent and error-free processing.Users have to familiarize themselves with this structure and maintain uniformity.
 
 
 Folder structure for Auto Tagging 
-
-Example folder :    (Main folder | path to this folder should be given in the SDK) 
-                          | 
-  |--- code  : (A sub folder named “code”)
-                          |               |
-                          |               |---inference.py (python code which includes custom inference script)
-                          |               |---requirements.txt (requirement file which includes requirements to     
-                          |                    be installed at the time of inference)
-                          |--- label_list.yaml : (YAML file that lists the class labels of the model. Ensure 
-                                                           that the class names are arranged in the same sequence as 
-                                                           during training. Furthermore, these class names should 
-                                                           match the desired tag names for auto tagging)
-                          |---yolov8l.pt         : (trained object detection model saved in .pt format)
 
 + Main folder/(path to this folder should be given in the SDK)
   * code/(A sub folder named “code”)
       - inference.py (python code which includes custom inference script)
       - requirements.txt (requirement file which includes requirements to be installed at the time of inference) 
   * label_list.yaml  (YAML file that lists the class labels of the model. Ensure that the class names are arranged in the same sequence as during training.                       Furthermore, these class names should  match the desired tag names for auto tagging. Needed only for autotag for the moment)
-  * yolov8l.pt (trained inference model saved in .pt format)
+  * yolov8l.pt (trained inference model, object detection model saved in .pt format)
 
-+ root_folder/
-    * subfolder1/
-        - file1.txt
-        - file2.txt
-    * subfolder2/
-        - anotherfile.txt
-    * file_in_root.txt
 
 Folder structure for Embedding Generation 
 
-Example folder :    (Main folder | path to this folder should be given in the SDK) 
-                          | 
-  |--- code  : (A sub folder named “code”)
-                          |               |
-                          |               |---inference.py (python code which includes custom inference script)
-                          |               |---requirements.txt (requirement file which includes requirements to     
-                          |                    be installed at the time of inference)
++ Main folder/(path to this folder should be given in the SDK)
+  * code/(A sub folder named “code”)
+      - inference.py (python code which includes custom inference script)
+      - requirements.txt (requirement file which includes requirements to be installed at the time of inference) 
 
 Once you have arranged the files as per the specified folder structure, you can proceed to register your model with the LayerNext system using our model registration SDK (link to be inserted). Upon successful registration, your model will appear in the 'Other Collections' section within Metalake, specifically under the 'Automatic Analysis Models' collection, saved in a tar.gz compressed format. Should you require, the model can be downloaded and extracted to access the individual files.
 
