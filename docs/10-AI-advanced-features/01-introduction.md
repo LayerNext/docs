@@ -28,6 +28,7 @@ With the local inferencing option, Layernext utilizes a hosted Virtual Machine i
 
 The choice of inferencing platform can be configured in the deployment environment of Layernext under the INFERENCE_PLATFORM environment variable. This should be set to either 'local' or 'aws', depending on your preference. If you encounter any issues or need assistance, please reach out to our support engineers for guidance.
 
+
 > 🚀 **Pro Tip**: Layernext is continually evolving. Keep an eye on our [Updates Page](insert-updates-link-here) for the latest features and enhancements!
 
 
