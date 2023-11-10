@@ -30,6 +30,14 @@ Example folder :    (Main folder | path to this folder should be given in the SD
                                                            match the desired tag names for auto tagging)
                           |---yolov8l.pt         : (trained object detection model saved in .pt format)
 
+  + root_folder/
+    * subfolder1/
+        - file1.txt
+        - file2.txt
+    * subfolder2/
+        - anotherfile.txt
+    * file_in_root.txt
+
 
 Folder structure for Embedding Generation 
 
