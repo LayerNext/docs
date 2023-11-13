@@ -54,7 +54,7 @@ This function is responsible for initializing and returning the model. The inter
 
 <details>
 <summary><strong>Input Processing (input_fn):</strong></summary>
-<br>
+<br/>
 
 This function processes the incoming request to format the data into a form compatible with the model. It should handle various content types and convert them into a consistent input format for the model.
 
@@ -70,7 +70,7 @@ This function processes the incoming request to format the data into a form comp
 
 <details>
 <summary><strong>Prediction (predict_fn):</strong></summary>
-<br>
+<br/>
 
 This function is tasked with generating a prediction or embedding, given the processed input data and the initialized model.
 
@@ -86,7 +86,7 @@ This function is tasked with generating a prediction or embedding, given the pro
 
 <details>
 <summary><strong>Output Formatting (output_fn):</strong></summary>
-<br>
+<br/>
 
 This function is crucial for determining the structure and format of the response returned to the client, which is customized to fit the specific application and the chosen inference platform. The response format may vary significantly between applications and depends on whether local inferencing or AWS SageMaker is used.
 
