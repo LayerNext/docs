@@ -1,11 +1,10 @@
 # Why Auto Tagging?
 
-Adding metadata tags is a critical component of the machine learning workflow at Layernext, as it facilitates the management, versioning, searching, and oversight of data within the system. These metadata tags can be applied to individual images or videos, as well as to collections of images or videos.
+Adding metadata tags is a critical component of the machine learning workflow at LayerNext, as it facilitates the management, versioning, searching, and oversight of data within the system. These metadata tags can be applied to individual images or videos, as well as to collections of images or videos.
 
 Adding metadata tags to identify objects in images or videos is a valuable feature in metadata management. However, tagging each file manually is time-consuming, especially with a large number of files. For instance, if you need to tag every image in a collection with 'dog', 'cat', or 'horse' when these animals appear in the image, you would normally have to inspect each image individually. This process can be lengthy and could be better spent on more productive tasks. This is why Auto Tagging is so beneficial; it streamlines the process, saving time and effort.
 
-
-The Auto Tagging feature automates this process, freeing you from the tedious task of manually tagging objects in images and videos. 
+The Auto Tagging feature automates this process, freeing you from the tedious task of manually tagging objects in images and videos.
 
 ## How it Works
 
@@ -17,12 +16,11 @@ The performance of the Auto Tagging application largely depends on the specific 
 
 Our system includes a default model for Auto Tagging purposes. If no specific model name is provided within the Auto Tagging SDK, this default model will be utilized for inference tasks. It is trained on the COCO dataset, encompassing 80 different classes. Should your tagging requirements align with the objects categorized in the COCO dataset, this default model should suffice for your needs.
 
-For tagging requirements that involve different classes not covered by the COCO dataset, you will need to source and register a model that has been trained on the necessary classes. Please follow our provided instructions to register your custom model with our system. 
+For tagging requirements that involve different classes not covered by the COCO dataset, you will need to source and register a model that has been trained on the necessary classes. Please follow our provided instructions to register your custom model with our system.
 
 ## Collection Auto Tagging
 
 We offer an Auto Tagging feature through our [SDK](../08-python-sdk/07-automatic-analysis.md), which allows for the automated tagging of any specified image or video collection. To use this feature, simply input the collection ID of the desired collection along with the model name you wish to use for inference. In cases where a model name is not specified, our system will automatically use our default model for the inference process.
-
 
 #### Confidence Threshold
 
@@ -36,11 +34,8 @@ Different deep learning architectures are optimized for various input image reso
 
 It is important to consistently apply the input resolution that your models were trained with. The default values we provide correspond to the optimal resolutions for our default model. Adjusting this parameter to match the training resolution of your model can significantly enhance the effectiveness of the tagging.
 
-## How to Auto Tag 
+## How to Auto Tag
 
 To begin using our [SDK for Auto Tagging](../08-python-sdk/07-automatic-analysis.md), start by completing the Layer Next client initialization process. Once the Layer Next client is initialized, you can proceed by providing the necessary parameters to Auto Tagging SDK: collection ID, and optionally, model ID, confidence threshold, and input resolution. After setting these parameters, run the SDK to start the auto-tagging process. The SDK will provide updates on the status of the operation. Please note that the duration of the process may vary based on the computational environment, so we ask for your patience.
 
 Upon completion of the SDK's auto-tagging operation, you can verify the application of tags within the data lake on the specified collection. Should you encounter any issues or require assistance, our support team is readily available to help via support@layernext.ai.
-
-
-
