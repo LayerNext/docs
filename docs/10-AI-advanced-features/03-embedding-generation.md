@@ -2,7 +2,7 @@
 
 Image embeddings are a crucial aspect, often considered the cornerstone, of feature representation in computer vision. They serve as compact yet informative summaries of the visual content of an image and are instrumental in a wide range of computer vision tasks.
 
-In layernext as of now embeddings can be used in below applications. 
+In LayerNext as of now embeddings can be used in below applications. 
 
 Analysis of Image Datasets :  By transforming high-dimensional data into a lower-dimensional space and making it computationally more manageable while retaining essential information and more representable in graphical format. This will allow you to cluster and analyze images using embeddings.
 
@@ -15,7 +15,7 @@ Search and Retrieval: Image embeddings can be represented in a scatter plot allo
 ## How it Works
 
 It is clear that image embeddings play a vital role in the computer vision work pipeline. So it is crucial to understand how it works properly. 
-The embedding generation pipeline in Layernext operates utilizing pre-trained deep learning architectures, which have been developed using specific datasets. 
+The embedding generation pipeline in LayerNext operates utilizing pre-trained deep learning architectures, which have been developed using specific datasets. 
 For instance, the EfficientNet50 architecture can be trained on the ImageNet dataset until it achieves satisfactory performance. Subsequently, the final fully connected layer is removed, and the preceding trained weights and biases are utilized for inference purposes. 
 In this context, the layer utilized for inference serves as the embedding layer, which is also referred to as the image embeddings.
 
@@ -28,7 +28,7 @@ However, if there is a need to use an alternative pipeline for generating embedd
 
 ## How to Generate Embeddings for an Image Collection or Dataset Collection
 
-To begin using our [SDK for Generate Embeddings](../08-python-sdk/07-automatic-analysis.md), start by completing the Layer Next client initialization process. Once Layernext client is initialized, you can proceed by providing the necessary parameters to generate embeddings SDK: collection ID, and optionally, model ID.Here for collection ID you can use either a ID of an image collection or a ID of a dataset collection. 
+To begin using our [SDK for Generate Embeddings](../08-python-sdk/07-automatic-analysis.md), start by completing the Layer Next client initialization process. Once LayerNext client is initialized, you can proceed by providing the necessary parameters to generate embeddings SDK: collection ID, and optionally, model ID.Here for collection ID you can use either a ID of an image collection or a ID of a dataset collection. 
 
 After setting these parameters, run the SDK to start the embedding generation process. The SDK will provide updates on the status of the operation. Please note that the duration of the process may vary based on the computational environment, so we ask for your patience.
 
@@ -37,11 +37,11 @@ Upon completion of the SDK's embedding generation operation, you can verify the 
 
 ## Working with Generated Embeddings
 
-Once you've successfully generated embeddings for your image collection, these can be utilized within Metalake for a range of applications, each enhancing your machine learning workflow. Detailed descriptions of these applications are provided below.
+Once you've successfully generated embeddings for your image collection, these can be utilized within MetaLake for a range of applications, each enhancing your machine learning workflow. Detailed descriptions of these applications are provided below.
 
 #### Viewing Embeddings of a Specified Image Set
 
-When generating embeddings for a collection using our SDK, you can visualize these embeddings in a graph within Metalake. To do this, first select the collection for which you've generated embeddings. Then, navigate to the 'Analytics' tab located in the upper right corner. From the appearing toolbar, choose the 'Embedding Graph' icon to display your embeddings in the graph.
+When generating embeddings for a collection using our SDK, you can visualize these embeddings in a graph within MetaLake. To do this, first select the collection for which you've generated embeddings. Then, navigate to the 'Analytics' tab located in the upper right corner. From the appearing toolbar, choose the 'Embedding Graph' icon to display your embeddings in the graph.
 We store your embeddings in our vector database, maintaining the original dimensions of the generated embeddings, typically 1024-length vectors if embeddings are generated from the default model. However, for 2D graphical representation, we apply Principal Component Analysis (PCA) for dimensionality reduction. Consequently, the data visualized in these embedding graphs are the reduced-dimension versions of your original embeddings.
 
 Let's explore the potential applications of these embeddings.
