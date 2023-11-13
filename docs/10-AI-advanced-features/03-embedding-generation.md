@@ -28,7 +28,7 @@ However, if there is a need to use an alternative pipeline for generating embedd
 
 ## How to Generate Embeddings for an Image Collection or Dataset Collection
 
-To begin using our SDK for Generate Embeddings(insert link here), start by completing the Layer Next client initialization process. Once Layernext client is initialized, you can proceed by providing the necessary parameters to generate embeddings SDK: collection ID, and optionally, model ID.Here for collection ID you can use either a ID of an image collection or a ID of a dataset collection. 
+To begin using our [SDK for Generate Embeddings](../08-python-sdk/07-automatic-analysis.md), start by completing the Layer Next client initialization process. Once Layernext client is initialized, you can proceed by providing the necessary parameters to generate embeddings SDK: collection ID, and optionally, model ID.Here for collection ID you can use either a ID of an image collection or a ID of a dataset collection. 
 
 After setting these parameters, run the SDK to start the embedding generation process. The SDK will provide updates on the status of the operation. Please note that the duration of the process may vary based on the computational environment, so we ask for your patience.
 
