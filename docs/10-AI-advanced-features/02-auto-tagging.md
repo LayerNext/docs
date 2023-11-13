@@ -40,7 +40,7 @@ It is important to consistently apply the input resolution that your models were
 
 To begin using our [SDK for Auto Tagging](../08-python-sdk/07-automatic-analysis.md), start by completing the Layer Next client initialization process. Once the Layer Next client is initialized, you can proceed by providing the necessary parameters to Auto Tagging SDK: collection ID, and optionally, model ID, confidence threshold, and input resolution. After setting these parameters, run the SDK to start the auto-tagging process. The SDK will provide updates on the status of the operation. Please note that the duration of the process may vary based on the computational environment, so we ask for your patience.
 
-Upon completion of the SDK's auto-tagging operation, you can verify the application of tags within the data lake on the specified collection. Should you encounter any issues or require assistance, our support team is readily available to help(insert link here).
+Upon completion of the SDK's auto-tagging operation, you can verify the application of tags within the data lake on the specified collection. Should you encounter any issues or require assistance, our support team is readily available to help via support@layernext.ai.
 
 
 
