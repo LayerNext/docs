@@ -1,6 +1,6 @@
 # Model Registration
 
-Model registration provides users with the flexibility to employ custom models for advanced AI features. This functionality enables users to train models tailored to their specific requirements. However, it is essential for users to comply with the guidelines and formats specified by Layernext for model registration. This ensures seamless integration and optimal performance of the custom models within the Layernext ecosystem.
+Model registration provides users with the flexibility to employ custom models for advanced AI features. This functionality enables users to train models tailored to their specific requirements. However, it is essential for users to comply with the guidelines and formats specified by LayerNext for model registration. This ensures seamless integration and optimal performance of the custom models within the LayerNext ecosystem.
 
 For custom models to function correctly, please follow our guidelines on the required folder structure and data formats given below.
 
@@ -31,7 +31,7 @@ The input directory should adhere to the specific folder hierarchy to ensure con
       - inference.py (python code which includes custom inference script)
       - requirements.txt (requirement file which includes requirements to be installed at the time of inference) 
 
-Once you have arranged the files as per the specified folder structure, you can proceed to register your model with the LayerNext system using our model [registration SDK](../08-python-sdk/07-automatic-analysis.md). Upon successful registration, your model will appear in the 'Other Collections' section within Metalake, specifically under the 'Automatic Analysis Models' collection, saved in a tar.gz compressed format. Should you require, the model can be downloaded and extracted to access the individual files.
+Once you have arranged the files as per the specified folder structure, you can proceed to register your model with the LayerNext system using our model [registration SDK](../08-python-sdk/07-automatic-analysis.md). Upon successful registration, your model will appear in the 'Other Collections' section within MetaLake, specifically under the 'Automatic Analysis Models' collection, saved in a tar.gz compressed format. Should you require, the model can be downloaded and extracted to access the individual files.
 
 
 ### Inference Python Script Structure
