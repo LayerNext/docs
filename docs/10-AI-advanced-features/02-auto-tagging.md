@@ -21,7 +21,7 @@ For tagging requirements that involve different classes not covered by the COCO 
 
 ## Collection Auto Tagging
 
-We offer an Auto Tagging feature through our SDK (insert link here), which allows for the automated tagging of any specified image or video collection. To use this feature, simply input the collection ID of the desired collection along with the model name you wish to use for inference. In cases where a model name is not specified, our system will automatically use our default model for the inference process.
+We offer an Auto Tagging feature through our [SDK](08-python-sdk/07-automatic-analysis.md), which allows for the automated tagging of any specified image or video collection. To use this feature, simply input the collection ID of the desired collection along with the model name you wish to use for inference. In cases where a model name is not specified, our system will automatically use our default model for the inference process.
 
 
 #### Confidence Threshold
