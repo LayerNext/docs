@@ -58,5 +58,5 @@ After setting these parameters, run the SDK to start the auto annotation process
 
 Upon completion of the SDK's auto-annotation operation, you can verify the application of annotations within the meta lake on the specified images of the annotation project. 
 
-Should you encounter any issues or require assistance, our support team is readily available to help(insert link here).
+Should you encounter any issues or require assistance, our support team is readily available to help via support@layernext.ai.
 
