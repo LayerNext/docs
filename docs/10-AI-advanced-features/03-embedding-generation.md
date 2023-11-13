@@ -32,7 +32,7 @@ To begin using our [SDK for Generate Embeddings](../08-python-sdk/07-automatic-a
 
 After setting these parameters, run the SDK to start the embedding generation process. The SDK will provide updates on the status of the operation. Please note that the duration of the process may vary based on the computational environment, so we ask for your patience.
 
-Upon completion of the SDK's embedding generation operation, you can verify the application of embeddings within the meta lake on the specified collection. Should you encounter any issues or require assistance, our support team is readily available to help(insert link here).
+Upon completion of the SDK's embedding generation operation, you can verify the application of embeddings within the meta lake on the specified collection. Should you encounter any issues or require assistance, our support team is readily available to help via support@layernext.ai.
 
 
 ## Working with Generated Embeddings
