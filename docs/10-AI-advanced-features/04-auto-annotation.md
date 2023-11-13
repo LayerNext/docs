@@ -50,7 +50,7 @@ Depending on the specific needs and context of your application, you may find it
 
 ## How to Auto Annotate
 
-To begin using our SDK for Auto Annotation (insert link here), start by completing the Layernext client initialization process. Once Layernext client is initialized, you can proceed by providing the necessary parameters to Auto Annotation SDK: Annotation Project ID, and optionally, model ID,input prompt,annotation type and confidence threshold. 
+To begin using our [SDK for Auto Annotation](../08-python-sdk/07-automatic-analysis.md), start by completing the Layernext client initialization process. Once Layernext client is initialized, you can proceed by providing the necessary parameters to Auto Annotation SDK: Annotation Project ID, and optionally, model ID,input prompt,annotation type and confidence threshold. 
 
 > :bulb: **Important :** Annotation projects should be created beforehand which includes the images you need to annotate. That project Id should be given in the above parameter. 
 
