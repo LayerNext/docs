@@ -1,6 +1,6 @@
 # Why Auto Annotation?
 
-Image annotation for object detection and segmentation tasks is a crucial step in the computer vision pipeline, as accurate image annotations are directly linked to the final performance of any machine learning model. Moreover, it is often the most time-intensive task within the workflow. Recognizing the need for efficiency and simplification in this process, we have developed an auto-annotation capability in Layernext.
+Image annotation for object detection and segmentation tasks is a crucial step in the computer vision pipeline, as accurate image annotations are directly linked to the final performance of any machine learning model. Moreover, it is often the most time-intensive task within the workflow. Recognizing the need for efficiency and simplification in this process, we have developed an auto-annotation capability in LayerNext.
 
 Our auto-annotation application streamlines this meticulous process by enabling the annotation of objects and the creation of polygons(segmentation tasks) or bounding boxes(object detection tasks)for segmentation with a straightforward SDK call, guided by a descriptive text prompt. This not only accelerates the development cycle but also enhances consistency and reduces the likelihood of human error, resulting in more reliable model training and ultimately superior performance of the machine learning models. Auto-annotation is instrumental in transforming the laborious task of manual annotation into a more manageable, accurate, and cost-effective process.
 
@@ -8,7 +8,7 @@ Our auto-annotation application streamlines this meticulous process by enabling 
 
 Our application employs Facebook's "Segment Anything" model as the foundational model. At its core, the model takes a text prompt as input and generates raw annotation results that correspond to the input prompt. For instance, to annotate people who are running in an image, one would provide a clear and straightforward text prompt such as 'humans running', 'humans who are running', or 'running people'. The effectiveness of the model's output hinges on the clarity and simplicity of the provided text prompt.
 
-We have seamlessly integrated this core model into LayerNext, enabling users to execute it on annotation projects through an easy-to-use SDK. Upon running the SDK, the annotations, which align with your text prompt, will be updated on the images in Datalake, labeled according to your specifications. 
+We have seamlessly integrated this core model into LayerNext, enabling users to execute it on annotation projects through an easy-to-use SDK. Upon running the SDK, the annotations, which align with your text prompt, will be updated on the images in MetaLake, labeled according to your specifications. 
 This integration not only simplifies the annotation process but also enhances the accuracy and efficiency of the data preparation stage for machine learning models, leading to better performance and more streamlined project workflows.
 
 ## Bounding Boxes or Polygons
@@ -36,7 +36,7 @@ input prompt example :
 [{‘label’:’ human’  , ‘description’:’people who are standing’ }, {‘label’:’cat’  , ‘description’:’cat’ }, {‘label’:’ dog’  , ‘description’:’white dogs’ }]
 ```
 
-**What is 'label' key :** The 'label' parameter defines the specific identifier that will be assigned to the corresponding annotation within Metalake. Essentially, this label is how the annotation will be recognized or categorized in Metalake's system
+**What is 'label' key :** The 'label' parameter defines the specific identifier that will be assigned to the corresponding annotation within MetaLake. Essentially, this label is how the annotation will be recognized or categorized in MetaLake's system
 
 **What is the 'description' key :** The 'description' key serves as the text prompt for the model during inference, dictating which objects to annotate. The precision of the annotation is directly influenced by the clarity of this description. To ensure accuracy, it is advisable to use concise and straightforward prompts. Experience has shown that lengthy and complex descriptions tend to increase the error rate, so simplicity is key.
 
@@ -50,7 +50,7 @@ Depending on the specific needs and context of your application, you may find it
 
 ## How to Auto Annotate
 
-To begin using our [SDK for Auto Annotation](../08-python-sdk/07-automatic-analysis.md), start by completing the Layernext client initialization process. Once Layernext client is initialized, you can proceed by providing the necessary parameters to Auto Annotation SDK: Annotation Project ID, and optionally, model ID,input prompt,annotation type and confidence threshold. 
+To begin using our [SDK for Auto Annotation](../08-python-sdk/07-automatic-analysis.md), start by completing the LayerNext client initialization process. Once LayerNext client is initialized, you can proceed by providing the necessary parameters to Auto Annotation SDK: Annotation Project ID, and optionally, model ID,input prompt,annotation type and confidence threshold. 
 
 > :bulb: **Important :** Annotation projects should be created beforehand which includes the images you need to annotate. That project Id should be given in the above parameter. 
 
