@@ -140,4 +140,4 @@ Output_dictionary = {‘embedding’:’embedding of the inferenced payload’}
 Output_dictionary = {‘boxes’:’bounding boxes of identified objects’, ‘masks’:’mask of identified objects, ‘logits’;’probabilities of identified objects’,’phrases’:’phrase each object is identified as’}
 ```
 
-It's crucial to use the precise keys and corresponding values as specified, as any discrepancies can lead to errors. Should you require any assistance or encounter issues, please do not hesitate to reach out to our support engineers for help.(add the link here)
+It's crucial to use the precise keys and corresponding values as specified, as any discrepancies can lead to errors. Should you require any assistance or encounter issues, please do not hesitate to reach out to our support engineers for help via support@layernext.ai.
