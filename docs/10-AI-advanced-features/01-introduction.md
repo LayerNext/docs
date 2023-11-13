@@ -1,5 +1,5 @@
 
-# Introduction to AI Advanced features Of Layernext
+# Introduction to AI Advanced features Of LayerNext
 
 LayerNext offers advanced AI features designed to enhance and streamline user workflows.These features are specifically tailored to address key applications within LayerNext. The features include:
 
