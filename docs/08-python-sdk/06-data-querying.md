@@ -71,7 +71,7 @@ client.get_collection_details(
 
 ## 6.3. List items from MetaLake
 
-List items from MetaLake with this function:
+This function supports fetching items from MetaLake based on your specified criteria, including query, filter, pagination, and sorting.
 
 ```python
 client.get_item_list_from_datalake(
@@ -79,20 +79,22 @@ client.get_item_list_from_datalake(
             query,
             filter,
             page_index,
-            page_size
+            page_size,
+            sort_order
         )
 ```
 
 ## Parameters
 
-| Parameter               | Data type | Default | Description                                                                                                                                                                                                                                                                 |
-| ----------------------- | --------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `item_type`             | string    | 'image' | One of the following: "image", "video", "other", "image_collection", "video_collection", or "other_collection".                                                                                                                                                             |
-| `query` (Optional)      | string    | -       | The search query that filters items in the MetaLake. This is the same query format that we use in the MetaLake frontend.                                                                                                                                                    |
-| `filter` (Optional)     | object    | -       | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
-| `page_index` (Optional) | integer   | 0       | The index of the page, starting from 0.                                                                                                                                                                                                                                     |
+| Parameter               | Data type  | Default                                                    | Description                                                                                                                                                                                                                                                                 |
+| ----------------------- | ---------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `item_type`             | string     | 'image'                                                    | One of the following: "image", "video", "other", "image_collection", "video_collection", or "other_collection".                                                                                                                                                             |
+| `query` (Optional)      | string     | -                                                          | The search query that filters items in the MetaLake. This is the same query format that we use in the MetaLake frontend.                                                                                                                                                    |
+| `filter` (Optional)     | object     | -                                                          | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
+| `page_index` (Optional) | integer    | 0                                                          | The index of the page, starting from 0.                                                                                                                                                                                                                                     |
 |                         |
-| `page_size` (Optional)  | integer   | 20      | The size of the page. The maximum allowed value is 1000.                                                                                                                                                                                                                    |
+| `page_size` (Optional)  | integer    | 20                                                         | The size of the page. The maximum allowed value is 1000.                                                                                                                                                                                                                    |
+| `sort_order` (Optional) | dictionary | { "sort_by_field": "date_modified", "sort_order": "DESC" } | Specifies the sorting order of the returned items. Format: { "sort_by_field": "date_modified"/"date_created"/"name"/"size"/"video_index", "sort_order": "ASC"/"DESC" }.                                                                                                     |
 
 ## Returns
 
@@ -122,13 +124,14 @@ res = client.get_item_list_from_datalake(
             "to_date": "2023-01-19",
         },
         0,
-        20
+        20,
+        {"sort_by_field": "date_created", "sort_order": "ASC"}
 )
 ```
 
 ## 6.4. List items from a MetaLake collection
 
-List items from a specific MetaLake collection using this function:
+This function supports fetching items from a specific MetaLake collection based on your specified criteria, including query, filter, pagination, and sorting.
 
 ```python
 client.get_item_list_from_collection(
@@ -136,20 +139,22 @@ client.get_item_list_from_collection(
             query,
             filter,
             page_index,
-            page_size
+            page_size,
+            sort_order
 )
 ```
 
 ## Parameters
 
-| Parameter               | Data type | Default | Description                                                                                                                                                                                                                                                                 |
-| ----------------------- | --------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `collection_id`         | string    | -       | The ID of the collection                                                                                                                                                                                                                                                    |
-| `query` (Optional)      | string    | -       | The search query that filters items in the MetaLake. This is the same query format that we use in the MetaLake frontend.                                                                                                                                                    |
-| `filter` (Optional)     | object    | -       | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
-| `page_index` (Optional) | integer   | 0       | The index of the page, starting from 0.                                                                                                                                                                                                                                     |
+| Parameter               | Data type  | Default                                                    | Description                                                                                                                                                                                                                                                                 |
+| ----------------------- | ---------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `collection_id`         | string     | -                                                          | The ID of the collection                                                                                                                                                                                                                                                    |
+| `query` (Optional)      | string     | -                                                          | The search query that filters items in the MetaLake. This is the same query format that we use in the MetaLake frontend.                                                                                                                                                    |
+| `filter` (Optional)     | object     | -                                                          | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
+| `page_index` (Optional) | integer    | 0                                                          | The index of the page, starting from 0.                                                                                                                                                                                                                                     |
 |                         |
-| `page_size` (Optional)  | integer   | 20      | The size of the page. The maximum allowed value is 1000.                                                                                                                                                                                                                    |
+| `page_size` (Optional)  | integer    | 20                                                         | The size of the page. The maximum allowed value is 1000.                                                                                                                                                                                                                    |
+| `sort_order` (Optional) | dictionary | { "sort_by_field": "date_modified", "sort_order": "DESC" } | Specifies the sorting order of the returned items. Format: { "sort_by_field": "date_modified"/"date_created"/"name"/"size"/"video_index", "sort_order": "ASC"/"DESC" }.                                                                                                     |
 
 ## Returns
 
@@ -179,6 +184,7 @@ res = client.get_item_list_from_collection(
             "to_date": "2023-01-19",
         },
         0,
-        20
+        20,
+        {"sort_by_field": "date_created", "sort_order": "ASC"}
 )
 ```
