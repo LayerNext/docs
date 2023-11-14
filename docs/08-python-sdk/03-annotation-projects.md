@@ -191,3 +191,38 @@ add_files_to_annotation_project_from_datalake(project_id, query, filter, content
 | `frames_per_task` (Optional) | integer   | 120     | No of frames per tasks created                                                                                                                                                                                                                                                |
 | `assign_to_all` (Optional)   | boolean   | False   | If this is True, project will be assigend to all annotators once its created                                                                                                                                                                                                  |
 | `send_email` (Optional)      | boolean   | False   | This is applicable if assign_to_all is True - If this flag is True, then emails are sent to the assigned annotators                                                                                                                                                           |
+
+## 3.8. Attach Model Runs to a Annotation Project
+
+This function enables you to attach model runs to an existing project.
+
+```python
+attach_model_run_to_project(project_id, operation_id_array)
+```
+
+## Parameters
+
+| Parameter            | Data type | Default | Description                                                                 |
+| -------------------- | --------- | ------- | --------------------------------------------------------------------------- |
+| `project_id`         | string    | -       | Id of the annotation project                                                |
+| `operation_id_array` | list      | -       | A list of `operation_unique_id`s relevant to model run annotations uploads. |
+
+## Returns
+
+A dictionary with a boolean success flag and an optional message.
+
+```python
+{
+    "is_success":True/False,
+    "message":<optinal_message>
+}
+```
+
+## Example Usage
+
+```python
+client.attach_model_run_to_project(
+        "65004ce4365f0510adb2f649",
+        ["my_model_v1.0", "my_model_v1.1"]
+)
+```

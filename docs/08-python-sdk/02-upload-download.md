@@ -791,7 +791,7 @@ Note that the correct file name should be set to the ‘image’ field in upload
 | `shape_type`                       | string    | -       | Type of the annotations - can be rectangle, polygon, or line.                                                                                                                                                                                                                                                                                                                                                                            |
 | `Is_normalized`                    | boolean   | -       | True if normalized values for coordinates and dimensions are provided instead of real pixel values in the image. If this is True, conversion will happen at the Data Lake backend.                                                                                                                                                                                                                                                       |
 | `is_model_run`                     | boolean   | -       | True if this is machine annotations, False if this is human annotations                                                                                                                                                                                                                                                                                                                                                                  |
-| `destination_project_id`(optional) | string    | None    | If this is given then annotations are copied to the given studio project - this can be used for attaching auto annotations to studio projects                                                                                                                                                                                                                                                                                            |
+| `destination_project_id`(optional) | string    | None    | Only applicable when "is_model_run" is True. If this is given then annotations are attached to the given studio project - this can be used for attaching auto annotations to studio projects                                                                                                                                                                                                                                             |
 
 ## Example usage
 
@@ -1279,21 +1279,23 @@ client.download_files_from_metalake(
             page_index,
             page_size,
             query,
-            filter
+            filter,
+            sort_order
         )
 ```
 
 ## Parameters
 
-| Parameter               | Data type | Default | Description                                                                                                                                                                                                                                                                 |
-| ----------------------- | --------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `item_type`             | string    | 'image' | One of the following: "image", "video" or "other".                                                                                                                                                                                                                          |
-| `custom_download_path`  | string    | -       | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path.                                                                                        |
-| `page_index` (Optional) | integer   | 0       | The index of the page, starting from 0.                                                                                                                                                                                                                                     |
+| Parameter               | Data type  | Default                                                    | Description                                                                                                                                                                                                                                                                 |
+| ----------------------- | ---------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `item_type`             | string     | 'image'                                                    | One of the following: "image", "video" or "other".                                                                                                                                                                                                                          |
+| `custom_download_path`  | string     | -                                                          | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path.                                                                                        |
+| `page_index` (Optional) | integer    | 0                                                          | The index of the page, starting from 0.                                                                                                                                                                                                                                     |
 |                         |
-| `page_size` (Optional)  | integer   | 20      | The size of the page. The maximum allowed value is 1000.                                                                                                                                                                                                                    |
-| `query` (Optional)      | string    | -       | The search query that filters items in the MetaLake. This is the same query format that we use in the MetaLake frontend.                                                                                                                                                    |
-| `filter` (Optional)     | object    | -       | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
+| `page_size` (Optional)  | integer    | 20                                                         | The size of the page. The maximum allowed value is 1000.                                                                                                                                                                                                                    |
+| `query` (Optional)      | string     | -                                                          | The search query that filters items in the MetaLake. This is the same query format that we use in the MetaLake frontend.                                                                                                                                                    |
+| `filter` (Optional)     | object     | -                                                          | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
+| `sort_order` (Optional) | dictionary | { "sort_by_field": "date_modified", "sort_order": "DESC" } | Specifies the sorting order of the returned items. Format: { "sort_by_field": "date_modified"/"date_created"/"name"/"size"/"video_index", "sort_order": "ASC"/"DESC" }.                                                                                                     |
 
 ## Returns
 
@@ -1328,7 +1330,8 @@ client.download_files_from_metalake(
             "annotation_types": ["human", "machine"],
             "from_date": "2022-08-02",
             "to_date": "2023-01-19",
-        }
+        },
+        {"sort_by_field": "date_created", "sort_order": "ASC"}
 
 )
 ```
@@ -1344,21 +1347,23 @@ client.download_files_from_collection(
             page_index,
             page_size,
             query,
-            filter
+            filter,
+            sort_order
 )
 ```
 
 ## Parameters
 
-| Parameter               | Data type | Default | Description                                                                                                                                                                                                                                                                 |
-| ----------------------- | --------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `collection_id`         | string    | -       | The ID of the collection                                                                                                                                                                                                                                                    |
-| `custom_download_path`  | string    | -       | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path.                                                                                        |
-| `page_index` (Optional) | integer   | 0       | The index of the page, starting from 0.                                                                                                                                                                                                                                     |
+| Parameter               | Data type  | Default                                                    | Description                                                                                                                                                                                                                                                                 |
+| ----------------------- | ---------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `collection_id`         | string     | -                                                          | The ID of the collection                                                                                                                                                                                                                                                    |
+| `custom_download_path`  | string     | -                                                          | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path.                                                                                        |
+| `page_index` (Optional) | integer    | 0                                                          | The index of the page, starting from 0.                                                                                                                                                                                                                                     |
 |                         |
-| `page_size` (Optional)  | integer   | 20      | The size of the page. The maximum allowed value is 1000.                                                                                                                                                                                                                    |
-| `query` (Optional)      | string    | -       | The search query that filters items in the MetaLake. This is the same query format that we use in the MetaLake frontend.                                                                                                                                                    |
-| `filter` (Optional)     | object    | -       | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
+| `page_size` (Optional)  | integer    | 20                                                         | The size of the page. The maximum allowed value is 1000.                                                                                                                                                                                                                    |
+| `query` (Optional)      | string     | -                                                          | The search query that filters items in the MetaLake. This is the same query format that we use in the MetaLake frontend.                                                                                                                                                    |
+| `filter` (Optional)     | object     | -                                                          | Additional criteria, such as annotation type and uploaded date range, can be specified as shown below \n{ “annotation_types”: [“<comma separated list of types out of: “raw”, “human” and “machine”>], “from_date”: “\<start date string\>, “to_date”: \<end date string\>} |
+| `sort_order` (Optional) | dictionary | { "sort_by_field": "date_modified", "sort_order": "DESC" } | Specifies the sorting order of the returned items. Format: { "sort_by_field": "date_modified"/"date_created"/"name"/"size"/"video_index", "sort_order": "ASC"/"DESC" }.                                                                                                     |
 
 ## Returns
 
@@ -1393,6 +1398,7 @@ client.download_files_from_collection(
             "annotation_types": ["human", "machine"],
             "from_date": "2022-08-02",
             "to_date": "2023-01-19",
-        }
+        },
+        {"sort_by_field": "date_created", "sort_order": "ASC"}
 )
 ```
