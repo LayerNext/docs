@@ -163,7 +163,7 @@ attach_labels_to_group(group_id, label_ids)
 This function detaches a given list of labels from an ontology group:
 
 ```python
-detach_labels_to_group(group_id, label_ids)
+detach_labels_from_group(group_id, label_ids)
 ```
 
 ## Parameters
