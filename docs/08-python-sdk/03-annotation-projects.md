@@ -226,3 +226,35 @@ client.attach_model_run_to_project(
         ["my_model_v1.0", "my_model_v1.1"]
 )
 ```
+
+## 3.9. Retrieve Annotation Project Name by Annotation Project ID
+
+This function enables you to retreive annotation project name when you give the annotation project ID. 
+
+```python
+get_annotation_project_name_by_id(project_id)
+```
+
+## Parameters
+
+| Parameter            | Data type | Default | Description                                                                 |
+| -------------------- | --------- | ------- | --------------------------------------------------------------------------- |
+| `project_id`         | string    | -       | Id of the annotation project                                                |
+
+## Returns
+
+A dictionary with a boolean success flag and an optional message.
+
+```python
+{
+    "projectName": "< Name of the Project which corresponds to given ID >"
+}
+```
+
+## Example Usage
+
+```python
+client.get_annotation_project_name_by_id(
+        "65004ce4365f0510adb2f649",
+)
+```
