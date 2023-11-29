@@ -307,13 +307,14 @@ insert_image_embeddings(embedding_list, model_name, vector_dimension)
 #### Example Usage:
 
 ```python
-client.insert_image_embeddings([{
-            "uniqueName": "example_collection_example_image.jpg",
-            "embeddings": [0.23,0.56,....]
-        }], 
-        'Resnet50', 
-        [2048]
-      )
+client.insert_image_embeddings(
+  [{
+    "uniqueName": "example_collection_example_image.jpg",
+    "embeddings": [0.23,0.56,....]
+  }], 
+  'Resnet50', 
+  [2048]
+)
 ```
 
 ## 7.7. Get Embedding Vector for given unique name
