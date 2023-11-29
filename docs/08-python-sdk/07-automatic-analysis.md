@@ -260,7 +260,7 @@ client.generate_embeddings_to_metalake(
 
 ## 7.5. Embedding Insertion for Batch
 
-The `insert_image_embeddings_batch` function facilitates the insert of image embeddings for a specified image uniqueNames.
+The `insert_image_embeddings_batch` function facilitates the insert of image embeddings for a specified image uniqueNames. Length of embedding_list must be less than 100.
 
 ```python
 insert_image_embeddings_batch(embedding_list, model_name, vector_dimension, session_id)
