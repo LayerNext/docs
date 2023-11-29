@@ -270,22 +270,23 @@ insert_image_embeddings_batch(embedding_list, model_name, vector_dimension, sess
 
 | Parameter       | Data Type | Default   | Description                                                                                                               |
 | --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `embedding_list` | List    | -         | Embedding uniqueName and vector dictionary list |
-| `model_name`      | string    | - | The name of the model |
-| `vector_dimension`      | string    | - | Dimension of the embedding vector |
-| `session_id`      | string    | "" | session id for metalake job creation purpose |
+| `embedding_list`   | List      | -         | Embedding uniqueName and vector dictionary list |
+| `model_name`       | string    | - | The name of the model |
+| `vector_dimension` | string    | - | Dimension of the embedding vector |
+| `session_id`       | string    | "" | session id for metalake job creation purpose |
 
 #### Example Usage:
 
 ```python
-client.insert_image_embeddings_batch([{
-            "uniqueName": "example_collection_example_image.jpg",
-            "embeddings": [0.23,0.56,....]
-        }], 
-        'Resnet50', 
-        [2048], 
-        ""
-      )
+client.insert_image_embeddings_batch(
+  [{
+    "uniqueName": "example_collection_example_image.jpg",
+    "embeddings": [0.23,0.56,....]
+  }], 
+  'Resnet50', 
+  [2048], 
+  ""
+)
 ```
 
 ## 7.6. Embedding Insertion
