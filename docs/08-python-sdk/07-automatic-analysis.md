@@ -328,11 +328,11 @@ get_embedding_vector(unique_names, model_name)
 
 | Parameter       | Data Type | Default   | Description                                                                                                               |
 | --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `unique_names` | List[str]    | -         | unique name of the Image |
-| `model_name`      | string    | - | The name of the model to use for generating embeddings |
+| `unique_names` | List[str]    | -         | unique name of the required embeddings |
+| `model_name`   | string       | -         | model name of the required embeddings |
 
 #### Example Usage:
 
 ```python
-client.get_embedding_vector("example_collection_example_image.jpg", 'Resnet50')
+client.get_embedding_vector(["example_collection_example_image.jpg"], 'Resnet50')
 ```
