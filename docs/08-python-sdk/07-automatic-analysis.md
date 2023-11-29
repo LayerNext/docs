@@ -256,3 +256,83 @@ client.generate_embeddings_to_metalake(
                                 'aws'  
                                   )
 ```
+
+
+## 7.5. Embedding Insertion for Batch
+
+The `insert_image_embeddings_batch` function facilitates the insert of image embeddings for a specified image uniqueNames.
+
+```python
+insert_image_embeddings_batch(embedding_list, model_name, vector_dimension, session_id)
+```
+
+#### Parameters:
+
+| Parameter       | Data Type | Default   | Description                                                                                                               |
+| --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `embedding_list` | List    | -         | Embedding uniqueName and vector dictionary list |
+| `model_name`      | string    | - | The name of the model |
+| `vector_dimension`      | string    | - | Dimension of the embedding vector |
+| `session_id`      | string    | "" | session id for metalake job creation purpose |
+
+#### Example Usage:
+
+```python
+client.insert_image_embeddings_batch([{
+            "uniqueName": "example_collection_example_image.jpg",
+            "embeddings": [0.23,0.56,....]
+        }], 
+        'Resnet50', 
+        [2048], 
+        ""
+      )
+```
+
+## 7.6. Embedding Insertion
+
+The `insert_image_embeddings` function facilitates the insert of image embeddings for a specified image uniqueNames.
+
+```python
+insert_image_embeddings(embedding_list, model_name, vector_dimension)
+```
+
+#### Parameters:
+
+| Parameter       | Data Type | Default   | Description                                                                                                               |
+| --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `embedding_list` | List[dict]    | -         | Embedding uniqueName and vector dictionary list |
+| `model_name`      | string    | - | The name of the model |
+| `vector_dimension`      | string    | - | Dimension of the embedding vector |
+
+#### Example Usage:
+
+```python
+client.insert_image_embeddings([{
+            "uniqueName": "example_collection_example_image.jpg",
+            "embeddings": [0.23,0.56,....]
+        }], 
+        'Resnet50', 
+        [2048]
+      )
+```
+
+## 7.7. Get Embedding Vector for given unique name
+
+The `get_embedding_vector` function facilitates the get the embedding vectors for given unique name list
+
+```python
+get_embedding_vector(unique_names, model_name)
+```
+
+#### Parameters:
+
+| Parameter       | Data Type | Default   | Description                                                                                                               |
+| --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `unique_names` | List[str]    | -         | unique name of the Image |
+| `model_name`      | string    | - | The name of the model to use for generating embeddings |
+
+#### Example Usage:
+
+```python
+client.get_embedding_vector("example_collection_example_image.jpg", 'Resnet50')
+```
