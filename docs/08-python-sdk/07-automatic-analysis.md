@@ -228,7 +228,7 @@ client.generate_embeddings_for_collection(
 The primary aim here is to enable embedding generation across the entirety of MetaLake's content, encompassing image files. Users have the flexibility to generate embeddings to all image files according to their preferences.Users have the capability to use queries and filters in order to filter out specific image sets out of the metalake population.  As with collection-specific embedding generation, it's essential that the model selected aligns with the user's desired outcomes and categorization preferences.
 
 ```python
-generate_embeddings_to_metalake(content_type, model_name, input_resolution, confidence_threshold, query, filter, inference_platform)
+generate_embeddings_to_metalake(content_type, model_name, query, filter, inference_platform)
 ```
 
 #### Parameters
