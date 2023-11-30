@@ -223,7 +223,7 @@ client.generate_embeddings_for_collection(
 
 ```
 
-## 7.3. Embedding Generation to MetaLake Population
+## 7.5. Embedding Generation to MetaLake Population
 
 The primary aim here is to enable embedding generation across the entirety of MetaLake's content, encompassing image files. Users have the flexibility to generate embeddings to all image files according to their preferences.Users have the capability to use queries and filters in order to filter out specific image sets out of the metalake population.  As with collection-specific embedding generation, it's essential that the model selected aligns with the user's desired outcomes and categorization preferences.
 
@@ -258,7 +258,7 @@ client.generate_embeddings_to_metalake(
 ```
 
 
-## 7.5. Embedding Insertion for Batch
+## 7.6. Embedding Insertion for Batch
 
 The `insert_image_embeddings_batch` function facilitates the insert of image embeddings for a specified image uniqueNames. Length of embedding_list must be less than 100.
 
@@ -289,7 +289,7 @@ client.insert_image_embeddings_batch(
 )
 ```
 
-## 7.6. Embedding Insertion
+## 7.7. Embedding Insertion
 
 The `insert_image_embeddings` function facilitates the insert of image embeddings for a specified image uniqueNames.
 
@@ -318,7 +318,7 @@ client.insert_image_embeddings(
 )
 ```
 
-## 7.7. Get Embedding Vector for given unique name
+## 7.8. Get Embedding Vector for given unique name
 
 The `get_embedding_vector` function facilitates the get the embedding vectors for given unique name list
 
