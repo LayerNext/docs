@@ -122,13 +122,23 @@ attach_label_group_to_annotation_project(project_id, group_id)
 client.attach_label_group_to_annotation_project( “<project_id>”, “<label_group_id>”)
 ```
 
-## 3.5. Download Annotations for Project
+## 3.5. Download Annotations for Project -- Deprecated
 
 This function is designed to download specific frames with annotations that belong to a particular annotation project.The downloaded frames can be stored in a local folder for easy access and use.
 
 ```python
 download_project_annotations(project_id, task_status_list, is_annotated_only, custom_download_path, is_media_include)
 ```
+
+### ⚠️ **Deprecation Warning**
+
+> The function `upload_annoations_for_folder` is **deprecated** and will be removed in a future version.
+>
+> We recommend transitioning to one of the following functions based on your needs:
+>
+> 1. `download_annotation_projects`
+>
+> Please update your existing code to these new functions to avoid potential issues.
 
 ## Parameters
 
@@ -258,3 +268,30 @@ client.get_annotation_project_name_by_id(
         "65004ce4365f0510adb2f649",
 )
 ```
+
+## 4.0. Download Annotations for Projects
+
+This function is designed to download specific frames with annotations that belong to a particular annotation projects.The downloaded frames can be stored in a local folder for easy access and use.
+
+```python
+download_annotation_projects(project_id_list, task_status_list, is_annotated_only, custom_download_path, is_media_include)
+```
+
+## Parameters
+
+| Parameter                         | Data type | Default | Description                                                                                                                                                                                                                                  |
+| --------------------------------- | --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `project_id_list`                 | array    | []      | ID of the project                                                                                                                                                                                                                            |
+| `task_status_list` (Optional)     | array     | []      | To filter the images by status of the relevant task, we can give a list of status values. The valid values are: “in_progress”, “completed”, “accepted”, “qa_completed”. By default, no filtering of tasks applied (all tasks included).      |
+| `Is_annotated_only` (Optional)    | boolean   | False   | if this is True, then only the annotated images are downloaded.                                                                                                                                                                              |
+| `custom_download_path` (Optional) | string    | empty   | If this is given then, the images are downloaded to this location, otherwise it’s downloaded to a directory within the current directory. Note that this requires the absolute path.                                                         |
+| `is_media_include` (Optional)     | boolean   | True    | If the value of this field is set to True, the system will download both the annotation data and the associated media files. If the value is set to False, only the annotation data will be downloaded, and the media files will be skipped. |
+
+The downloaded JSON data format is the same as download annotations from collection.
+
+## Example Usage
+
+To download only the completed or accepted tasks:
+
+```python
+client.download_annotation_projects([<project_id>,<project_id>], [’completed’,’accepted’])

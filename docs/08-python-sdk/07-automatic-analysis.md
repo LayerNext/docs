@@ -272,7 +272,7 @@ insert_image_embeddings_batch(embedding_list, model_name, vector_dimension, sess
 | --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `embedding_list`   | List      | -         | Embedding uniqueName and vector dictionary list |
 | `model_name`       | string    | - | The name of the model |
-| `vector_dimension` | string    | - | Dimension of the embedding vector |
+| `vector_dimension` | List[int]    | - | Dimension of the embedding vector |
 | `session_id`       | string    | "" | session id for metalake job creation purpose |
 
 #### Example Usage:
@@ -303,7 +303,7 @@ insert_image_embeddings(embedding_list, model_name, vector_dimension)
 | --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `embedding_list` | List[dict]    | -         | Embedding uniqueName and vector dictionary list |
 | `model_name`      | string    | - | The name of the model |
-| `vector_dimension`      | string    | - | Dimension of the embedding vector |
+| `vector_dimension`      | List[int]    | - | Dimension of the embedding vector |
 
 #### Example Usage:
 
