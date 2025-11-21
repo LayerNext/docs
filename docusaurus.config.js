@@ -14,6 +14,11 @@ const config = {
     onBrokenMarkdownLinks: "warn",
     favicon: "img/favicon.ico",
 
+
+    // This metadata section is ADDED to prevent indexing of the entire site for SEO Enhancements. 11/21/25
+
+    metadata: [{name: 'robots', content: 'noindex, nofollow'}],
+
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
     // organizationName: "LayerX-AI", // Usually your GitHub org/user name.
