@@ -13,18 +13,6 @@ const config = {
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
     favicon: "img/favicon.ico",
-
-
-    // Google Site Verification and Robots Meta Tags
-
-    metadata: [
-      { name: 'robots', content: 'noindex, nofollow' },
-      {
-        name: 'google-site-verification',
-        content: 'EpNKhXeCsbpaHYAyxQdXYnCGmfAX5UXN3402SWekAbY',
-      },
-    ],
-
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
     // organizationName: "LayerX-AI", // Usually your GitHub org/user name.
