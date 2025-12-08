@@ -15,9 +15,15 @@ const config = {
     favicon: "img/favicon.ico",
 
 
-    // This metadata section is ADDED to prevent indexing of the entire site for SEO Enhancements. 11/21/25
+    // Google Site Verification and Robots Meta Tags
 
-    metadata: [{name: 'robots', content: 'noindex, nofollow'}],
+    metadata: [
+      { name: 'robots', content: 'noindex, nofollow' },
+      {
+        name: 'google-site-verification',
+        content: 'EpNKhXeCsbpaHYAyxQdXYnCGmfAX5UXN3402SWekAbY',
+      },
+    ],
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
