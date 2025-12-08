@@ -73,7 +73,7 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
-            metadata: [{ name: "robots", content: "noindex, nofollow" }],
+            metadata: [{ name: "robots", content: "noindex, nofollow" }, { name: 'google-site-verification', content: 'EpNKhXeCsbpaHYAyxQdXYnCGmfAX5UXN3402SWekAbY', }],
             colorMode: {
                 defaultMode: "dark",
             },
